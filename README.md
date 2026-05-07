@@ -239,18 +239,19 @@ results/20260506T_pi_package_registry_combined_seeded
 
 ## Release
 
-Version `0.1.0` is the initial experimental npm release. Future releases should use GitHub's npm trusted publisher workflow:
+Version `0.1.0` was the initial experimental npm release. Future releases use GitHub's npm trusted publisher workflow on version tags:
 
 ```text
 .github/workflows/publish.yml
+on: push tags v*
 environment: publish-pi-autocontext-lean-verify
-npm publish --access public
-# provenance is generated automatically by npm trusted publishing
+npm publish --provenance --access public
 ```
 
 Before cutting the next release:
 
 - keep CI green,
 - bump `package.json` version,
-- tag/release `v<version>` in GitHub,
-- let the trusted publisher workflow publish to npm.
+- push tag `v<version>`,
+- approve the `publish-pi-autocontext-lean-verify` environment gate,
+- verify npm publication, then create/update the GitHub release notes.

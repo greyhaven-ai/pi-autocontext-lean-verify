@@ -61,6 +61,7 @@
   },
   "homepage": "https://github.com/greyhaven-ai/pi-autocontext-lean-verify#readme",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   }
 }

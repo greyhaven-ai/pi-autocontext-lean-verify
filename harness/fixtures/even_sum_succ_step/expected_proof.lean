@@ -1,0 +1,2 @@
+rw [evenSum]
+omega

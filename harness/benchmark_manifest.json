@@ -1,0 +1,319 @@
+{
+  "name": "formal-proof-lean-pilot-v1",
+  "description": "Experiment-only Lean 4 proof-repair benchmark for autocontext/Pi with fixed theorem templates and hard Lean verification.",
+  "acceptance": "A fixture passes only when verify_lean_proof.py inserts the proposed proof body into Theorem.template.lean and Lean exits successfully without sorry/admit/axiom/unsafe.",
+  "fixtures": [
+    {
+      "id": "add_comm",
+      "category": "nat_arithmetic",
+      "difficulty": "easy",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "add_zero_right",
+      "category": "nat_arithmetic",
+      "difficulty": "easy",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "zero_add_left",
+      "category": "nat_arithmetic",
+      "difficulty": "easy",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "mul_one_right",
+      "category": "nat_arithmetic",
+      "difficulty": "easy",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "one_mul_left",
+      "category": "nat_arithmetic",
+      "difficulty": "easy",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "bool_not_not",
+      "category": "case_split",
+      "difficulty": "easy",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "countup_eq_self",
+      "category": "custom_recursion",
+      "difficulty": "medium",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "double_eq_two_mul",
+      "category": "custom_recursion",
+      "difficulty": "medium",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "triple_eq_three_mul",
+      "category": "custom_recursion",
+      "difficulty": "medium",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "double_eq_add_self",
+      "category": "custom_recursion_arithmetic",
+      "difficulty": "medium_hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "list_append_nil_nat",
+      "category": "list_induction",
+      "difficulty": "medium",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "list_map_id_nat",
+      "category": "list_induction",
+      "difficulty": "medium",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "list_append_assoc_nat",
+      "category": "list_induction",
+      "difficulty": "medium_hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "plus_slow_comm",
+      "category": "custom_nat_recursion",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "mul_slow_add_right",
+      "category": "custom_nat_recursion_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "rev_slow_rev_slow",
+      "category": "custom_list_induction",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "mirror_mirror_tree",
+      "category": "custom_tree_induction",
+      "difficulty": "medium_hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "tree_size_mirror",
+      "category": "custom_tree_induction_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "quad_slow_eq_four_mul",
+      "category": "custom_recursion_arithmetic",
+      "difficulty": "medium_hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "double_shift_eq_two_mul_add_three",
+      "category": "custom_recursion_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "triple_shift_eq_three_mul_add_two",
+      "category": "custom_recursion_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "odd_sum_succ_step",
+      "category": "custom_recursion_arithmetic",
+      "difficulty": "medium_hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "even_sum_succ_step",
+      "category": "custom_recursion_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "triple_add_eq_self_sum",
+      "category": "custom_recursion_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "quad_add_eq_self_sum",
+      "category": "custom_recursion_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "tri_nest_eq_right_nested",
+      "category": "normalization_playbook_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "tri_offset_eq_self_sum_add_five",
+      "category": "normalization_playbook_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "quad_pair_eq_pair_sum",
+      "category": "normalization_playbook_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "penta_add_eq_self_sum",
+      "category": "normalization_playbook_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "tri_alt_eq_reassociated",
+      "category": "normalization_playbook_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "five_shift_eq_five_mul_add_seven",
+      "category": "expanded_mixed_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "mul_slow_succ_right",
+      "category": "expanded_custom_nat_recursion_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "tree_size_mirror_mirror",
+      "category": "expanded_tree_induction_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "length_slow_append_slow",
+      "category": "expanded_list_induction_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "six_shift_eq_six_mul_add_one",
+      "category": "heldout_shift_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "seven_add_eq_self_sum",
+      "category": "heldout_normalization_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "plus_slow_assoc",
+      "category": "heldout_custom_nat_recursion",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "mul_slow_add_left",
+      "category": "heldout_custom_nat_recursion_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "length_slow_map_succ_slow",
+      "category": "heldout_list_induction",
+      "difficulty": "medium_hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "length_slow_rev_slow",
+      "category": "heldout_list_helper_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "tree_size_mirror_sum_twice",
+      "category": "heldout_tree_arithmetic",
+      "difficulty": "hard",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "mul_add_distrib_right",
+      "category": "nat_arithmetic",
+      "difficulty": "negative_control",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "add_mul_distrib_left",
+      "category": "nat_arithmetic",
+      "difficulty": "negative_control",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "filter_length_le_builtin",
+      "category": "list_induction",
+      "difficulty": "negative_control",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "add_left_cancel_builtin",
+      "category": "nat_arithmetic",
+      "difficulty": "negative_control",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "mul_comm_builtin",
+      "category": "nat_arithmetic",
+      "difficulty": "negative_control",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "mul_assoc_builtin",
+      "category": "nat_arithmetic",
+      "difficulty": "negative_control",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "and_all_repeat_true",
+      "category": "bool_list_recursion",
+      "difficulty": "heldout",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "sum_slow_append_slow",
+      "category": "list_recursion",
+      "difficulty": "heldout",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "map_double_slow_append_slow",
+      "category": "list_recursion",
+      "difficulty": "heldout",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "tree_leaves_mirror",
+      "category": "tree_recursion",
+      "difficulty": "heldout",
+      "initial_proof": "rfl"
+    },
+    {
+      "id": "rev_slow_append_slow",
+      "category": "list_recursion",
+      "difficulty": "hard_heldout",
+      "initial_proof": "rfl"
+    }
+  ]
+}

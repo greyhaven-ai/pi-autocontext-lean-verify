@@ -1,0 +1,56 @@
+{
+  "groups": {
+    "smoke": [
+      "add_zero_right"
+    ],
+    "broader": [
+      "mul_add_distrib_right",
+      "add_mul_distrib_left",
+      "and_all_repeat_true",
+      "sum_slow_append_slow",
+      "map_double_slow_append_slow",
+      "tree_leaves_mirror",
+      "rev_slow_append_slow"
+    ],
+    "heldout": [
+      "six_shift_eq_six_mul_add_one",
+      "seven_add_eq_self_sum",
+      "plus_slow_assoc",
+      "mul_slow_add_left",
+      "length_slow_map_succ_slow",
+      "length_slow_rev_slow",
+      "tree_size_mirror_sum_twice"
+    ],
+    "combined": [
+      "mul_add_distrib_right",
+      "add_mul_distrib_left",
+      "and_all_repeat_true",
+      "sum_slow_append_slow",
+      "map_double_slow_append_slow",
+      "tree_leaves_mirror",
+      "rev_slow_append_slow",
+      "six_shift_eq_six_mul_add_one",
+      "seven_add_eq_self_sum",
+      "plus_slow_assoc",
+      "mul_slow_add_left",
+      "length_slow_map_succ_slow",
+      "length_slow_rev_slow",
+      "tree_size_mirror_sum_twice"
+    ],
+    "negative_controls": [
+      "mul_add_distrib_right",
+      "add_mul_distrib_left",
+      "mul_assoc_builtin",
+      "mul_comm_builtin",
+      "add_left_cancel_builtin",
+      "filter_length_le_builtin"
+    ]
+  },
+  "descriptions": {
+    "smoke": "One quick theorem for setup and smoke checks.",
+    "broader": "Seven broader fixtures covering Nat distribution, Bool/List recursion, list helpers, tree helpers, and reverse/append.",
+    "heldout": "Seven original held-out transfer fixtures.",
+    "combined": "The broader group followed by the heldout group.",
+    "negative_controls": "Six fixtures where generic Nat/List hint candidates should fail Lean before fallback."
+  }
+}

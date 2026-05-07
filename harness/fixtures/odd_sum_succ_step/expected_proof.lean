@@ -1,0 +1,2 @@
+rw [oddSum]
+omega

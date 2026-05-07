@@ -1,0 +1,9 @@
+.pi-lens/
+*.log
+.DS_Store
+node_modules/
+harness/results/
+harness/__pycache__/
+harness/**/*.pyc
+tests/
+.gitignore

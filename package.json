@@ -1,0 +1,60 @@
+{
+  "name": "pi-autocontext-lean-verify",
+  "version": "0.0.0-experimental",
+  "description": "Experimental Pi package for Lean-verified proof repair using autocontext and Pi.",
+  "private": true,
+  "files": [
+    "LICENSE",
+    "README.md",
+    "docs",
+    "extensions",
+    "fixture_groups.json",
+    "prompts",
+    "skills",
+    "harness/benchmark_manifest.json",
+    "harness/fixtures",
+    "harness/playbooks",
+    "harness/run_playbook_transfer.py",
+    "harness/prove_with_autocontext.py",
+    "harness/experiment_common.py",
+    "harness/verify_lean_proof.py",
+    "harness/extract_candidate_proof.py",
+    "harness/update_results_index.py"
+  ],
+  "scripts": {
+    "validate": "python3 tests/package_validation.py",
+    "pack:dry-run": "npm pack --dry-run --json"
+  },
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "autocontext",
+    "lean",
+    "formal-methods",
+    "proof-repair"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions"
+    ],
+    "skills": [
+      "./skills"
+    ],
+    "prompts": [
+      "./prompts"
+    ]
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greyhaven-ai/pi-autocontext-lean-verify.git"
+  },
+  "dependencies": {
+    "@earendil-works/pi-ai": "^0.74.0",
+    "@earendil-works/pi-coding-agent": "^0.74.0",
+    "typebox": "^1.1.24"
+  }
+}

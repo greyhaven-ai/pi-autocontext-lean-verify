@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  package:
+    name: Package validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Validate package invariants
+        run: npm run validate
+
+      - name: Check package contents
+        run: npm pack --dry-run --json
+
+  lean-fixtures:
+    name: Lean expected proofs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install elan and Lean
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain stable --no-modify-path
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Verify bundled expected proofs
+        run: python3 tests/verify_expected_proofs.py

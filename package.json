@@ -1,8 +1,7 @@
 {
   "name": "pi-autocontext-lean-verify",
-  "version": "0.0.0-experimental",
+  "version": "0.1.0",
   "description": "Experimental Pi package for Lean-verified proof repair using autocontext and Pi.",
-  "private": true,
   "files": [
     "LICENSE",
     "README.md",
@@ -56,5 +55,9 @@
     "@earendil-works/pi-ai": "^0.74.0",
     "@earendil-works/pi-coding-agent": "^0.74.0",
     "typebox": "^1.1.24"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/greyhaven-ai/pi-autocontext-lean-verify/issues"
+  },
+  "homepage": "https://github.com/greyhaven-ai/pi-autocontext-lean-verify#readme"
 }

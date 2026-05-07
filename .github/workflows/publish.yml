@@ -1,0 +1,63 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    name: Publish package
+    runs-on: ubuntu-latest
+    environment: publish-pi-autocontext-lean-verify
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Validate package invariants
+        run: npm run validate
+
+      - name: Check package contents
+        run: npm pack --dry-run --json
+
+      - name: Install elan and Lean
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain stable --no-modify-path
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Verify bundled expected proofs
+        run: python3 tests/verify_expected_proofs.py
+
+      - name: Verify release tag matches package version
+        run: |
+          node - <<'NODE'
+          const packageJson = require('./package.json');
+          const expected = `v${packageJson.version}`;
+          const actual = process.env.GITHUB_REF_NAME;
+          if (actual !== expected) {
+            throw new Error(`Release tag ${actual} does not match package version ${expected}`);
+          }
+          NODE
+
+      - name: Publish to npm with provenance
+        run: npm publish --provenance --access public

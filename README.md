@@ -10,21 +10,27 @@ This is **not** a general theorem prover and should not be described as “autoc
 
 ## Status
 
-- Experimental local package.
+- Experimental npm package: `pi-autocontext-lean-verify@0.1.0`.
 - Tracks Linear issue `AC-731`.
-- Intended path: local package → git package → npm-distributed Pi package.
 - License: Apache-2.0.
-- Current harness root: parent directory of this package, `support/formal-proof-lean-pilot`.
+- Default harness root in the standalone package: bundled `harness/` directory.
+- `AUTOCONTEXT_FORMAL_ROOT` can override the harness root for local experiments.
 
-## Install locally
+## Install
 
-From the `formal-proof-lean-pilot` directory:
+From npm:
+
+```bash
+pi install pi-autocontext-lean-verify
+```
+
+From a local checkout:
 
 ```bash
 pi install ./pi-autocontext-lean-verify
 ```
 
-Or test for one run without installing:
+Or test a local checkout for one run without installing:
 
 ```bash
 pi -e ./pi-autocontext-lean-verify
@@ -229,15 +235,21 @@ results/20260506T_pi_package_registry_combined_seeded
 14 / 14 proved, Pi calls: 14, Lean attempts: 17, pre-repair hints: 2/1/1
 ```
 
-`npm pack --dry-run --json` currently includes only runtime package assets: README, docs, fixture group registry, extension, prompt, skill, and package metadata.
+`npm pack --dry-run --json` includes runtime package assets and the bundled harness, while excluding tests and generated result artifacts.
 
-## Before npm publication
+## Release
 
-Do not publish this package publicly until we have:
+Version `0.1.0` is the initial experimental npm release. Future releases should use GitHub's npm trusted publisher workflow:
 
-- broader fixture-family coverage
-- negative controls where synthetic candidates should fail
-- 10–20 Pi-only variance trials
-- comparison against direct Pi repair
-- compact playbook latency/overfitting tests
-- stable install/preflight documentation
+```text
+.github/workflows/publish.yml
+environment: publish-pi-autocontext-lean-verify
+npm publish --provenance --access public
+```
+
+Before cutting the next release:
+
+- keep CI green,
+- bump `package.json` version,
+- tag/release `v<version>` in GitHub,
+- let the trusted publisher workflow publish to npm.

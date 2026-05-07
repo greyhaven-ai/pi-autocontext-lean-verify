@@ -18,6 +18,7 @@ LICENSE = PACKAGE / "LICENSE"
 PROVE_WITH_AUTOCONTEXT = HARNESS / "prove_with_autocontext.py"
 MANIFEST = HARNESS / "benchmark_manifest.json"
 DEFAULT_SEED_PLAYBOOK = HARNESS / "playbooks" / "expanded_mixed_cluster_v1.md"
+PUBLISH_WORKFLOW = PACKAGE / ".github" / "workflows" / "publish.yml"
 
 class StandaloneRepoValidationTests(unittest.TestCase):
     def manifest_fixture_ids(self) -> set[str]:
@@ -98,6 +99,18 @@ class StandaloneRepoValidationTests(unittest.TestCase):
         self.assertIn("Apache License", license_text)
         self.assertIn("Version 2.0", license_text)
         self.assertIn("Grey Haven AI", license_text)
+
+
+    def test_npm_trusted_publisher_configuration_is_explicit(self) -> None:
+        package_json = json.loads(PACKAGE_JSON.read_text(encoding="utf-8"))
+        self.assertEqual(package_json.get("publishConfig", {}).get("access"), "public")
+        self.assertTrue(PUBLISH_WORKFLOW.exists())
+        workflow = PUBLISH_WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn("publish-pi-autocontext-lean-verify", workflow)
+        self.assertIn("id-token: write", workflow)
+        self.assertIn("npm publish --provenance --access public", workflow)
+        self.assertIn("Verify release tag matches package version", workflow)
+        self.assertNotIn("NPM_TOKEN", workflow)
 
     def test_npm_pack_includes_harness_but_excludes_results_and_tests(self) -> None:
         result = subprocess.run(

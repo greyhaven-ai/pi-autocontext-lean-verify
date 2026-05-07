@@ -59,5 +59,8 @@
   "bugs": {
     "url": "https://github.com/greyhaven-ai/pi-autocontext-lean-verify/issues"
   },
-  "homepage": "https://github.com/greyhaven-ai/pi-autocontext-lean-verify#readme"
+  "homepage": "https://github.com/greyhaven-ai/pi-autocontext-lean-verify#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }

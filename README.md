@@ -10,7 +10,7 @@ This is **not** a general theorem prover and should not be described as “autoc
 
 ## Status
 
-- Experimental npm package: `pi-autocontext-lean-verify@0.1.0`.
+- Published npm package. First trusted-publisher/provenance release: `pi-autocontext-lean-verify@0.1.4`.
 - Tracks Linear issue `AC-731`.
 - License: Apache-2.0.
 - Default harness root in the standalone package: bundled `harness/` directory.
@@ -21,7 +21,7 @@ This is **not** a general theorem prover and should not be described as “autoc
 From npm:
 
 ```bash
-pi install pi-autocontext-lean-verify
+pi install npm:pi-autocontext-lean-verify
 ```
 
 From a local checkout:
@@ -235,11 +235,28 @@ results/20260506T_pi_package_registry_combined_seeded
 14 / 14 proved, Pi calls: 14, Lean attempts: 17, pre-repair hints: 2/1/1
 ```
 
+The npm-published trusted-publisher release was smoke-tested from the registry with:
+
+```bash
+pi -e npm:pi-autocontext-lean-verify@0.1.4 --no-context-files --no-builtin-tools --tools autocontext_lean_verify -p 'Call autocontext_lean_verify with action="setup"'
+```
+
+Observed npm-installed setup result:
+
+```text
+1 / 1 proved
+Pi calls: 0
+Lean verifier attempts: 1
+Package source: npm:pi-autocontext-lean-verify@0.1.4
+```
+
 `npm pack --dry-run --json` includes runtime package assets and the bundled harness, while excluding tests and generated result artifacts.
 
 ## Release
 
-Version `0.1.0` was the initial experimental npm release. Future releases use GitHub's npm trusted publisher workflow on version tags:
+Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was the first successful GitHub OIDC trusted-publisher release with npm provenance attestations. Unpublished attempts `0.1.1`–`0.1.3` do not exist in the npm registry.
+
+Future releases use GitHub's npm trusted publisher workflow on version tags:
 
 ```text
 .github/workflows/publish.yml
@@ -254,4 +271,4 @@ Before cutting the next release:
 - bump `package.json` version,
 - push tag `v<version>`,
 - approve the `publish-pi-autocontext-lean-verify` environment gate,
-- verify npm publication, then create/update the GitHub release notes.
+- verify npm publication and provenance attestations, then create/update GitHub release notes.

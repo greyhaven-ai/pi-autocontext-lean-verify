@@ -1,6 +1,6 @@
 {
   "name": "pi-autocontext-lean-verify",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Experimental Pi package for Lean-verified proof repair using autocontext and Pi.",
   "files": [
     "LICENSE",

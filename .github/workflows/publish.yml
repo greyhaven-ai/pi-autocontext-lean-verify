@@ -16,22 +16,26 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "24"
-          registry-url: "https://registry.npmjs.org"
           cache: npm
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
       - name: Install npm dependencies
         run: npm ci
+
+      - name: Upgrade npm for trusted publishing
+        run: |
+          npm install -g npm@latest
+          npm --version
 
       - name: Validate package invariants
         run: npm run validate
@@ -59,5 +63,7 @@ jobs:
           }
           NODE
 
-      - name: Publish to npm with provenance
-        run: npm publish --provenance --access public
+      - name: Publish to npm with trusted publishing
+        run: |
+          unset NODE_AUTH_TOKEN NPM_TOKEN
+          npm publish --access public

@@ -244,7 +244,8 @@ Version `0.1.0` is the initial experimental npm release. Future releases should 
 ```text
 .github/workflows/publish.yml
 environment: publish-pi-autocontext-lean-verify
-npm publish --provenance --access public
+npm publish --access public
+# provenance is generated automatically by npm trusted publishing
 ```
 
 Before cutting the next release:

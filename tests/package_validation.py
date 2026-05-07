@@ -108,9 +108,13 @@ class StandaloneRepoValidationTests(unittest.TestCase):
         workflow = PUBLISH_WORKFLOW.read_text(encoding="utf-8")
         self.assertIn("publish-pi-autocontext-lean-verify", workflow)
         self.assertIn("id-token: write", workflow)
-        self.assertIn("npm publish --provenance --access public", workflow)
+        self.assertIn("actions/setup-node@v6", workflow)
+        self.assertIn("npm install -g npm@latest", workflow)
+        self.assertIn("unset NODE_AUTH_TOKEN NPM_TOKEN", workflow)
+        self.assertIn("npm publish --access public", workflow)
         self.assertIn("Verify release tag matches package version", workflow)
-        self.assertNotIn("NPM_TOKEN", workflow)
+        self.assertNotIn("secrets.NPM_TOKEN", workflow)
+        self.assertNotIn("NODE_AUTH_TOKEN: ${{", workflow)
 
     def test_npm_pack_includes_harness_but_excludes_results_and_tests(self) -> None:
         result = subprocess.run(

@@ -44,6 +44,26 @@
       "mul_comm_builtin",
       "add_left_cancel_builtin",
       "filter_length_le_builtin"
+    ],
+    "challenge_v2_no_helper": [
+      "challenge_v2_length_rev_no_helper",
+      "challenge_v2_sum_rev_no_helper",
+      "challenge_v2_map_succ_rev_no_helper"
+    ],
+    "challenge_v3_generalization": [
+      "challenge_v3_rev_acc_generalization",
+      "challenge_v3_sum_acc_generalization",
+      "challenge_v3_tree_flatten_mirror",
+      "challenge_v3_map_rev_append_combined"
+    ],
+    "challenge_transfer": [
+      "challenge_v2_length_rev_no_helper",
+      "challenge_v2_sum_rev_no_helper",
+      "challenge_v2_map_succ_rev_no_helper",
+      "challenge_v3_rev_acc_generalization",
+      "challenge_v3_sum_acc_generalization",
+      "challenge_v3_tree_flatten_mirror",
+      "challenge_v3_map_rev_append_combined"
     ]
   },
   "descriptions": {
@@ -51,6 +71,9 @@
     "broader": "Seven broader fixtures covering Nat distribution, Bool/List recursion, list helpers, tree helpers, and reverse/append.",
     "heldout": "Seven original held-out transfer fixtures.",
     "combined": "The broader group followed by the heldout group.",
-    "negative_controls": "Six fixtures where generic Nat/List hint candidates should fail Lean before fallback."
+    "negative_controls": "Six fixtures where generic Nat/List hint candidates should fail Lean before fallback.",
+    "challenge_v2_no_helper": "Three no-expected-proof challenge fixtures requiring local append/map helper lemma discovery.",
+    "challenge_v3_generalization": "Four no-expected-proof theorem-generalization fixtures requiring accumulator generalization and multi-helper proof plans.",
+    "challenge_transfer": "All v2/v3 challenge fixtures for proof-transfer experiments; no expected proofs are bundled."
   }
 }

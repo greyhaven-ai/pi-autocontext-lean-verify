@@ -21,6 +21,9 @@ const FIXTURE_GROUP_NAMES = [
 	"heldout",
 	"combined",
 	"negative_controls",
+	"challenge_v2_no_helper",
+	"challenge_v3_generalization",
+	"challenge_transfer",
 ] as const;
 
 type FixtureGroupName = (typeof FIXTURE_GROUP_NAMES)[number];
@@ -29,7 +32,7 @@ type FixtureGroupRegistry = { groups: Record<FixtureGroupName, string[]> };
 const AUTOCONTEXT_PACKAGE_VERSION = "0.4.8";
 
 const formalProofSchema = Type.Object({
-	action: StringEnum(["preflight", "setup", "run", "summarize"] as const, {
+	action: StringEnum(["preflight", "setup", "run", "benchmark", "summarize"] as const, {
 		description: "Workflow action to execute.",
 	}),
 	fixtures: Type.Optional(
@@ -41,7 +44,7 @@ const formalProofSchema = Type.Object({
 	fixtureGroup: Type.Optional(
 		StringEnum(FIXTURE_GROUP_NAMES, {
 			description:
-				"Named fixture group to run when fixtures is omitted. Defaults to broader.",
+				"Named fixture group to run when fixtures is omitted. Defaults to broader for run actions and challenge_v3_generalization for benchmark actions.",
 		}),
 	),
 	mode: Type.Optional(
@@ -182,9 +185,24 @@ function formatMethodComparison(methods: unknown): string[] {
 }
 
 function summarizeRun(root: string): string {
+	const benchmarkPath = resolve(root, "proof_transfer_benchmark_summary.json");
 	const transferPath = resolve(root, "transfer_summary.json");
 	const variancePath = resolve(root, "variance_summary.json");
 	const directPath = resolve(root, "direct_baseline_summary.json");
+	if (existsSync(benchmarkPath)) {
+		const summary = readJson(benchmarkPath) as {
+			fixture_group?: string;
+			methods?: Record<string, Record<string, unknown> | null>;
+		};
+		const methods = Object.entries(summary.methods || {}).map(([method, stats]) => {
+			if (!stats) return `- ${method}: missing`;
+			return `- ${method}: ${stats.proved}/${stats.total} proved, Pi calls=${stats.pi_calls}, Pi elapsed=${stats.pi_elapsed_seconds}s`;
+		});
+		return [
+			`Proof-transfer benchmark: ${summary.fixture_group ?? "unknown group"}`,
+			...methods,
+		].join("\n");
+	}
 	if (existsSync(transferPath)) {
 		const summary = readJson(transferPath) as {
 			total?: number;
@@ -409,6 +427,72 @@ async function runHarness(
 	};
 }
 
+async function runBenchmark(
+	pi: ExtensionAPI,
+	params: FormalProofInput,
+	signal: AbortSignal | undefined,
+	root: string,
+) {
+	const group = params.fixtureGroup || "challenge_v3_generalization";
+	const fixtures = params.fixtures?.length
+		? params.fixtures
+		: fixtureGroupFixtures(group);
+	const runRoot =
+		params.runRoot ||
+		`results/pi_package_benchmark_${group}_${new Date().toISOString().replace(/[-:.]/g, "").slice(0, 15)}`;
+	const args = [
+		"run_proof_transfer_benchmark.py",
+		"--fixture-group",
+		group,
+		"--fixtures",
+		...fixtures,
+		"--max-attempts",
+		String(params.maxAttempts ?? 2),
+		"--rounds",
+		String(params.rounds ?? 2),
+		"--timeout",
+		String(params.timeoutSeconds ?? 120),
+		"--run-root",
+		runRoot,
+	];
+	if (params.seedPlaybook) {
+		args.push("--seed-playbook", params.seedPlaybook);
+	}
+	const timeoutMs = Math.max(
+		600_000,
+		(params.timeoutSeconds ?? 120) * Math.max(fixtures.length, 1) * Math.max(params.maxAttempts ?? 2, 1) * 3_000,
+	);
+	const result = await pi.exec("python3", args, {
+		cwd: root,
+		signal,
+		timeout: timeoutMs,
+	});
+	const output = [
+		`Benchmark root: ${resolve(root, runRoot)}`,
+		`Exit code: ${result.code}`,
+		summarizeRun(resolve(root, runRoot)),
+		"",
+		"Benchmark stdout/stderr tail:",
+		result.stdout,
+		result.stderr,
+	].join("\n");
+	const truncated = truncateTail(output, {
+		maxBytes: DEFAULT_MAX_BYTES,
+		maxLines: DEFAULT_MAX_LINES,
+	});
+	return {
+		content: [{ type: "text", text: truncated.content }],
+		details: {
+			root,
+			runRoot: resolve(root, runRoot),
+			fixtureGroup: group,
+			fixtures,
+			exitCode: result.code,
+			truncated: truncated.truncated,
+		},
+	};
+}
+
 export default function formalProofExtension(pi: ExtensionAPI) {
 	pi.registerTool({
 		name: "autocontext_lean_verify",
@@ -463,6 +547,10 @@ export default function formalProofExtension(pi: ExtensionAPI) {
 					],
 					details: runResult.details,
 				};
+			}
+
+			if (params.action === "benchmark") {
+				return runBenchmark(pi, params, signal, root);
 			}
 
 			if (params.action === "summarize") {

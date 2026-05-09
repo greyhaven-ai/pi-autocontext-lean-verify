@@ -1,6 +1,6 @@
 {
   "name": "pi-autocontext-lean-verify",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Experimental Pi package for Lean-verified proof repair using autocontext and Pi.",
   "files": [
     "LICENSE",
@@ -18,11 +18,15 @@
     "harness/experiment_common.py",
     "harness/verify_lean_proof.py",
     "harness/extract_candidate_proof.py",
-    "harness/update_results_index.py"
+    "harness/update_results_index.py",
+    "harness/direct_pi_prove.py",
+    "harness/run_direct_baseline_benchmark.py",
+    "harness/run_proof_transfer_benchmark.py"
   ],
   "scripts": {
     "validate": "python3 tests/package_validation.py",
-    "pack:dry-run": "npm pack --dry-run --json"
+    "pack:dry-run": "npm pack --dry-run --json",
+    "benchmark:v3": "python3 harness/run_proof_transfer_benchmark.py --fixture-group challenge_v3_generalization --timeout 120 --max-attempts 2 --rounds 2"
   },
   "keywords": [
     "pi-package",

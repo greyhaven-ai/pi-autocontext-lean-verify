@@ -64,7 +64,7 @@ uvx --python 3.12 --from autocontext==0.4.8 autoctx improve ...
 - Skill: `lean-verify`
 - Prompt template: `lean-verify.md`
 - Fixture group registry: `fixture_groups.json`
-- Domain model, validation matrix, and repo split notes: `docs/DOMAIN.md`, `docs/VALIDATION.md`, `docs/REPO_SPLIT.md`
+- Domain model, validation matrix, proof-transfer benchmark, and repo split notes: `docs/DOMAIN.md`, `docs/VALIDATION.md`, `docs/PROOF_TRANSFER_BENCHMARK.md`, `docs/REPO_SPLIT.md`
 
 ## Tool actions
 
@@ -118,6 +118,26 @@ Use `maxAttempts=3` for the expanded negative-control group because `maxAttempts
 }
 ```
 
+### Benchmark
+
+Runs the packaged proof-transfer benchmark: seeded autocontext/Pi vs direct Pi repair-loop on the same fixed Lean templates. The default fixture group is `challenge_v3_generalization`; pregeneration and synthetic hint candidates are disabled.
+
+```json
+{
+  "action": "benchmark",
+  "fixtureGroup": "challenge_v3_generalization",
+  "maxAttempts": 2,
+  "rounds": 2,
+  "timeoutSeconds": 120
+}
+```
+
+From a checkout, the same benchmark can be launched without Pi:
+
+```bash
+npm run benchmark:v3
+```
+
 ### Summarize
 
 Reads a saved run summary.
@@ -138,6 +158,9 @@ Reads a saved run summary.
 | `heldout`           | Seven original held-out transfer fixtures.                                                                                                |
 | `combined`          | `broader` + `heldout` (`14` fixtures).                                                                                                    |
 | `negative_controls` | Six fixtures: distribution, multiplication associativity/commutativity, addition cancellation, and filter length bound negative controls. |
+| `challenge_v2_no_helper` | Three no-expected-proof fixtures requiring local helper lemma discovery. |
+| `challenge_v3_generalization` | Four no-expected-proof theorem-generalization fixtures requiring accumulator/multi-helper proof plans. |
+| `challenge_transfer` | All v2/v3 challenge fixtures (`7` fixtures). |
 
 ## Modes
 
@@ -195,8 +218,8 @@ Lean version: 4.29.1
 Python: 3.14.2
 uvx: uv-tool-uvx 0.6.17
 Autocontext runtime: autocontext==0.4.8 via uvx autoctx improve (ok)
-Fixture count: 52
-Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6
+Fixture count: 59
+Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7
 ```
 
 A zero-Pi-call run smoke test was completed:
@@ -252,9 +275,22 @@ Package source: npm:pi-autocontext-lean-verify@0.1.4
 
 `npm pack --dry-run --json` includes runtime package assets and the bundled harness, while excluding tests and generated result artifacts.
 
+
+## Proof-transfer benchmark evidence
+
+Version `0.1.6` adds packaged no-expected-proof challenge fixtures and a reproducible benchmark command. The local v3 repeated stability probe produced:
+
+```text
+seeded autocontext: 12 / 12 proofs across 3 trials
+direct Pi repair-loop: 7 / 12 proofs across 3 trials
+hard-plus subset: seeded autocontext 6 / 6 vs direct Pi 1 / 6
+```
+
+See `docs/PROOF_TRANSFER_BENCHMARK.md` for fixture groups, commands, and interpretation.
+
 ## Release
 
-Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was the first successful GitHub OIDC trusted-publisher release with npm provenance attestations. Unpublished attempts `0.1.1`–`0.1.3` do not exist in the npm registry.
+Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was the first successful GitHub OIDC trusted-publisher release with npm provenance attestations. Version `0.1.6` promotes the v2/v3 challenge fixtures and proof-transfer benchmark runner. Unpublished attempts `0.1.1`–`0.1.3` do not exist in the npm registry.
 
 Future releases use GitHub's npm trusted publisher workflow on version tags:
 

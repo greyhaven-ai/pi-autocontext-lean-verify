@@ -42,7 +42,17 @@ def elan_home_for_lean(lean: str) -> str | None:
 
 def fixture_ids() -> list[str]:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    return [fixture["id"] for fixture in manifest["fixtures"]]
+    ids: list[str] = []
+    for fixture in manifest["fixtures"]:
+        fixture_id = fixture["id"]
+        if (HARNESS / "fixtures" / fixture_id / "expected_proof.lean").exists():
+            ids.append(fixture_id)
+    return ids
+
+
+def manifest_fixture_count() -> int:
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    return len(manifest["fixtures"])
 
 
 def verify_fixture(fixture: str, lean: str, env: dict[str, str], tmpdir: Path) -> tuple[bool, str]:
@@ -78,10 +88,12 @@ def main() -> int:
             ok, output = verify_fixture(fixture, lean, env, tmpdir)
             if not ok:
                 failures[fixture] = output
-    total = len(fixture_ids())
+    expected_total = len(fixture_ids())
+    manifest_total = manifest_fixture_count()
     print(f"Lean binary: {lean}")
-    print(f"manifest_fixtures={total}")
-    print(f"expected_proofs_verified={total - len(failures)} failed={len(failures)}")
+    print(f"manifest_fixtures={manifest_total}")
+    print(f"expected_proof_fixtures={expected_total}")
+    print(f"expected_proofs_verified={expected_total - len(failures)} failed={len(failures)}")
     if failures:
         for fixture, output in failures.items():
             print(f"\n## {fixture}\n{output}")

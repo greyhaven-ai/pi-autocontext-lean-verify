@@ -6,7 +6,7 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 
 | Claim                                                      |                    Evidence | Artifact                                                                                          |
 | ---------------------------------------------------------- | --------------------------: | ------------------------------------------------------------------------------------------------- |
-| Harness sanity: every expected proof still verifies        |                     52 / 52 | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
+| Harness sanity: every expected proof still verifies        | 52 / 52 expected-proof fixtures (59 manifest fixtures) | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
 | Package setup works through Pi                             |           1 / 1 smoke proof | `results/20260506T_pi_package_setup_action_smoke`                                                 |
 | Post-registry package setup works through Pi               |           1 / 1 smoke proof | `results/20260506T_pi_package_registry_setup_smoke`                                               |
 | Package fixture groups work through Pi                     |           1 / 1 smoke proof | `results/20260506T_pi_package_fixture_group_smoke`                                                |
@@ -16,6 +16,10 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Post-registry package negative-control rejection           | 15 / 15 candidates rejected | `results/20260506T_pi_package_registry_negative_controls_attempts3`                               |
 | Negative controls recover with larger fallback budget      |              6 / 6 fixtures | `results/20260506T_expanded_negative_controls_pre_repair_hint_no_pregenerate_attempts3_timeout60` |
 | Post-registry package negative-control recovery            |              6 / 6 fixtures | `results/20260506T_pi_package_registry_negative_controls_attempts3`                               |
+| Challenge v2 no-helper repeated stability                  |      18 / 18 fixture-trials | `results/20260507T_challenge_v2_repeated_stability_report.md`                                     |
+| Challenge v3 theorem-generalization seeded stability       |      12 / 12 fixture-trials | `results/20260507T_challenge_v3_repeated_stability_report.md`                                     |
+| Challenge v3 direct-repair baseline contrast               |       7 / 12 fixture-trials | `results/20260507T_challenge_v3_repeated_stability_report.md`                                     |
+| Packaged v3 benchmark command sanity run                   |   seeded 4 / 4; direct 4 / 4 | `harness/results/20260509T190246Z_proof_transfer_benchmark_challenge_v3_generalization`            |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 
 ## Runtime dependency contract
@@ -73,6 +77,24 @@ For combined seeded transfer through the package registry:
   "timeoutSeconds": 60,
   "runRoot": "results/20260506T_pi_package_registry_combined_seeded"
 }
+```
+
+For the packaged proof-transfer benchmark:
+
+```json
+{
+  "action": "benchmark",
+  "fixtureGroup": "challenge_v3_generalization",
+  "maxAttempts": 2,
+  "rounds": 2,
+  "timeoutSeconds": 120
+}
+```
+
+Equivalent checkout command:
+
+```bash
+npm run benchmark:v3
 ```
 
 ## Interpretation

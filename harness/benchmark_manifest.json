@@ -314,6 +314,55 @@
       "category": "list_recursion",
       "difficulty": "hard_heldout",
       "initial_proof": "rfl"
+    },
+    {
+      "id": "challenge_v2_length_rev_no_helper",
+      "category": "challenge_v2_list_auxiliary_lemma",
+      "difficulty": "challenge_hard",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v2_sum_rev_no_helper",
+      "category": "challenge_v2_list_auxiliary_lemma",
+      "difficulty": "challenge_hard",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v2_map_succ_rev_no_helper",
+      "category": "challenge_v2_list_auxiliary_lemma",
+      "difficulty": "challenge_hard",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v3_rev_acc_generalization",
+      "category": "challenge_v3_accumulator_generalization",
+      "difficulty": "challenge_hard",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v3_sum_acc_generalization",
+      "category": "challenge_v3_accumulator_generalization",
+      "difficulty": "challenge_hard",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v3_tree_flatten_mirror",
+      "category": "challenge_v3_tree_list_generalization",
+      "difficulty": "challenge_hard_plus",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v3_map_rev_append_combined",
+      "category": "challenge_v3_list_combined_helpers",
+      "difficulty": "challenge_hard_plus",
+      "initial_proof": "rfl",
+      "expected_proof": false
     }
   ]
 }

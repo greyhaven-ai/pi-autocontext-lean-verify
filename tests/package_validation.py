@@ -56,6 +56,21 @@ class StandaloneRepoValidationTests(unittest.TestCase):
         self.assertIn("legacyHarnessRoot", text)
         self.assertIn("playbooks/expanded_mixed_cluster_v1.md", text)
 
+    def test_challenge_fixtures_are_verifier_only_without_expected_proofs(self) -> None:
+        groups = self.fixture_groups()
+        manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        by_id = {fixture["id"]: fixture for fixture in manifest["fixtures"]}
+        for group_name in ["challenge_v2_no_helper", "challenge_v3_generalization", "challenge_transfer"]:
+            with self.subTest(group=group_name):
+                self.assertIn(group_name, groups)
+                self.assertTrue(groups[group_name])
+        for fixture_id in groups["challenge_transfer"]:
+            with self.subTest(fixture=fixture_id):
+                fixture_dir = HARNESS / "fixtures" / fixture_id
+                self.assertTrue((fixture_dir / "Theorem.template.lean").exists())
+                self.assertFalse((fixture_dir / "expected_proof.lean").exists())
+                self.assertIs(by_id[fixture_id].get("expected_proof"), False)
+
     def test_validation_docs_capture_current_evidence(self) -> None:
         text = VALIDATION_DOC.read_text(encoding="utf-8")
         for required in ["52 / 52", "42 / 42", "45 / 45", "6 / 6"]:
@@ -138,8 +153,13 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "fixture_groups.json",
             "harness/benchmark_manifest.json",
             "harness/playbooks/expanded_mixed_cluster_v1.md",
+            "harness/playbooks/challenge_v2_no_helper_v1.md",
             "harness/run_playbook_transfer.py",
+            "harness/run_direct_baseline_benchmark.py",
+            "harness/direct_pi_prove.py",
+            "harness/run_proof_transfer_benchmark.py",
             "harness/fixtures/add_zero_right/Theorem.template.lean",
+            "harness/fixtures/challenge_v3_map_rev_append_combined/Theorem.template.lean",
         }
         self.assertTrue(required.issubset(paths))
         self.assertFalse(any(path.startswith("harness/results/") for path in paths))

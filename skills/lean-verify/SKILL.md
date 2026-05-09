@@ -80,7 +80,21 @@ This maps to the validated harness flags:
 }
 ```
 
-4. Summarize a run with:
+4. To reproduce the proof-transfer benchmark, compare seeded autocontext/Pi against direct Pi repair-loop on no-expected-proof challenge fixtures:
+
+```json
+{
+  "action": "benchmark",
+  "fixtureGroup": "challenge_v3_generalization",
+  "maxAttempts": 2,
+  "rounds": 2,
+  "timeoutSeconds": 120
+}
+```
+
+This mode uses `--no-pregenerate` and `--structured-alternate-retry`; synthetic hint candidates are disabled.
+
+5. Summarize a run with:
 
 ```json
 {
@@ -96,6 +110,9 @@ This maps to the validated harness flags:
 - `heldout`: seven original held-out transfer fixtures.
 - `combined`: `broader` + `heldout` (`14` fixtures).
 - `negative_controls`: six fixtures where generic Nat/List hint candidates should fail Lean before fallback: distribution, multiplication associativity/commutativity, addition cancellation, and filter length bound.
+- `challenge_v2_no_helper`: three no-expected-proof fixtures requiring local helper lemma discovery.
+- `challenge_v3_generalization`: four no-expected-proof theorem-generalization fixtures requiring accumulator and multi-helper proof plans.
+- `challenge_transfer`: all v2/v3 challenge fixtures (`7` fixtures).
 
 ## Modes
 
@@ -106,6 +123,7 @@ This maps to the validated harness flags:
 
 ## Interpretation guidance
 
+- Challenge fixtures intentionally omit `expected_proof.lean`; success must come from the generated proof body passing Lean.
 - Treat `pre_repair_hint` as a hybrid experiment mode, not pure LLM proof generation.
 - Lean-rejected hint candidates are good safety evidence when fallback recovers.
 - Compare methods using proof success, Pi calls, Lean verifier attempts, repair edits, and token edit distance.
@@ -113,4 +131,4 @@ This maps to the validated harness flags:
 
 ## Packaging status
 
-This package is experimental and local-first. It is intended to become its own npm-distributed Pi package after broader validation and negative controls. Linear tracking issue: `AC-731`.
+This package is npm-distributed as `pi-autocontext-lean-verify`. Current patch releases use GitHub trusted publishing with npm provenance. The package remains experimental: report proof-transfer results as verifier-backed evidence, not as a claim that autocontext is a standalone theorem prover.

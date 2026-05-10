@@ -363,6 +363,62 @@
       "difficulty": "challenge_hard_plus",
       "initial_proof": "rfl",
       "expected_proof": false
+    },
+    {
+      "id": "challenge_v4_count_acc_generalization",
+      "category": "challenge_v4_count_accumulator",
+      "difficulty": "challenge_hard",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v4_count_rev_slow",
+      "category": "challenge_v4_count_reverse",
+      "difficulty": "challenge_hard",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v4_count_flatten_mirror",
+      "category": "challenge_v4_count_tree",
+      "difficulty": "challenge_hard_plus",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v4_count_mapSucc_rev",
+      "category": "challenge_v4_count_map_reverse",
+      "difficulty": "challenge_hard_plus",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v5_tally_acc_pair",
+      "category": "challenge_v5_simultaneous_accumulator",
+      "difficulty": "challenge_hard",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v5_partition_count_length",
+      "category": "challenge_v5_partition_invariant",
+      "difficulty": "challenge_hard",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v5_filter_rev_count_combo",
+      "category": "challenge_v5_filter_reverse_count",
+      "difficulty": "challenge_hard_plus",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v5_tree_tally_mirror",
+      "category": "challenge_v5_tree_tally_composition",
+      "difficulty": "challenge_hard_plus",
+      "initial_proof": "rfl",
+      "expected_proof": false
     }
   ]
 }

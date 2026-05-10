@@ -136,6 +136,28 @@ From a checkout, the same benchmark can be launched without Pi:
 
 ```bash
 npm run benchmark:v3
+npm run benchmark:v4
+npm run benchmark:v5
+```
+
+### Attribution
+
+Runs seeded autocontext, unseeded isolated autocontext, and direct Pi repair-loop for attribution. The default fixture group is `challenge_v5_attribution`.
+
+```json
+{
+  "action": "attribution",
+  "fixtureGroup": "challenge_v5_attribution",
+  "maxAttempts": 2,
+  "rounds": 2,
+  "timeoutSeconds": 120
+}
+```
+
+From a checkout:
+
+```bash
+npm run benchmark:v5:attribution
 ```
 
 ### Summarize
@@ -161,6 +183,10 @@ Reads a saved run summary.
 | `challenge_v2_no_helper` | Three no-expected-proof fixtures requiring local helper lemma discovery. |
 | `challenge_v3_generalization` | Four no-expected-proof theorem-generalization fixtures requiring accumulator/multi-helper proof plans. |
 | `challenge_transfer` | All v2/v3 challenge fixtures (`7` fixtures). |
+| `challenge_v4_count` | Four no-expected-proof count/list/tree fixtures. |
+| `challenge_v5_attribution` | Four no-expected-proof fixtures for seeded/unseeded/direct attribution. |
+| `challenge_v5_tree_tally` | The hard v5 tree/tally mirror fixture. |
+| `challenge_extended_transfer` | All v2/v3/v4/v5 challenge fixtures (`15` fixtures). |
 
 ## Modes
 
@@ -218,8 +244,8 @@ Lean version: 4.29.1
 Python: 3.14.2
 uvx: uv-tool-uvx 0.6.17
 Autocontext runtime: autocontext==0.4.8 via uvx autoctx improve (ok)
-Fixture count: 59
-Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7
+Fixture count: 67
+Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7, challenge_v4_count=4, challenge_v5_attribution=4, challenge_v5_tree_tally=1, challenge_extended_transfer=15
 ```
 
 A zero-Pi-call run smoke test was completed:
@@ -278,7 +304,7 @@ Package source: npm:pi-autocontext-lean-verify@0.1.4
 
 ## Proof-transfer benchmark evidence
 
-Version `0.1.6` adds packaged no-expected-proof challenge fixtures and a reproducible benchmark command. The local v3 repeated stability probe produced:
+Version `0.1.6` added packaged v2/v3 no-expected-proof challenge fixtures and a reproducible benchmark command. Version `0.1.7` adds v4/v5 challenge fixtures plus attribution benchmarking. The local v3 repeated stability probe produced:
 
 ```text
 seeded autocontext: 12 / 12 proofs across 3 trials
@@ -286,11 +312,21 @@ direct Pi repair-loop: 7 / 12 proofs across 3 trials
 hard-plus subset: seeded autocontext 6 / 6 vs direct Pi 1 / 6
 ```
 
+The v4/v5 follow-up produced:
+
+```text
+v4 seeded autocontext: 12 / 12 across 3 repeats
+v4 direct Pi repair-loop: 3 / 12 across 3 repeats
+v5 seeded autocontext: 4 / 4 full set; hard tree/tally 3 / 3
+v5 unseeded isolated: 3 / 4 full set; hard tree/tally 1 / 3
+v5 direct Pi repair-loop: 1 / 4 full set; hard tree/tally 0 / 3
+```
+
 See `docs/PROOF_TRANSFER_BENCHMARK.md` for fixture groups, commands, and interpretation.
 
 ## Release
 
-Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was the first successful GitHub OIDC trusted-publisher release with npm provenance attestations. Version `0.1.6` promotes the v2/v3 challenge fixtures and proof-transfer benchmark runner. Unpublished attempts `0.1.1`–`0.1.3` do not exist in the npm registry.
+Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was the first successful GitHub OIDC trusted-publisher release with npm provenance attestations. Version `0.1.6` promotes the v2/v3 challenge fixtures and proof-transfer benchmark runner. Version `0.1.7` promotes the v4/v5 fixtures and attribution benchmark runner. Unpublished attempts `0.1.1`–`0.1.3` do not exist in the npm registry.
 
 Future releases use GitHub's npm trusted publisher workflow on version tags:
 

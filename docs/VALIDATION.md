@@ -6,7 +6,7 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 
 | Claim                                                      |                    Evidence | Artifact                                                                                          |
 | ---------------------------------------------------------- | --------------------------: | ------------------------------------------------------------------------------------------------- |
-| Harness sanity: every expected proof still verifies        | 52 / 52 expected-proof fixtures (59 manifest fixtures) | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
+| Harness sanity: every expected proof still verifies        | 52 / 52 expected-proof fixtures (67 manifest fixtures) | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
 | Package setup works through Pi                             |           1 / 1 smoke proof | `results/20260506T_pi_package_setup_action_smoke`                                                 |
 | Post-registry package setup works through Pi               |           1 / 1 smoke proof | `results/20260506T_pi_package_registry_setup_smoke`                                               |
 | Package fixture groups work through Pi                     |           1 / 1 smoke proof | `results/20260506T_pi_package_fixture_group_smoke`                                                |
@@ -20,6 +20,12 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v3 theorem-generalization seeded stability       |      12 / 12 fixture-trials | `results/20260507T_challenge_v3_repeated_stability_report.md`                                     |
 | Challenge v3 direct-repair baseline contrast               |       7 / 12 fixture-trials | `results/20260507T_challenge_v3_repeated_stability_report.md`                                     |
 | Packaged v3 benchmark command sanity run                   |   seeded 4 / 4; direct 4 / 4 | `harness/results/20260509T190246Z_proof_transfer_benchmark_challenge_v3_generalization`            |
+| Challenge v4 seeded stability                            |      12 / 12 fixture-trials | `results/20260510T_challenge_v4_stability_attribution_report.md`                                 |
+| Challenge v4 direct-repair baseline contrast              |       3 / 12 fixture-trials | `results/20260510T_challenge_v4_stability_attribution_report.md`                                 |
+| Challenge v5 seeded full-set attribution                  |               4 / 4 proofs | `results/20260510T_challenge_v5_attribution_report.md`                                           |
+| Challenge v5 unseeded full-set attribution                |               3 / 4 proofs | `results/20260510T_challenge_v5_attribution_report.md`                                           |
+| Challenge v5 hard tree/tally seeded stability             |               3 / 3 proofs | `results/20260510T_challenge_v5_attribution_report.md`                                           |
+| Challenge v5 hard tree/tally unseeded contrast            |               1 / 3 proofs | `results/20260510T_challenge_v5_attribution_report.md`                                           |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 
 ## Runtime dependency contract
@@ -91,10 +97,25 @@ For the packaged proof-transfer benchmark:
 }
 ```
 
-Equivalent checkout command:
+Equivalent checkout commands:
 
 ```bash
 npm run benchmark:v3
+npm run benchmark:v4
+npm run benchmark:v5
+npm run benchmark:v5:attribution
+```
+
+For seeded/unseeded/direct attribution through Pi:
+
+```json
+{
+  "action": "attribution",
+  "fixtureGroup": "challenge_v5_attribution",
+  "maxAttempts": 2,
+  "rounds": 2,
+  "timeoutSeconds": 120
+}
 ```
 
 ## Interpretation

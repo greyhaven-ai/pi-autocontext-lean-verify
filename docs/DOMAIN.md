@@ -33,3 +33,7 @@ The package wraps the external Lean pilot harness. Its job is not to prove theor
 ## Challenge benchmark fixtures
 
 `challenge_v2_no_helper`, `challenge_v3_generalization`, and `challenge_transfer` fixtures have fixed templates but no bundled `expected_proof.lean`. They are intended for proof-transfer stress tests where only Lean-verified generated proof bodies count as success.
+
+## v4/v5 attribution fixtures
+
+`challenge_v4_count` fixtures test count/list/tree robustness. `challenge_v5_attribution` fixtures add simultaneous invariants and multi-helper tree/tally composition; use attribution benchmarking to compare seeded playbook context, unseeded isolated autocontext, and direct Pi repair-loop.

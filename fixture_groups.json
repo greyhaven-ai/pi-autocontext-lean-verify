@@ -64,6 +64,38 @@
       "challenge_v3_sum_acc_generalization",
       "challenge_v3_tree_flatten_mirror",
       "challenge_v3_map_rev_append_combined"
+    ],
+    "challenge_v4_count": [
+      "challenge_v4_count_acc_generalization",
+      "challenge_v4_count_rev_slow",
+      "challenge_v4_count_flatten_mirror",
+      "challenge_v4_count_mapSucc_rev"
+    ],
+    "challenge_v5_attribution": [
+      "challenge_v5_tally_acc_pair",
+      "challenge_v5_partition_count_length",
+      "challenge_v5_filter_rev_count_combo",
+      "challenge_v5_tree_tally_mirror"
+    ],
+    "challenge_v5_tree_tally": [
+      "challenge_v5_tree_tally_mirror"
+    ],
+    "challenge_extended_transfer": [
+      "challenge_v2_length_rev_no_helper",
+      "challenge_v2_sum_rev_no_helper",
+      "challenge_v2_map_succ_rev_no_helper",
+      "challenge_v3_rev_acc_generalization",
+      "challenge_v3_sum_acc_generalization",
+      "challenge_v3_tree_flatten_mirror",
+      "challenge_v3_map_rev_append_combined",
+      "challenge_v4_count_acc_generalization",
+      "challenge_v4_count_rev_slow",
+      "challenge_v4_count_flatten_mirror",
+      "challenge_v4_count_mapSucc_rev",
+      "challenge_v5_tally_acc_pair",
+      "challenge_v5_partition_count_length",
+      "challenge_v5_filter_rev_count_combo",
+      "challenge_v5_tree_tally_mirror"
     ]
   },
   "descriptions": {
@@ -74,6 +106,10 @@
     "negative_controls": "Six fixtures where generic Nat/List hint candidates should fail Lean before fallback.",
     "challenge_v2_no_helper": "Three no-expected-proof challenge fixtures requiring local append/map helper lemma discovery.",
     "challenge_v3_generalization": "Four no-expected-proof theorem-generalization fixtures requiring accumulator generalization and multi-helper proof plans.",
-    "challenge_transfer": "All v2/v3 challenge fixtures for proof-transfer experiments; no expected proofs are bundled."
+    "challenge_transfer": "All v2/v3 challenge fixtures for proof-transfer experiments; no expected proofs are bundled.",
+    "challenge_v4_count": "Four no-expected-proof count/list/tree fixtures covering occurrence counting, reverse preservation, tree mirror/flatten, and successor-map-after-reverse.",
+    "challenge_v5_attribution": "Four no-expected-proof fixtures designed to separate seeded, unseeded, and direct repair on simultaneous invariants and multi-helper composition.",
+    "challenge_v5_tree_tally": "The hardest v5 tree/tally mirror fixture for repeated attribution controls.",
+    "challenge_extended_transfer": "All v2/v3/v4/v5 challenge fixtures; no expected proofs are bundled."
   }
 }

@@ -94,7 +94,19 @@ This maps to the validated harness flags:
 
 This mode uses `--no-pregenerate` and `--structured-alternate-retry`; synthetic hint candidates are disabled.
 
-5. Summarize a run with:
+5. For seeded/unseeded/direct attribution on v5 fixtures:
+
+```json
+{
+  "action": "attribution",
+  "fixtureGroup": "challenge_v5_attribution",
+  "maxAttempts": 2,
+  "rounds": 2,
+  "timeoutSeconds": 120
+}
+```
+
+6. Summarize a run with:
 
 ```json
 {
@@ -113,6 +125,10 @@ This mode uses `--no-pregenerate` and `--structured-alternate-retry`; synthetic 
 - `challenge_v2_no_helper`: three no-expected-proof fixtures requiring local helper lemma discovery.
 - `challenge_v3_generalization`: four no-expected-proof theorem-generalization fixtures requiring accumulator and multi-helper proof plans.
 - `challenge_transfer`: all v2/v3 challenge fixtures (`7` fixtures).
+- `challenge_v4_count`: four no-expected-proof count/list/tree fixtures.
+- `challenge_v5_attribution`: four no-expected-proof simultaneous-invariant and multi-helper composition fixtures.
+- `challenge_v5_tree_tally`: one hard tree/tally mirror fixture.
+- `challenge_extended_transfer`: all v2/v3/v4/v5 challenge fixtures (`15` fixtures).
 
 ## Modes
 
@@ -124,6 +140,7 @@ This mode uses `--no-pregenerate` and `--structured-alternate-retry`; synthetic 
 ## Interpretation guidance
 
 - Challenge fixtures intentionally omit `expected_proof.lean`; success must come from the generated proof body passing Lean.
+- Use `action="attribution"` when comparing seeded, unseeded isolated, and direct Pi repair-loop outcomes.
 - Treat `pre_repair_hint` as a hybrid experiment mode, not pure LLM proof generation.
 - Lean-rejected hint candidates are good safety evidence when fallback recovers.
 - Compare methods using proof success, Pi calls, Lean verifier attempts, repair edits, and token edit distance.

@@ -1,6 +1,6 @@
 {
   "name": "pi-autocontext-lean-verify",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Experimental Pi package for Lean-verified proof repair using autocontext and Pi.",
   "files": [
     "LICENSE",
@@ -21,12 +21,16 @@
     "harness/update_results_index.py",
     "harness/direct_pi_prove.py",
     "harness/run_direct_baseline_benchmark.py",
-    "harness/run_proof_transfer_benchmark.py"
+    "harness/run_proof_transfer_benchmark.py",
+    "harness/run_attribution_benchmark.py"
   ],
   "scripts": {
     "validate": "python3 tests/package_validation.py",
     "pack:dry-run": "npm pack --dry-run --json",
-    "benchmark:v3": "python3 harness/run_proof_transfer_benchmark.py --fixture-group challenge_v3_generalization --timeout 120 --max-attempts 2 --rounds 2"
+    "benchmark:v3": "python3 harness/run_proof_transfer_benchmark.py --fixture-group challenge_v3_generalization --timeout 120 --max-attempts 2 --rounds 2",
+    "benchmark:v4": "python3 harness/run_proof_transfer_benchmark.py --fixture-group challenge_v4_count --timeout 120 --max-attempts 2 --rounds 2",
+    "benchmark:v5": "python3 harness/run_proof_transfer_benchmark.py --fixture-group challenge_v5_attribution --timeout 120 --max-attempts 2 --rounds 2",
+    "benchmark:v5:attribution": "python3 harness/run_attribution_benchmark.py --fixture-group challenge_v5_attribution --timeout 120 --max-attempts 2 --rounds 2"
   },
   "keywords": [
     "pi-package",

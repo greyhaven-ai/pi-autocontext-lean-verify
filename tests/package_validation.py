@@ -60,11 +60,19 @@ class StandaloneRepoValidationTests(unittest.TestCase):
         groups = self.fixture_groups()
         manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
         by_id = {fixture["id"]: fixture for fixture in manifest["fixtures"]}
-        for group_name in ["challenge_v2_no_helper", "challenge_v3_generalization", "challenge_transfer"]:
+        for group_name in [
+            "challenge_v2_no_helper",
+            "challenge_v3_generalization",
+            "challenge_transfer",
+            "challenge_v4_count",
+            "challenge_v5_attribution",
+            "challenge_v5_tree_tally",
+            "challenge_extended_transfer",
+        ]:
             with self.subTest(group=group_name):
                 self.assertIn(group_name, groups)
                 self.assertTrue(groups[group_name])
-        for fixture_id in groups["challenge_transfer"]:
+        for fixture_id in groups["challenge_extended_transfer"]:
             with self.subTest(fixture=fixture_id):
                 fixture_dir = HARNESS / "fixtures" / fixture_id
                 self.assertTrue((fixture_dir / "Theorem.template.lean").exists())
@@ -73,7 +81,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
 
     def test_validation_docs_capture_current_evidence(self) -> None:
         text = VALIDATION_DOC.read_text(encoding="utf-8")
-        for required in ["52 / 52", "42 / 42", "45 / 45", "6 / 6"]:
+        for required in ["52 / 52", "42 / 42", "45 / 45", "6 / 6", "12 / 12", "3 / 3", "1 / 3"]:
             with self.subTest(required=required):
                 self.assertIn(required, text)
         combined = README.read_text(encoding="utf-8") + "\n" + SKILL.read_text(encoding="utf-8")
@@ -154,12 +162,16 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "harness/benchmark_manifest.json",
             "harness/playbooks/expanded_mixed_cluster_v1.md",
             "harness/playbooks/challenge_v2_no_helper_v1.md",
+            "harness/playbooks/challenge_v3_generalization_v1.md",
+            "harness/playbooks/challenge_v4_count_v1.md",
             "harness/run_playbook_transfer.py",
             "harness/run_direct_baseline_benchmark.py",
             "harness/direct_pi_prove.py",
             "harness/run_proof_transfer_benchmark.py",
+            "harness/run_attribution_benchmark.py",
             "harness/fixtures/add_zero_right/Theorem.template.lean",
             "harness/fixtures/challenge_v3_map_rev_append_combined/Theorem.template.lean",
+            "harness/fixtures/challenge_v5_tree_tally_mirror/Theorem.template.lean",
         }
         self.assertTrue(required.issubset(paths))
         self.assertFalse(any(path.startswith("harness/results/") for path in paths))

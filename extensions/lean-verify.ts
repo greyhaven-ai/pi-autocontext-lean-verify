@@ -29,6 +29,7 @@ const FIXTURE_GROUP_NAMES = [
 	"challenge_v5_attribution",
 	"challenge_v5_tree_tally",
 	"challenge_v6_frontier",
+	"challenge_v7_frontier",
 	"challenge_extended_transfer",
 ] as const;
 

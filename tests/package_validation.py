@@ -68,6 +68,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "challenge_v5_attribution",
             "challenge_v5_tree_tally",
             "challenge_v6_frontier",
+            "challenge_v7_frontier",
             "challenge_extended_transfer",
         ]:
             with self.subTest(group=group_name):
@@ -179,6 +180,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "harness/playbooks/challenge_v3_generalization_v1.md",
             "harness/playbooks/challenge_v4_count_v1.md",
             "harness/playbooks/challenge_v5_attribution_v1.md",
+            "harness/playbooks/challenge_v6_frontier_v1.md",
             "harness/run_playbook_transfer.py",
             "harness/run_direct_baseline_benchmark.py",
             "harness/direct_pi_prove.py",

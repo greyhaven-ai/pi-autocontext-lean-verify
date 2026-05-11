@@ -47,6 +47,7 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v11 unseeded/direct metric-composition contrast |     unseeded 0 / 6; direct 1 / 6 | `docs/V11_METRIC_COMPOSITION_REPORT.md`                                                           |
 | Challenge v12 simultaneous-metric fixtures have local Lean witnesses |      7 / 7 fixture templates | `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`                                                         |
 | Challenge v12 seeded simultaneous-metric attribution   |               6 / 7 proofs | `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`                                                         |
+| Challenge v12 triple-bundle seeded stability           |   1 / 3 observations | `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`                                                         |
 | Challenge v12 unseeded/direct simultaneous-metric contrast |     unseeded 0 / 7; direct 0 / 7 | `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`                                                         |
 | Default benchmark run roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="attribution"` npm smoke without explicit `runRoot`                                      |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |

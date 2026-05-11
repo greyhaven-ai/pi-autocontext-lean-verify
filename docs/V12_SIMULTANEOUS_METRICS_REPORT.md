@@ -53,7 +53,19 @@ Settings: Pi provider through the local package, v6 seed playbook, `--no-pregene
 | `challenge_v12_partition_length_sum_metrics_flatten_mirror` | proved | failed | failed |
 | `challenge_v12_partition_count_length_sum_metrics_flatten_mirror` | failed | failed | failed |
 
-Interpretation: seeded solves every simultaneous keep/drop single-metric and two-metric pair, but fails the full simultaneous count+length+sum metric bundle. Unseeded and direct solve none. This pinpoints the frontier: not simultaneous keep/drop alone, and not any two metrics together, but the triple metric bundle where count, length, and sum obligations must all be composed at once.
+Interpretation: seeded solves every simultaneous keep/drop single-metric and two-metric pair, but missed the full simultaneous count+length+sum metric bundle in the full-suite run. Follow-up isolated repeats show that triple bundle is stochastic rather than impossible: seeded solved it once and failed it twice across the full-suite plus isolated observations. Unseeded and direct have not solved it.
+
+## Full triple-bundle stability repeats
+
+After the first full v12 probe, the failing triple-bundle fixture was repeated in isolation with the same controlled settings and no explicit `runRoot`:
+
+| Run | Run root | Seeded | Unseeded | Direct | Notes |
+| --- | --- | ---: | ---: | ---: | --- |
+| Full v12 suite | `20260511T215957_attribution_challenge_v12_simultaneous_metrics` | failed | failed | failed | Full seven-fixture run; triple bundle was the only seeded miss. |
+| Isolated repeat 1 | `20260511T223947_attribution_challenge_v12_simultaneous_metrics` | proved | failed | failed | Seeded `1` Pi call, `212.00s`, `3` Lean attempts. |
+| Isolated repeat 2 | `20260511T224607_attribution_challenge_v12_simultaneous_metrics` | failed | not run | not run | Seeded artifact completed after wrapper timeout; `2` Pi calls, `1648.45s`, `3` Lean attempts; no attribution summary was generated. |
+
+Seeded aggregate for the triple bundle across these observations is `1/3`; unseeded/direct remain `0/2` where those legs completed. This changes the diagnosis from stable failure to stochastic frontier: the full count+length+sum simultaneous bundle is solvable by seeded autocontext, but not reliably under the controlled two-attempt budget.
 
 ## Suggested attribution command
 

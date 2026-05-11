@@ -206,4 +206,4 @@ The source tree after v11 adds `challenge_v12_simultaneous_metrics`, a seven-fix
 - simultaneous count+length, count+sum, and length+sum metric pairs;
 - simultaneous count+length+sum metric bundle.
 
-These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `6/7`, unseeded `0/7`, and direct `0/7`: all one-metric and two-metric simultaneous bundles solved seeded, while the full count+length+sum bundle failed.
+These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `6/7`, unseeded `0/7`, and direct `0/7`: all one-metric and two-metric simultaneous bundles solved seeded, while the full count+length+sum bundle failed. Isolated repeats of that triple bundle show seeded stochasticity (`1/3` across full-suite plus isolated observations), not theorem falsehood.

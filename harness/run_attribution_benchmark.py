@@ -34,6 +34,13 @@ def load_fixture_group(name: str) -> list[str]:
 
 
 def default_seed_playbook(group: str) -> Path:
+    if group == "challenge_v9_composition_gradient":
+        seed = ROOT / "playbooks" / "challenge_v6_frontier_v1.md"
+        if seed.exists():
+            return seed
+        seed = ROOT / "playbooks" / "challenge_v5_attribution_v1.md"
+        if seed.exists():
+            return seed
     if group == "challenge_v8_diagnostics":
         seed = ROOT / "playbooks" / "challenge_v6_frontier_v1.md"
         if seed.exists():

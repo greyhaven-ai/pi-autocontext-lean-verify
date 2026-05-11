@@ -29,7 +29,7 @@ The harness rejects or avoids:
 
 Benchmark and attribution actions default to short temp result paths under `the system temp directory (`pi-autocontext-lean-verify/...`)` (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) so npm-loaded packages avoid Pi session path-length failures.
 
-Use `challenge_v6_frontier` and `challenge_v7_frontier` for packaged verifier-only frontier suites. v7 is the first packaged suite where seeded autocontext is intentionally unstable while unseeded/direct solve none. Use source-only `challenge_v8_diagnostics` to isolate the partition-heavy accumulator frontier into smaller components.
+Use `challenge_v6_frontier` and `challenge_v7_frontier` for packaged verifier-only frontier suites. v7 is the first packaged suite where seeded autocontext is intentionally unstable while unseeded/direct solve none. Use source-only `challenge_v8_diagnostics` and `challenge_v9_composition_gradient` to isolate the partition-heavy accumulator frontier into smaller components.
 
 
 1. Run setup or preflight first:
@@ -136,7 +136,8 @@ This mode uses `--no-pregenerate` and `--structured-alternate-retry`; synthetic 
 - `challenge_v6_frontier`: four frontier fixtures covering multi-accumulator reverse invariants, nested tree partition stats, successor-map reverse count/sum, and mutual tree stats.
 - `challenge_v7_frontier`: four frontier-plus fixtures combining partition/tree mirror composition with stats accumulator normalization.
 - `challenge_v8_diagnostics`: four source-only diagnostic fixtures isolating the v7 partition-heavy accumulator frontier into smaller components.
-- `challenge_extended_transfer`: all v2/v3/v4/v5/v6/v7/v8 challenge fixtures (`27` fixtures).
+- `challenge_v9_composition_gradient`: six source-only composition-gradient fixtures splitting keep/drop partition-through-mirror into scalar and paired length/sum obligations.
+- `challenge_extended_transfer`: all v2/v3/v4/v5/v6/v7/v8/v9 challenge fixtures (`33` fixtures).
 
 ## Modes
 

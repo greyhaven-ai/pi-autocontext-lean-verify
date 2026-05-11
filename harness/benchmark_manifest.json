@@ -503,6 +503,48 @@
       "difficulty": "challenge_frontier_diagnostic",
       "initial_proof": "rfl",
       "expected_proof": false
+    },
+    {
+      "id": "challenge_v9_keep_length_flatten_mirror",
+      "category": "challenge_v9_gradient_keep_length",
+      "difficulty": "challenge_composition_gradient",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v9_keep_sum_flatten_mirror",
+      "category": "challenge_v9_gradient_keep_sum",
+      "difficulty": "challenge_composition_gradient",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v9_keep_length_sum_flatten_mirror",
+      "category": "challenge_v9_gradient_keep_pair",
+      "difficulty": "challenge_composition_gradient",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v9_drop_length_flatten_mirror",
+      "category": "challenge_v9_gradient_drop_length",
+      "difficulty": "challenge_composition_gradient",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v9_drop_sum_flatten_mirror",
+      "category": "challenge_v9_gradient_drop_sum",
+      "difficulty": "challenge_composition_gradient",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v9_drop_length_sum_flatten_mirror",
+      "category": "challenge_v9_gradient_drop_pair",
+      "difficulty": "challenge_composition_gradient",
+      "initial_proof": "rfl",
+      "expected_proof": false
     }
   ]
 }

@@ -33,7 +33,8 @@
     "benchmark:v5:attribution": "python3 harness/run_attribution_benchmark.py --fixture-group challenge_v5_attribution --timeout 120 --max-attempts 2 --rounds 2",
     "benchmark:v6": "python3 harness/run_attribution_benchmark.py --fixture-group challenge_v6_frontier --timeout 120 --max-attempts 2 --rounds 2",
     "benchmark:v7": "python3 harness/run_attribution_benchmark.py --fixture-group challenge_v7_frontier --timeout 120 --max-attempts 2 --rounds 2",
-    "benchmark:v8": "python3 harness/run_attribution_benchmark.py --fixture-group challenge_v8_diagnostics --timeout 120 --max-attempts 2 --rounds 2"
+    "benchmark:v8": "python3 harness/run_attribution_benchmark.py --fixture-group challenge_v8_diagnostics --timeout 120 --max-attempts 2 --rounds 2",
+    "benchmark:v9": "python3 harness/run_attribution_benchmark.py --fixture-group challenge_v9_composition_gradient --timeout 120 --max-attempts 2 --rounds 2"
   },
   "keywords": [
     "pi-package",

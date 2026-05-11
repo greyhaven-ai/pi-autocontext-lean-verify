@@ -15,7 +15,8 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v6_frontier` | 4 | Frontier fixtures covering multi-accumulator reverse invariants, nested tree partition stats, successor-map reverse count/sum, and mutual tree stats. |
 | `challenge_v7_frontier` | 4 | Frontier-plus fixtures combining partition/tree mirror composition with stats accumulator normalization. |
 | `challenge_v8_diagnostics` | 4 | Diagnostic fixtures isolating the v7 partition-heavy accumulator frontier into smaller components. |
-| `challenge_extended_transfer` | 27 | All v2/v3/v4/v5/v6/v7/v8 challenge fixtures. |
+| `challenge_v9_composition_gradient` | 6 | Composition-gradient fixtures splitting keep/drop partition-through-mirror into scalar and paired length/sum obligations. |
+| `challenge_extended_transfer` | 33 | All v2/v3/v4/v5/v6/v7/v8/v9 challenge fixtures. |
 
 ## Reproducible commands
 
@@ -28,6 +29,7 @@ npm run benchmark:v5
 npm run benchmark:v6
 npm run benchmark:v7
 npm run benchmark:v8
+npm run benchmark:v9
 ```
 
 Seeded autocontext vs unseeded isolated autocontext vs direct Pi repair-loop:
@@ -37,6 +39,7 @@ npm run benchmark:v5:attribution
 npm run benchmark:v6
 npm run benchmark:v7
 npm run benchmark:v8
+npm run benchmark:v9
 ```
 
 Equivalent explicit harness invocations:
@@ -125,6 +128,7 @@ Run from a checkout with:
 npm run benchmark:v6
 npm run benchmark:v7
 npm run benchmark:v8
+npm run benchmark:v9
 ```
 
 Or through Pi with `action="attribution"` and the corresponding `fixtureGroup`.
@@ -140,3 +144,17 @@ The source tree after `0.1.9` adds `challenge_v8_diagnostics`, a four-fixture su
 - list-only partition/reassembly equivalence for `statsAcc`.
 
 These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first two controlled attribution probes solved seeded `6/8`, unseeded `1/8`, and direct `0/8`: raw tree/mirror stats and list-only reassembly are stable for seeded autocontext, while keep/drop partition-through-mirror remains stochastic. This indicates the v7 instability is mainly compositional.
+
+
+## v9 composition-gradient suite
+
+The source tree after v8 adds `challenge_v9_composition_gradient`, a six-fixture suite focused on the stochastic keep/drop partition-through-mirror components:
+
+- keep-side length through tree mirror;
+- keep-side sum through tree mirror;
+- paired keep-side length+sum through tree mirror;
+- drop-side length through tree mirror;
+- drop-side sum through tree mirror;
+- paired drop-side length+sum through tree mirror.
+
+These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `6/6`, unseeded `1/6`, and direct `0/6`, indicating length/sum partition-through-mirror obligations are learnable with seed context and the remaining frontier is likely `statsAcc` triple reification/composition.

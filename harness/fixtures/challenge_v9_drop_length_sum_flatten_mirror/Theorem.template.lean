@@ -1,0 +1,51 @@
+set_option linter.unusedSimpArgs false
+
+/-- Slow append over Nat lists. -/
+def appendSlow : List Nat -> List Nat -> List Nat
+| [], ys => ys
+| x :: xs, ys => x :: appendSlow xs ys
+
+/-- Slow length over Nat lists. -/
+def lengthSlow : List Nat -> Nat
+| [] => 0
+| _ :: xs => Nat.succ (lengthSlow xs)
+
+/-- Slow sum over Nat lists. -/
+def sumSlow : List Nat -> Nat
+| [] => 0
+| x :: xs => x + sumSlow xs
+
+/-- Keep elements equal to the target. -/
+def keepEqSlow (target : Nat) : List Nat -> List Nat
+| [] => []
+| x :: xs => if x = target then x :: keepEqSlow target xs else keepEqSlow target xs
+
+/-- Drop elements equal to the target. -/
+def dropEqSlow (target : Nat) : List Nat -> List Nat
+| [] => []
+| x :: xs => if x = target then dropEqSlow target xs else x :: dropEqSlow target xs
+
+/-- Binary tree carrying Nat values. -/
+inductive NatTree where
+| leaf : NatTree
+| node : NatTree -> Nat -> NatTree -> NatTree
+
+open NatTree
+
+/-- Mirror a tree. -/
+def mirror : NatTree -> NatTree
+| leaf => leaf
+| node left value right => node (mirror right) value (mirror left)
+
+/-- In-order flattening of a tree. -/
+def flatten : NatTree -> List Nat
+| leaf => []
+| node left value right => appendSlow (flatten left) (value :: flatten right)
+
+/-- Challenge v9 gradient: paired drop-side length and sum invariants through tree mirror. -/
+theorem dropLengthSum_flatten_mirror (target : Nat) (tree : NatTree) :
+    lengthSlow (dropEqSlow target (flatten (mirror tree))) =
+        lengthSlow (dropEqSlow target (flatten tree)) ∧
+      sumSlow (dropEqSlow target (flatten (mirror tree))) =
+        sumSlow (dropEqSlow target (flatten tree)) := by
+{{PROOF}}

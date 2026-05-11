@@ -146,6 +146,7 @@ npm run benchmark:v8
 npm run benchmark:v9
 npm run benchmark:v10
 npm run benchmark:v11
+npm run benchmark:v12
 ```
 
 ### Attribution
@@ -172,6 +173,7 @@ npm run benchmark:v8
 npm run benchmark:v9
 npm run benchmark:v10
 npm run benchmark:v11
+npm run benchmark:v12
 ```
 
 ### Summarize
@@ -206,7 +208,8 @@ Reads a saved run summary.
 | `challenge_v9_composition_gradient` | Six no-expected-proof composition-gradient fixtures splitting keep/drop partition-through-mirror into scalar and paired length/sum obligations. |
 | `challenge_v10_stats_reification` | Six no-expected-proof statsAcc-reification fixtures isolating tuple normalization, metric extensionality, count metrics, and stats equality from metric hypotheses. |
 | `challenge_v11_metric_composition` | Six no-expected-proof metric-composition fixtures combining keep/drop metric bundles with statsAcc extensionality boundaries. |
-| `challenge_extended_transfer` | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11 challenge fixtures (`45` fixtures). |
+| `challenge_v12_simultaneous_metrics` | Seven no-expected-proof simultaneous-metric fixtures isolating keep/drop count-only, length-only, sum-only, pair, and triple metric bundles. |
+| `challenge_extended_transfer` | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12 challenge fixtures (`52` fixtures). |
 
 ## Modes
 
@@ -243,8 +246,9 @@ It maps to:
 - v9 composition gradient: seeded solves all scalar/pair length+sum partition-through-mirror obligations (`6/6`), while unseeded solves `1/6` and direct `0/6`; the remaining frontier points toward `statsAcc` triple reification/composition rather than length/sum invariants themselves.
 - v10 stats reification: seeded solves the full layer (`6/6`), unseeded solves core reification/count metrics (`3/6`), and direct solves only drop-count (`1/6`); the frontier is composing tuple normalization with metric equalities in the keep/drop tree-mirror setting.
 - v11 metric composition: seeded solves `5/6`, unseeded `0/6`, direct `1/6`; the remaining seeded miss is the combined keep/drop metric-bundle proof, while applying provided metric bundles to `statsAcc` is comparatively easy.
+- v12 simultaneous metrics: seeded solves all single-metric and two-metric simultaneous keep/drop bundles (`6/7`) but misses the full count+length+sum bundle; unseeded/direct solve `0/7`.
 
-See `docs/V6_FRONTIER_REPORT.md`, `docs/V7_FRONTIER_REPORT.md`, `docs/V8_DIAGNOSTIC_REPORT.md`, `docs/V9_COMPOSITION_GRADIENT_REPORT.md`, `docs/V10_STATS_REIFICATION_REPORT.md`, and `docs/V11_METRIC_COMPOSITION_REPORT.md`.
+See `docs/V6_FRONTIER_REPORT.md`, `docs/V7_FRONTIER_REPORT.md`, `docs/V8_DIAGNOSTIC_REPORT.md`, `docs/V9_COMPOSITION_GRADIENT_REPORT.md`, `docs/V10_STATS_REIFICATION_REPORT.md`, `docs/V11_METRIC_COMPOSITION_REPORT.md`, and `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`.
 
 ## Guardrails
 
@@ -275,8 +279,8 @@ Lean version: 4.29.1
 Python: 3.14.2
 uvx: uv-tool-uvx 0.6.17
 Autocontext runtime: autocontext==0.4.8 via uvx autoctx improve (ok)
-Fixture count: 97
-Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7, challenge_v4_count=4, challenge_v5_attribution=4, challenge_v5_tree_tally=1, challenge_v6_frontier=4, challenge_v7_frontier=4, challenge_v8_diagnostics=4, challenge_v9_composition_gradient=6, challenge_v10_stats_reification=6, challenge_v11_metric_composition=6, challenge_extended_transfer=45
+Fixture count: 104
+Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7, challenge_v4_count=4, challenge_v5_attribution=4, challenge_v5_tree_tally=1, challenge_v6_frontier=4, challenge_v7_frontier=4, challenge_v8_diagnostics=4, challenge_v9_composition_gradient=6, challenge_v10_stats_reification=6, challenge_v11_metric_composition=6, challenge_v12_simultaneous_metrics=7, challenge_extended_transfer=52
 ```
 
 A zero-Pi-call run smoke test was completed:

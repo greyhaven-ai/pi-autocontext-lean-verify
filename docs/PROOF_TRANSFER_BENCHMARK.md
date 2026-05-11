@@ -18,7 +18,8 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v9_composition_gradient` | 6 | Composition-gradient fixtures splitting keep/drop partition-through-mirror into scalar and paired length/sum obligations. |
 | `challenge_v10_stats_reification` | 6 | StatsAcc-reification fixtures isolating tuple normalization, metric extensionality, count metrics, and stats equality from metric hypotheses. |
 | `challenge_v11_metric_composition` | 6 | Metric-composition fixtures combining keep/drop metric bundles with statsAcc extensionality boundaries. |
-| `challenge_extended_transfer` | 45 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11 challenge fixtures. |
+| `challenge_v12_simultaneous_metrics` | 7 | Simultaneous-metric fixtures splitting keep/drop count-only, length-only, sum-only, pair, and triple metric bundles. |
+| `challenge_extended_transfer` | 52 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12 challenge fixtures. |
 
 ## Reproducible commands
 
@@ -34,6 +35,7 @@ npm run benchmark:v8
 npm run benchmark:v9
 npm run benchmark:v10
 npm run benchmark:v11
+npm run benchmark:v12
 ```
 
 Seeded autocontext vs unseeded isolated autocontext vs direct Pi repair-loop:
@@ -46,6 +48,7 @@ npm run benchmark:v8
 npm run benchmark:v9
 npm run benchmark:v10
 npm run benchmark:v11
+npm run benchmark:v12
 ```
 
 Equivalent explicit harness invocations:
@@ -137,6 +140,7 @@ npm run benchmark:v8
 npm run benchmark:v9
 npm run benchmark:v10
 npm run benchmark:v11
+npm run benchmark:v12
 ```
 
 Or through Pi with `action="attribution"` and the corresponding `fixtureGroup`.
@@ -190,3 +194,16 @@ The source tree after v10 adds `challenge_v11_metric_composition`, a six-fixture
 - combined keep/drop stats equality from metric bundles.
 
 These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `5/6`, unseeded `0/6`, and direct `1/6`, with the only seeded miss on the combined keep/drop metric-bundle proof.
+
+
+## v12 simultaneous-metric suite
+
+The source tree after v11 adds `challenge_v12_simultaneous_metrics`, a seven-fixture suite isolating the combined keep/drop metric-bundle proof:
+
+- simultaneous keep/drop count metrics;
+- simultaneous keep/drop length metrics;
+- simultaneous keep/drop sum metrics;
+- simultaneous count+length, count+sum, and length+sum metric pairs;
+- simultaneous count+length+sum metric bundle.
+
+These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `6/7`, unseeded `0/7`, and direct `0/7`: all one-metric and two-metric simultaneous bundles solved seeded, while the full count+length+sum bundle failed.

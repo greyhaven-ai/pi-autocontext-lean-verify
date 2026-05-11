@@ -629,6 +629,55 @@
       "difficulty": "challenge_metric_composition",
       "initial_proof": "rfl",
       "expected_proof": false
+    },
+    {
+      "id": "challenge_v12_partition_count_metrics_flatten_mirror",
+      "category": "challenge_v12_simultaneous_count_metrics",
+      "difficulty": "challenge_simultaneous_metric_composition",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v12_partition_length_metrics_flatten_mirror",
+      "category": "challenge_v12_simultaneous_length_metrics",
+      "difficulty": "challenge_simultaneous_metric_composition",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v12_partition_sum_metrics_flatten_mirror",
+      "category": "challenge_v12_simultaneous_sum_metrics",
+      "difficulty": "challenge_simultaneous_metric_composition",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v12_partition_count_length_metrics_flatten_mirror",
+      "category": "challenge_v12_count_length_metrics",
+      "difficulty": "challenge_simultaneous_metric_composition",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v12_partition_count_sum_metrics_flatten_mirror",
+      "category": "challenge_v12_count_sum_metrics",
+      "difficulty": "challenge_simultaneous_metric_composition",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v12_partition_length_sum_metrics_flatten_mirror",
+      "category": "challenge_v12_length_sum_metrics",
+      "difficulty": "challenge_simultaneous_metric_composition",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v12_partition_count_length_sum_metrics_flatten_mirror",
+      "category": "challenge_v12_full_metric_bundle",
+      "difficulty": "challenge_simultaneous_metric_composition",
+      "initial_proof": "rfl",
+      "expected_proof": false
     }
   ]
 }

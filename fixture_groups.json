@@ -125,7 +125,14 @@
       "challenge_v11_keep_stats_acc_from_metric_bundle",
       "challenge_v11_drop_stats_acc_from_metric_bundle",
       "challenge_v11_partition_metric_bundles_flatten_mirror",
-      "challenge_v11_partition_stats_from_metric_bundles"
+      "challenge_v11_partition_stats_from_metric_bundles",
+      "challenge_v12_partition_count_metrics_flatten_mirror",
+      "challenge_v12_partition_length_metrics_flatten_mirror",
+      "challenge_v12_partition_sum_metrics_flatten_mirror",
+      "challenge_v12_partition_count_length_metrics_flatten_mirror",
+      "challenge_v12_partition_count_sum_metrics_flatten_mirror",
+      "challenge_v12_partition_length_sum_metrics_flatten_mirror",
+      "challenge_v12_partition_count_length_sum_metrics_flatten_mirror"
     ],
     "challenge_v6_frontier": [
       "challenge_v6_stats_acc_rev",
@@ -168,6 +175,15 @@
       "challenge_v11_drop_stats_acc_from_metric_bundle",
       "challenge_v11_partition_metric_bundles_flatten_mirror",
       "challenge_v11_partition_stats_from_metric_bundles"
+    ],
+    "challenge_v12_simultaneous_metrics": [
+      "challenge_v12_partition_count_metrics_flatten_mirror",
+      "challenge_v12_partition_length_metrics_flatten_mirror",
+      "challenge_v12_partition_sum_metrics_flatten_mirror",
+      "challenge_v12_partition_count_length_metrics_flatten_mirror",
+      "challenge_v12_partition_count_sum_metrics_flatten_mirror",
+      "challenge_v12_partition_length_sum_metrics_flatten_mirror",
+      "challenge_v12_partition_count_length_sum_metrics_flatten_mirror"
     ]
   },
   "descriptions": {
@@ -182,12 +198,13 @@
     "challenge_v4_count": "Four no-expected-proof count/list/tree fixtures covering occurrence counting, reverse preservation, tree mirror/flatten, and successor-map-after-reverse.",
     "challenge_v5_attribution": "Four no-expected-proof fixtures designed to separate seeded, unseeded, and direct repair on simultaneous invariants and multi-helper composition.",
     "challenge_v5_tree_tally": "The hardest v5 tree/tally mirror fixture for repeated attribution controls.",
-    "challenge_extended_transfer": "All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11 challenge fixtures; no expected proofs are bundled.",
+    "challenge_extended_transfer": "All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12 challenge fixtures; no expected proofs are bundled.",
     "challenge_v6_frontier": "Four no-expected-proof frontier fixtures covering multi-accumulator reverse invariants, nested tree partition stats, successor-map reverse count/sum, and mutually recursive tree depth statistics.",
     "challenge_v7_frontier": "Four no-expected-proof frontier-plus fixtures combining nested tree partition/filter composition, stats accumulator generalization, mutually recursive traversals, and shifted successor-map statistics.",
     "challenge_v8_diagnostics": "Four no-expected-proof diagnostic fixtures isolating the v7 partition-heavy accumulator frontier into raw tree stats, keep-side mirror stats, drop-side mirror stats, and list-only partition reassembly.",
     "challenge_v9_composition_gradient": "Six no-expected-proof composition-gradient fixtures splitting keep/drop partition-through-mirror into scalar length/sum obligations and paired length+sum obligations.",
     "challenge_v10_stats_reification": "Six no-expected-proof statsAcc-reification fixtures isolating accumulator tuple normalization, metric extensionality, count metrics, and keep/drop stats equality from metric hypotheses.",
-    "challenge_v11_metric_composition": "Six no-expected-proof metric-composition fixtures combining keep/drop metric bundles with statsAcc extensionality boundaries, stopping short of proving the full v7/v8 theorem outright."
+    "challenge_v11_metric_composition": "Six no-expected-proof metric-composition fixtures combining keep/drop metric bundles with statsAcc extensionality boundaries, stopping short of proving the full v7/v8 theorem outright.",
+    "challenge_v12_simultaneous_metrics": "Seven no-expected-proof simultaneous-metric fixtures isolating keep/drop count-only, length-only, sum-only, pair, and triple metric bundles through tree mirror."
   }
 }

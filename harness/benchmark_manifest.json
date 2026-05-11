@@ -545,6 +545,48 @@
       "difficulty": "challenge_composition_gradient",
       "initial_proof": "rfl",
       "expected_proof": false
+    },
+    {
+      "id": "challenge_v10_stats_acc_reify_list",
+      "category": "challenge_v10_stats_reification_core",
+      "difficulty": "challenge_stats_reification",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v10_stats_acc_extensional_from_metrics",
+      "category": "challenge_v10_stats_reification_extensionality",
+      "difficulty": "challenge_stats_reification",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v10_keep_count_flatten_mirror",
+      "category": "challenge_v10_keep_count_metric",
+      "difficulty": "challenge_stats_reification",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v10_drop_count_flatten_mirror",
+      "category": "challenge_v10_drop_count_metric",
+      "difficulty": "challenge_stats_reification",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v10_keep_stats_acc_from_metric_hyps",
+      "category": "challenge_v10_keep_stats_from_metrics",
+      "difficulty": "challenge_stats_reification",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v10_drop_stats_acc_from_metric_hyps",
+      "category": "challenge_v10_drop_stats_from_metrics",
+      "difficulty": "challenge_stats_reification",
+      "initial_proof": "rfl",
+      "expected_proof": false
     }
   ]
 }

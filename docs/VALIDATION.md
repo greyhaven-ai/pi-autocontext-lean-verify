@@ -6,7 +6,7 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 
 | Claim                                                      |                    Evidence | Artifact                                                                                          |
 | ---------------------------------------------------------- | --------------------------: | ------------------------------------------------------------------------------------------------- |
-| Harness sanity: every expected proof still verifies        | 52 / 52 expected-proof fixtures (85 manifest fixtures) | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
+| Harness sanity: every expected proof still verifies        | 52 / 52 expected-proof fixtures (91 manifest fixtures) | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
 | Package setup works through Pi                             |           1 / 1 smoke proof | `results/20260506T_pi_package_setup_action_smoke`                                                 |
 | Post-registry package setup works through Pi               |           1 / 1 smoke proof | `results/20260506T_pi_package_registry_setup_smoke`                                               |
 | Package fixture groups work through Pi                     |           1 / 1 smoke proof | `results/20260506T_pi_package_fixture_group_smoke`                                                |
@@ -39,6 +39,9 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v9 composition-gradient fixtures have local Lean witnesses |      6 / 6 fixture templates | `docs/V9_COMPOSITION_GRADIENT_REPORT.md`                                                         |
 | Challenge v9 seeded composition-gradient attribution   |               6 / 6 proofs | `docs/V9_COMPOSITION_GRADIENT_REPORT.md`                                                         |
 | Challenge v9 unseeded/direct composition-gradient contrast |     unseeded 1 / 6; direct 0 / 6 | `docs/V9_COMPOSITION_GRADIENT_REPORT.md`                                                         |
+| Challenge v10 stats-reification fixtures have local Lean witnesses |      6 / 6 fixture templates | `docs/V10_STATS_REIFICATION_REPORT.md`                                                           |
+| Challenge v10 seeded stats-reification attribution     |               6 / 6 proofs | `docs/V10_STATS_REIFICATION_REPORT.md`                                                           |
+| Challenge v10 unseeded/direct stats-reification contrast |     unseeded 3 / 6; direct 1 / 6 | `docs/V10_STATS_REIFICATION_REPORT.md`                                                           |
 | Default benchmark run roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="attribution"` npm smoke without explicit `runRoot`                                      |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 
@@ -124,6 +127,7 @@ npm run benchmark:v6
 npm run benchmark:v7
 npm run benchmark:v8
 npm run benchmark:v9
+npm run benchmark:v10
 ```
 
 For seeded/unseeded/direct attribution through Pi:

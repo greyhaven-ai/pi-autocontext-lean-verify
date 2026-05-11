@@ -71,6 +71,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "challenge_v7_frontier",
             "challenge_v8_diagnostics",
             "challenge_v9_composition_gradient",
+            "challenge_v10_stats_reification",
             "challenge_extended_transfer",
         ]:
             with self.subTest(group=group_name):
@@ -193,8 +194,10 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "harness/fixtures/challenge_v5_tree_tally_mirror/Theorem.template.lean",
             "harness/fixtures/challenge_v8_partition_reassemble_stats_acc_list/Theorem.template.lean",
             "harness/fixtures/challenge_v9_keep_length_sum_flatten_mirror/Theorem.template.lean",
+            "harness/fixtures/challenge_v10_stats_acc_reify_list/Theorem.template.lean",
             "docs/V8_DIAGNOSTIC_REPORT.md",
             "docs/V9_COMPOSITION_GRADIENT_REPORT.md",
+            "docs/V10_STATS_REIFICATION_REPORT.md",
         }
         self.assertTrue(required.issubset(paths))
         self.assertFalse(any(path.startswith("harness/results/") for path in paths))

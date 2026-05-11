@@ -16,7 +16,8 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v7_frontier` | 4 | Frontier-plus fixtures combining partition/tree mirror composition with stats accumulator normalization. |
 | `challenge_v8_diagnostics` | 4 | Diagnostic fixtures isolating the v7 partition-heavy accumulator frontier into smaller components. |
 | `challenge_v9_composition_gradient` | 6 | Composition-gradient fixtures splitting keep/drop partition-through-mirror into scalar and paired length/sum obligations. |
-| `challenge_extended_transfer` | 33 | All v2/v3/v4/v5/v6/v7/v8/v9 challenge fixtures. |
+| `challenge_v10_stats_reification` | 6 | StatsAcc-reification fixtures isolating tuple normalization, metric extensionality, count metrics, and stats equality from metric hypotheses. |
+| `challenge_extended_transfer` | 39 | All v2/v3/v4/v5/v6/v7/v8/v9/v10 challenge fixtures. |
 
 ## Reproducible commands
 
@@ -30,6 +31,7 @@ npm run benchmark:v6
 npm run benchmark:v7
 npm run benchmark:v8
 npm run benchmark:v9
+npm run benchmark:v10
 ```
 
 Seeded autocontext vs unseeded isolated autocontext vs direct Pi repair-loop:
@@ -40,6 +42,7 @@ npm run benchmark:v6
 npm run benchmark:v7
 npm run benchmark:v8
 npm run benchmark:v9
+npm run benchmark:v10
 ```
 
 Equivalent explicit harness invocations:
@@ -129,6 +132,7 @@ npm run benchmark:v6
 npm run benchmark:v7
 npm run benchmark:v8
 npm run benchmark:v9
+npm run benchmark:v10
 ```
 
 Or through Pi with `action="attribution"` and the corresponding `fixtureGroup`.
@@ -158,3 +162,15 @@ The source tree after v8 adds `challenge_v9_composition_gradient`, a six-fixture
 - paired drop-side length+sum through tree mirror.
 
 These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `6/6`, unseeded `1/6`, and direct `0/6`, indicating length/sum partition-through-mirror obligations are learnable with seed context and the remaining frontier is likely `statsAcc` triple reification/composition.
+
+
+## v10 stats-reification suite
+
+The source tree after v9 adds `challenge_v10_stats_reification`, a six-fixture suite focused on the `statsAcc` triple reification frontier:
+
+- generic reification of `statsAcc` into `(count, length, sum)` metrics;
+- extensionality of `statsAcc` from equal count/length/sum metrics;
+- keep-side and drop-side count metrics through tree mirror;
+- keep-side and drop-side `statsAcc` equality from already-proved metric equalities.
+
+These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `6/6`, unseeded `3/6`, and direct `1/6`: unseeded can solve core reification/count metrics, but seed context is needed for extensionality and metric-hypothesis application.

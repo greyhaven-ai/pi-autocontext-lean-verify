@@ -142,6 +142,7 @@ npm run benchmark:v4
 npm run benchmark:v5
 npm run benchmark:v6
 npm run benchmark:v7
+npm run benchmark:v8
 ```
 
 ### Attribution
@@ -164,6 +165,7 @@ From a checkout:
 npm run benchmark:v5:attribution
 npm run benchmark:v6
 npm run benchmark:v7
+npm run benchmark:v8
 ```
 
 ### Summarize
@@ -194,7 +196,8 @@ Reads a saved run summary.
 | `challenge_v5_tree_tally` | The hard v5 tree/tally mirror fixture. |
 | `challenge_v6_frontier` | Four no-expected-proof frontier fixtures where nested tree/partition composition starts separating seeded/unseeded/direct. |
 | `challenge_v7_frontier` | Four no-expected-proof frontier-plus fixtures where seeded autocontext becomes unstable (`2/4`) while unseeded/direct are `0/4`. |
-| `challenge_extended_transfer` | All v2/v3/v4/v5/v6/v7 challenge fixtures (`23` fixtures). |
+| `challenge_v8_diagnostics` | Four no-expected-proof diagnostic fixtures isolating the v7 partition-heavy accumulator failures into smaller raw-tree, keep/drop, and list reassembly components. |
+| `challenge_extended_transfer` | All v2/v3/v4/v5/v6/v7/v8 challenge fixtures (`27` fixtures). |
 
 ## Modes
 
@@ -227,8 +230,9 @@ It maps to:
 
 - v6 frontier: seeded `4/4`, unseeded `3/4`, direct `2/4`; hardest pattern was nested tree mirror + partition/count/length invariants.
 - v7 frontier-plus: seeded `2/4`, unseeded `0/4`, direct `0/4`; repeated seeded-failed partition-heavy fixtures stayed `0/6`.
+- v8 diagnostics: decomposing the v7 partition-heavy accumulator frontier restores seeded stability (`4/4`), while unseeded solves `1/4` and direct solves `0/4`.
 
-See `docs/V6_FRONTIER_REPORT.md` and `docs/V7_FRONTIER_REPORT.md`.
+See `docs/V6_FRONTIER_REPORT.md`, `docs/V7_FRONTIER_REPORT.md`, and `docs/V8_DIAGNOSTIC_REPORT.md`.
 
 ## Guardrails
 
@@ -259,8 +263,8 @@ Lean version: 4.29.1
 Python: 3.14.2
 uvx: uv-tool-uvx 0.6.17
 Autocontext runtime: autocontext==0.4.8 via uvx autoctx improve (ok)
-Fixture count: 67
-Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7, challenge_v4_count=4, challenge_v5_attribution=4, challenge_v5_tree_tally=1, challenge_extended_transfer=15
+Fixture count: 79
+Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7, challenge_v4_count=4, challenge_v5_attribution=4, challenge_v5_tree_tally=1, challenge_v6_frontier=4, challenge_v7_frontier=4, challenge_v8_diagnostics=4, challenge_extended_transfer=27
 ```
 
 A zero-Pi-call run smoke test was completed:

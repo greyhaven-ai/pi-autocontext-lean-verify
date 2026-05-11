@@ -12,7 +12,10 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v4_count` | 4 | Count/list/tree fixtures covering occurrence counts, reverse, tree mirror/flatten, and successor-map-after-reverse. |
 | `challenge_v5_attribution` | 4 | Simultaneous invariants and multi-helper composition fixtures designed to compare seeded, unseeded, and direct repair. |
 | `challenge_v5_tree_tally` | 1 | The hard v5 tree/tally mirror fixture for attribution repeats. |
-| `challenge_extended_transfer` | 15 | All v2/v3/v4/v5 challenge fixtures. |
+| `challenge_v6_frontier` | 4 | Frontier fixtures covering multi-accumulator reverse invariants, nested tree partition stats, successor-map reverse count/sum, and mutual tree stats. |
+| `challenge_v7_frontier` | 4 | Frontier-plus fixtures combining partition/tree mirror composition with stats accumulator normalization. |
+| `challenge_v8_diagnostics` | 4 | Diagnostic fixtures isolating the v7 partition-heavy accumulator frontier into smaller components. |
+| `challenge_extended_transfer` | 27 | All v2/v3/v4/v5/v6/v7/v8 challenge fixtures. |
 
 ## Reproducible commands
 
@@ -22,12 +25,18 @@ Seeded autocontext vs direct Pi repair-loop:
 npm run benchmark:v3
 npm run benchmark:v4
 npm run benchmark:v5
+npm run benchmark:v6
+npm run benchmark:v7
+npm run benchmark:v8
 ```
 
 Seeded autocontext vs unseeded isolated autocontext vs direct Pi repair-loop:
 
 ```bash
 npm run benchmark:v5:attribution
+npm run benchmark:v6
+npm run benchmark:v7
+npm run benchmark:v8
 ```
 
 Equivalent explicit harness invocations:
@@ -115,6 +124,19 @@ Run from a checkout with:
 ```bash
 npm run benchmark:v6
 npm run benchmark:v7
+npm run benchmark:v8
 ```
 
 Or through Pi with `action="attribution"` and the corresponding `fixtureGroup`.
+
+
+## v8 diagnostic suite
+
+The source tree after `0.1.9` adds `challenge_v8_diagnostics`, a four-fixture suite that decomposes the v7 partition-heavy accumulator frontier into smaller theorem obligations:
+
+- raw `statsAcc` invariance through tree mirror, before partitioning;
+- keep-side partition stats through tree mirror;
+- drop-side partition stats through tree mirror;
+- list-only partition/reassembly equivalence for `statsAcc`.
+
+These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `4/4`, unseeded `1/4`, and direct `0/4`, indicating the v7 instability is mainly compositional.

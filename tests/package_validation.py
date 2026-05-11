@@ -69,6 +69,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "challenge_v5_tree_tally",
             "challenge_v6_frontier",
             "challenge_v7_frontier",
+            "challenge_v8_diagnostics",
             "challenge_extended_transfer",
         ]:
             with self.subTest(group=group_name):
@@ -189,6 +190,8 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "harness/fixtures/add_zero_right/Theorem.template.lean",
             "harness/fixtures/challenge_v3_map_rev_append_combined/Theorem.template.lean",
             "harness/fixtures/challenge_v5_tree_tally_mirror/Theorem.template.lean",
+            "harness/fixtures/challenge_v8_partition_reassemble_stats_acc_list/Theorem.template.lean",
+            "docs/V8_DIAGNOSTIC_REPORT.md",
         }
         self.assertTrue(required.issubset(paths))
         self.assertFalse(any(path.startswith("harness/results/") for path in paths))

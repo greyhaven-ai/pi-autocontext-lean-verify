@@ -101,3 +101,20 @@ Interpretation: v5 is the strongest proof-transfer signal so far. The verifier-b
 - No `sorry`, `admit`, new axioms, `unsafe`, new imports, or theorem weakening.
 - Lean verification is required before any success is counted.
 - Challenge fixtures intentionally omit `expected_proof.lean`.
+
+
+## v6/v7 frontier suites
+
+Version `0.1.9` adds two frontier attribution groups:
+
+- `challenge_v6_frontier`: seeded `4/4`, unseeded `3/4`, direct `2/4` in the development probe.
+- `challenge_v7_frontier`: seeded `2/4`, unseeded `0/4`, direct `0/4`; the two seeded-failed partition-heavy fixtures repeated at `0/6`.
+
+Run from a checkout with:
+
+```bash
+npm run benchmark:v6
+npm run benchmark:v7
+```
+
+Or through Pi with `action="attribution"` and the corresponding `fixtureGroup`.

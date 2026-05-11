@@ -29,6 +29,8 @@ The harness rejects or avoids:
 
 Benchmark and attribution actions default to short temp result paths under `the system temp directory (`pi-autocontext-lean-verify/...`)` (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) so npm-loaded packages avoid Pi session path-length failures.
 
+Use `challenge_v6_frontier` and `challenge_v7_frontier` for the latest verifier-only frontier suites. v7 is the first packaged suite where seeded autocontext is intentionally unstable while unseeded/direct solve none.
+
 
 1. Run setup or preflight first:
 

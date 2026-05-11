@@ -140,6 +140,8 @@ From a checkout, the same benchmark can be launched without Pi:
 npm run benchmark:v3
 npm run benchmark:v4
 npm run benchmark:v5
+npm run benchmark:v6
+npm run benchmark:v7
 ```
 
 ### Attribution
@@ -160,6 +162,8 @@ From a checkout:
 
 ```bash
 npm run benchmark:v5:attribution
+npm run benchmark:v6
+npm run benchmark:v7
 ```
 
 ### Summarize
@@ -188,7 +192,9 @@ Reads a saved run summary.
 | `challenge_v4_count` | Four no-expected-proof count/list/tree fixtures. |
 | `challenge_v5_attribution` | Four no-expected-proof fixtures for seeded/unseeded/direct attribution. |
 | `challenge_v5_tree_tally` | The hard v5 tree/tally mirror fixture. |
-| `challenge_extended_transfer` | All v2/v3/v4/v5 challenge fixtures (`15` fixtures). |
+| `challenge_v6_frontier` | Four no-expected-proof frontier fixtures where nested tree/partition composition starts separating seeded/unseeded/direct. |
+| `challenge_v7_frontier` | Four no-expected-proof frontier-plus fixtures where seeded autocontext becomes unstable (`2/4`) while unseeded/direct are `0/4`. |
+| `challenge_extended_transfer` | All v2/v3/v4/v5/v6/v7 challenge fixtures (`23` fixtures). |
 
 ## Modes
 
@@ -216,6 +222,13 @@ It maps to:
 --rounds 2
 --timeout 60
 ```
+
+## Frontier benchmark highlights
+
+- v6 frontier: seeded `4/4`, unseeded `3/4`, direct `2/4`; hardest pattern was nested tree mirror + partition/count/length invariants.
+- v7 frontier-plus: seeded `2/4`, unseeded `0/4`, direct `0/4`; repeated seeded-failed partition-heavy fixtures stayed `0/6`.
+
+See `docs/V6_FRONTIER_REPORT.md` and `docs/V7_FRONTIER_REPORT.md`.
 
 ## Guardrails
 
@@ -328,7 +341,7 @@ See `docs/PROOF_TRANSFER_BENCHMARK.md` for fixture groups, commands, and interpr
 
 ## Release
 
-Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was the first successful GitHub OIDC trusted-publisher release with npm provenance attestations. Version `0.1.6` promotes the v2/v3 challenge fixtures and proof-transfer benchmark runner. Version `0.1.7` promotes the v4/v5 fixtures and attribution benchmark runner. Version `0.1.8` fixes default benchmark run roots for npm-loaded extensions to avoid Pi session `ENAMETOOLONG` failures. Unpublished attempts `0.1.1`–`0.1.3` do not exist in the npm registry.
+Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was the first successful GitHub OIDC trusted-publisher release with npm provenance attestations. Version `0.1.6` promotes the v2/v3 challenge fixtures and proof-transfer benchmark runner. Version `0.1.7` promotes the v4/v5 fixtures and attribution benchmark runner. Version `0.1.8` fixes default benchmark run roots for npm-loaded extensions to avoid Pi session `ENAMETOOLONG` failures. Version `0.1.9` promotes the v6/v7 frontier fixtures and reports. Unpublished attempts `0.1.1`–`0.1.3` do not exist in the npm registry.
 
 Future releases use GitHub's npm trusted publisher workflow on version tags:
 

@@ -6,7 +6,7 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 
 | Claim                                                      |                    Evidence | Artifact                                                                                          |
 | ---------------------------------------------------------- | --------------------------: | ------------------------------------------------------------------------------------------------- |
-| Harness sanity: every expected proof still verifies        | 52 / 52 expected-proof fixtures (67 manifest fixtures) | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
+| Harness sanity: every expected proof still verifies        | 52 / 52 expected-proof fixtures (75 manifest fixtures) | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
 | Package setup works through Pi                             |           1 / 1 smoke proof | `results/20260506T_pi_package_setup_action_smoke`                                                 |
 | Post-registry package setup works through Pi               |           1 / 1 smoke proof | `results/20260506T_pi_package_registry_setup_smoke`                                               |
 | Package fixture groups work through Pi                     |           1 / 1 smoke proof | `results/20260506T_pi_package_fixture_group_smoke`                                                |
@@ -26,6 +26,12 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v5 unseeded full-set attribution                |               3 / 4 proofs | `results/20260510T_challenge_v5_attribution_report.md`                                           |
 | Challenge v5 hard tree/tally seeded stability             |               3 / 3 proofs | `results/20260510T_challenge_v5_attribution_report.md`                                           |
 | Challenge v5 hard tree/tally unseeded contrast            |               1 / 3 proofs | `results/20260510T_challenge_v5_attribution_report.md`                                           |
+| Challenge v6 seeded frontier attribution                |               4 / 4 proofs | `docs/V6_FRONTIER_REPORT.md`                                                                      |
+| Challenge v6 unseeded frontier contrast                |               3 / 4 proofs | `docs/V6_FRONTIER_REPORT.md`                                                                      |
+| Challenge v6 direct frontier contrast                  |               2 / 4 proofs | `docs/V6_FRONTIER_REPORT.md`                                                                      |
+| Challenge v7 seeded frontier-plus attribution          |               2 / 4 proofs | `docs/V7_FRONTIER_REPORT.md`                                                                      |
+| Challenge v7 unseeded/direct frontier-plus contrast    |               0 / 4 proofs | `docs/V7_FRONTIER_REPORT.md`                                                                      |
+| Challenge v7 seeded-failed stability                   |               0 / 6 proofs | `docs/V7_FRONTIER_REPORT.md`                                                                      |
 | Default benchmark run roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="attribution"` npm smoke without explicit `runRoot`                                      |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 
@@ -107,6 +113,8 @@ npm run benchmark:v3
 npm run benchmark:v4
 npm run benchmark:v5
 npm run benchmark:v5:attribution
+npm run benchmark:v6
+npm run benchmark:v7
 ```
 
 For seeded/unseeded/direct attribution through Pi:

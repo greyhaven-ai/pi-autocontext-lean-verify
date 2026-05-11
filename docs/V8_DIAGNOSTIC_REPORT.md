@@ -46,7 +46,48 @@ Settings: Pi provider through the local package, `--no-pregenerate`, synthetic h
 | `challenge_v8_drop_stats_acc_flatten_mirror` | proved | proved | failed |
 | `challenge_v8_partition_reassemble_stats_acc_list` | proved | failed | failed |
 
-Interpretation: decomposing v7 into smaller obligations restores seeded stability (`4/4`) while unseeded only solves the drop-side mirror component and direct solves none. The v7 failure therefore appears to come from composing individually learnable ingredients, especially keep-side partition stats and list-only reassembly, rather than from theorem falsehood or raw tree/mirror accumulator invariance alone.
+Initial interpretation: decomposing v7 into smaller obligations gave seeded a clean `4/4` on the first probe, while unseeded only solved the drop-side mirror component and direct solved none.
+
+## Second controlled attribution probe
+
+Run root:
+`/var/folders/5l/4d99c0cd27183q3rdnm8ybg00000gn/T/pi-autocontext-lean-verify/20260511T192049_attribution_challenge_v8_diagnostics`
+
+Same settings as the first probe.
+
+| Method | Result | Pi calls | Pi elapsed | Lean verifier attempts |
+| --- | ---: | ---: | ---: | ---: |
+| seeded autocontext | 2 / 4 | 7 | 1004.77s | 9 |
+| unseeded isolated autocontext | 0 / 4 | 8 | 442.98s | 9 |
+| direct Pi repair-loop | 0 / 4 | 4 | 483.29s | n/a |
+
+| Fixture | Seeded | Unseeded isolated | Direct repair-loop |
+| --- | ---: | ---: | ---: |
+| `challenge_v8_stats_acc_flatten_mirror` | proved | failed | failed |
+| `challenge_v8_keep_stats_acc_flatten_mirror` | failed | failed | failed |
+| `challenge_v8_drop_stats_acc_flatten_mirror` | failed | failed | failed |
+| `challenge_v8_partition_reassemble_stats_acc_list` | proved | failed | failed |
+
+## Stability interpretation
+
+Across the first two v8 probes:
+
+| Method | Combined result |
+| --- | ---: |
+| seeded autocontext | 6 / 8 |
+| unseeded isolated autocontext | 1 / 8 |
+| direct Pi repair-loop | 0 / 8 |
+
+Fixture stability by seeded autocontext:
+
+| Fixture | Seeded stability |
+| --- | ---: |
+| `challenge_v8_stats_acc_flatten_mirror` | 2 / 2 |
+| `challenge_v8_keep_stats_acc_flatten_mirror` | 1 / 2 |
+| `challenge_v8_drop_stats_acc_flatten_mirror` | 1 / 2 |
+| `challenge_v8_partition_reassemble_stats_acc_list` | 2 / 2 |
+
+The repeat narrows the diagnosis: raw tree/mirror `statsAcc` and list-only partition reassembly are stable for seeded autocontext, but the individual keep/drop partition-through-mirror components are themselves stochastic. v7's full partition-heavy accumulator theorem is therefore a composition frontier built from partially unstable partition/mirror ingredients, not a theorem-truth problem or a direct-repair prompting problem.
 
 ## Suggested attribution command
 

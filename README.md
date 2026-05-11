@@ -230,7 +230,7 @@ It maps to:
 
 - v6 frontier: seeded `4/4`, unseeded `3/4`, direct `2/4`; hardest pattern was nested tree mirror + partition/count/length invariants.
 - v7 frontier-plus: seeded `2/4`, unseeded `0/4`, direct `0/4`; repeated seeded-failed partition-heavy fixtures stayed `0/6`.
-- v8 diagnostics: decomposing the v7 partition-heavy accumulator frontier restores seeded stability (`4/4`), while unseeded solves `1/4` and direct solves `0/4`.
+- v8 diagnostics: decomposing v7 gives seeded a clear edge but not full stability across repeats (`6/8` seeded, `1/8` unseeded, `0/8` direct); raw stats and list-only reassembly are stable, while keep/drop partition-through-mirror remains stochastic.
 
 See `docs/V6_FRONTIER_REPORT.md`, `docs/V7_FRONTIER_REPORT.md`, and `docs/V8_DIAGNOSTIC_REPORT.md`.
 

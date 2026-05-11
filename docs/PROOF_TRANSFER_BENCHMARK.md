@@ -139,4 +139,4 @@ The source tree after `0.1.9` adds `challenge_v8_diagnostics`, a four-fixture su
 - drop-side partition stats through tree mirror;
 - list-only partition/reassembly equivalence for `statsAcc`.
 
-These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `4/4`, unseeded `1/4`, and direct `0/4`, indicating the v7 instability is mainly compositional.
+These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first two controlled attribution probes solved seeded `6/8`, unseeded `1/8`, and direct `0/8`: raw tree/mirror stats and list-only reassembly are stable for seeded autocontext, while keep/drop partition-through-mirror remains stochastic. This indicates the v7 instability is mainly compositional.

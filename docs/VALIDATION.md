@@ -33,8 +33,9 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v7 unseeded/direct frontier-plus contrast    |               0 / 4 proofs | `docs/V7_FRONTIER_REPORT.md`                                                                      |
 | Challenge v7 seeded-failed stability                   |               0 / 6 proofs | `docs/V7_FRONTIER_REPORT.md`                                                                      |
 | Challenge v8 diagnostic fixtures have local Lean witnesses |      4 / 4 fixture templates | `docs/V8_DIAGNOSTIC_REPORT.md`                                                                    |
-| Challenge v8 seeded diagnostic attribution             |               4 / 4 proofs | `docs/V8_DIAGNOSTIC_REPORT.md`                                                                    |
-| Challenge v8 unseeded/direct diagnostic contrast       |     unseeded 1 / 4; direct 0 / 4 | `docs/V8_DIAGNOSTIC_REPORT.md`                                                                    |
+| Challenge v8 first seeded diagnostic probe             |               4 / 4 proofs | `docs/V8_DIAGNOSTIC_REPORT.md`                                                                    |
+| Challenge v8 seeded diagnostic repeat                  |               2 / 4 proofs | `docs/V8_DIAGNOSTIC_REPORT.md`                                                                    |
+| Challenge v8 combined diagnostic attribution           |     seeded 6 / 8; unseeded 1 / 8; direct 0 / 8 | `docs/V8_DIAGNOSTIC_REPORT.md`                                                                    |
 | Default benchmark run roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="attribution"` npm smoke without explicit `runRoot`                                      |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 

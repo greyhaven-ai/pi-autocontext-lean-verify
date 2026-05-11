@@ -17,7 +17,8 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v8_diagnostics` | 4 | Diagnostic fixtures isolating the v7 partition-heavy accumulator frontier into smaller components. |
 | `challenge_v9_composition_gradient` | 6 | Composition-gradient fixtures splitting keep/drop partition-through-mirror into scalar and paired length/sum obligations. |
 | `challenge_v10_stats_reification` | 6 | StatsAcc-reification fixtures isolating tuple normalization, metric extensionality, count metrics, and stats equality from metric hypotheses. |
-| `challenge_extended_transfer` | 39 | All v2/v3/v4/v5/v6/v7/v8/v9/v10 challenge fixtures. |
+| `challenge_v11_metric_composition` | 6 | Metric-composition fixtures combining keep/drop metric bundles with statsAcc extensionality boundaries. |
+| `challenge_extended_transfer` | 45 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11 challenge fixtures. |
 
 ## Reproducible commands
 
@@ -32,6 +33,7 @@ npm run benchmark:v7
 npm run benchmark:v8
 npm run benchmark:v9
 npm run benchmark:v10
+npm run benchmark:v11
 ```
 
 Seeded autocontext vs unseeded isolated autocontext vs direct Pi repair-loop:
@@ -43,6 +45,7 @@ npm run benchmark:v7
 npm run benchmark:v8
 npm run benchmark:v9
 npm run benchmark:v10
+npm run benchmark:v11
 ```
 
 Equivalent explicit harness invocations:
@@ -133,6 +136,7 @@ npm run benchmark:v7
 npm run benchmark:v8
 npm run benchmark:v9
 npm run benchmark:v10
+npm run benchmark:v11
 ```
 
 Or through Pi with `action="attribution"` and the corresponding `fixtureGroup`.
@@ -174,3 +178,15 @@ The source tree after v9 adds `challenge_v10_stats_reification`, a six-fixture s
 - keep-side and drop-side `statsAcc` equality from already-proved metric equalities.
 
 These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `6/6`, unseeded `3/6`, and direct `1/6`: unseeded can solve core reification/count metrics, but seed context is needed for extensionality and metric-hypothesis application.
+
+
+## v11 metric-composition suite
+
+The source tree after v10 adds `challenge_v11_metric_composition`, a six-fixture suite bridging metric proofs and `statsAcc` equality without asking the model to synthesize the full v7/v8 theorem outright:
+
+- keep-side and drop-side metric bundles through tree mirror;
+- keep-side and drop-side `statsAcc` equality from bundled metric proofs;
+- combined keep/drop metric bundles;
+- combined keep/drop stats equality from metric bundles.
+
+These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `5/6`, unseeded `0/6`, and direct `1/6`, with the only seeded miss on the combined keep/drop metric-bundle proof.

@@ -26,6 +26,7 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v5 unseeded full-set attribution                |               3 / 4 proofs | `results/20260510T_challenge_v5_attribution_report.md`                                           |
 | Challenge v5 hard tree/tally seeded stability             |               3 / 3 proofs | `results/20260510T_challenge_v5_attribution_report.md`                                           |
 | Challenge v5 hard tree/tally unseeded contrast            |               1 / 3 proofs | `results/20260510T_challenge_v5_attribution_report.md`                                           |
+| Default benchmark run roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="attribution"` npm smoke without explicit `runRoot`                                      |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 
 ## Runtime dependency contract
@@ -37,6 +38,8 @@ uvx --python 3.12 --from autocontext==0.4.8 autoctx improve ...
 ```
 
 Preflight checks both `uvx` and `autocontext==0.4.8` / `autoctx improve` availability. This keeps autocontext as the real repair-engine dependency while Lean remains the proof oracle.
+
+Benchmark and attribution actions default to `the system temp directory (`pi-autocontext-lean-verify/...`)/...` (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) instead of package-internal `harness/results/...` when `runRoot` is omitted. This avoids long npm temp paths causing Pi session `ENAMETOOLONG` failures.
 
 ## Recommended package-level checks
 

@@ -27,6 +27,9 @@ The harness rejects or avoids:
 
 ## Recommended workflow
 
+Benchmark and attribution actions default to short temp result paths under `the system temp directory (`pi-autocontext-lean-verify/...`)` (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) so npm-loaded packages avoid Pi session path-length failures.
+
+
 1. Run setup or preflight first:
 
 ```json

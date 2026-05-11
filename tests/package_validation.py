@@ -101,6 +101,19 @@ class StandaloneRepoValidationTests(unittest.TestCase):
         self.assertIn('from "@earendil-works/pi-ai"', extension_text)
         self.assertIn('from "@earendil-works/pi-coding-agent"', extension_text)
 
+    def test_benchmark_defaults_use_short_temp_run_roots(self) -> None:
+        extension_text = EXTENSION.read_text(encoding="utf-8")
+        transfer_runner = (HARNESS / "run_proof_transfer_benchmark.py").read_text(encoding="utf-8")
+        attribution_runner = (HARNESS / "run_attribution_benchmark.py").read_text(encoding="utf-8")
+        self.assertIn('from "node:os"', extension_text)
+        self.assertIn("defaultShortRunRoot", extension_text)
+        self.assertIn("AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT", extension_text)
+        self.assertIn("tmpdir()", extension_text)
+        self.assertIn("tempfile.gettempdir()", transfer_runner)
+        self.assertIn("tempfile.gettempdir()", attribution_runner)
+        self.assertIn("default_run_root", transfer_runner)
+        self.assertIn("default_run_root", attribution_runner)
+
     def test_autocontext_runtime_dependency_contract_is_explicit(self) -> None:
         proof_runner = PROVE_WITH_AUTOCONTEXT.read_text(encoding="utf-8")
         self.assertIn('"uvx"', proof_runner)

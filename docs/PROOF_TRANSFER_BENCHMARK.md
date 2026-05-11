@@ -55,7 +55,9 @@ The benchmark runners preserve the guardrails:
 - synthetic hint candidates disabled
 - Lean verification is the only success oracle
 
-Outputs are written under `harness/results/...`:
+Outputs are written under a short temp directory by default, `the system temp directory (`pi-autocontext-lean-verify/...`)/...`, to avoid long Pi session paths when the package is loaded from npm temp `node_modules`. Set `AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT` or pass `--run-root` / tool `runRoot` to override.
+
+Artifacts include:
 
 - `proof_transfer_benchmark_summary.json` / `proof_transfer_benchmark_report.md`
 - `attribution_benchmark_summary.json` / `attribution_benchmark_report.md`

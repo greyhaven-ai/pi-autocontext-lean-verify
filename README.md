@@ -58,6 +58,8 @@ uvx --python 3.12 --from autocontext==0.4.8 autoctx improve ...
 
 `action="preflight"` checks `uvx` and `autocontext==0.4.8` / `autoctx improve` availability so this dependency is explicit rather than a decorative package import.
 
+Long-running benchmark actions default their result directories to a short temp path under `the system temp directory (`pi-autocontext-lean-verify/...`)` (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) so npm-loaded extensions do not create overly long Pi session paths.
+
 ## Provided resources
 
 - Extension tool: `autocontext_lean_verify`
@@ -326,7 +328,7 @@ See `docs/PROOF_TRANSFER_BENCHMARK.md` for fixture groups, commands, and interpr
 
 ## Release
 
-Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was the first successful GitHub OIDC trusted-publisher release with npm provenance attestations. Version `0.1.6` promotes the v2/v3 challenge fixtures and proof-transfer benchmark runner. Version `0.1.7` promotes the v4/v5 fixtures and attribution benchmark runner. Unpublished attempts `0.1.1`–`0.1.3` do not exist in the npm registry.
+Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was the first successful GitHub OIDC trusted-publisher release with npm provenance attestations. Version `0.1.6` promotes the v2/v3 challenge fixtures and proof-transfer benchmark runner. Version `0.1.7` promotes the v4/v5 fixtures and attribution benchmark runner. Version `0.1.8` fixes default benchmark run roots for npm-loaded extensions to avoid Pi session `ENAMETOOLONG` failures. Unpublished attempts `0.1.1`–`0.1.3` do not exist in the npm registry.
 
 Future releases use GitHub's npm trusted publisher workflow on version tags:
 

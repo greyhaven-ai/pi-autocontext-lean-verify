@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
+import tempfile
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -18,6 +19,10 @@ FIXTURE_GROUPS = PACKAGE_ROOT / "fixture_groups.json"
 
 def utc_stamp() -> str:
     return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+
+
+def default_run_root(kind: str, fixture_group: str) -> Path:
+    return Path(tempfile.gettempdir()) / "pi-autocontext-lean-verify" / f"{utc_stamp()}_{kind}_{fixture_group}"
 
 
 def load_fixture_group(name: str) -> list[str]:
@@ -254,7 +259,7 @@ def main() -> int:
     seed_playbook = Path(args.seed_playbook) if args.seed_playbook else default_seed_playbook(args.fixture_group)
     if not seed_playbook.is_absolute():
         seed_playbook = (ROOT / seed_playbook).resolve()
-    run_root = Path(args.run_root) if args.run_root else ROOT / "results" / f"{utc_stamp()}_attribution_benchmark_{args.fixture_group}"
+    run_root = Path(args.run_root) if args.run_root else default_run_root("attribution_benchmark", args.fixture_group)
     if not run_root.is_absolute():
         run_root = ROOT / run_root
     run_root.mkdir(parents=True, exist_ok=True)

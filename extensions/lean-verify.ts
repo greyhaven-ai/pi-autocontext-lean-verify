@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { StringEnum } from "@earendil-works/pi-ai";
@@ -87,6 +88,18 @@ const formalProofSchema = Type.Object({
 });
 
 type FormalProofInput = Static<typeof formalProofSchema>;
+
+function compactTimestamp(): string {
+	return new Date().toISOString().replace(/[-:.]/g, "").slice(0, 15);
+}
+
+function defaultShortRunRoot(kind: string, group: string): string {
+	return resolve(
+		process.env.AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT ||
+			resolve(tmpdir(), "pi-autocontext-lean-verify"),
+		`${compactTimestamp()}_${kind}_${group}`,
+	);
+}
 
 function defaultHarnessRoot(): string {
 	return existsSync(bundledHarnessRoot)
@@ -456,9 +469,7 @@ async function runBenchmark(
 	const fixtures = params.fixtures?.length
 		? params.fixtures
 		: fixtureGroupFixtures(group);
-	const runRoot =
-		params.runRoot ||
-		`results/pi_package_benchmark_${group}_${new Date().toISOString().replace(/[-:.]/g, "").slice(0, 15)}`;
+	const runRoot = params.runRoot || defaultShortRunRoot("benchmark", group);
 	const args = [
 		"run_proof_transfer_benchmark.py",
 		"--fixture-group",
@@ -522,9 +533,7 @@ async function runAttributionBenchmark(
 	const fixtures = params.fixtures?.length
 		? params.fixtures
 		: fixtureGroupFixtures(group);
-	const runRoot =
-		params.runRoot ||
-		`results/pi_package_attribution_${group}_${new Date().toISOString().replace(/[-:.]/g, "").slice(0, 15)}`;
+	const runRoot = params.runRoot || defaultShortRunRoot("attribution", group);
 	const args = [
 		"run_attribution_benchmark.py",
 		"--fixture-group",

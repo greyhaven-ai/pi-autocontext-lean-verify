@@ -419,6 +419,34 @@
       "difficulty": "challenge_hard_plus",
       "initial_proof": "rfl",
       "expected_proof": false
+    },
+    {
+      "id": "challenge_v6_stats_acc_rev",
+      "category": "challenge_v6_multi_accumulator_reverse",
+      "difficulty": "challenge_frontier",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v6_tree_partition_mirror",
+      "category": "challenge_v6_nested_tree_partition",
+      "difficulty": "challenge_frontier",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v6_mapSucc_rev_count_sum",
+      "category": "challenge_v6_map_reverse_sum_count",
+      "difficulty": "challenge_frontier",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v6_mutual_depth_stats_mirror",
+      "category": "challenge_v6_mutual_recursion_tree",
+      "difficulty": "challenge_frontier",
+      "initial_proof": "rfl",
+      "expected_proof": false
     }
   ]
 }

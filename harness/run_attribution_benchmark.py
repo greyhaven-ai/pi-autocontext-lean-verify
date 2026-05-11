@@ -34,6 +34,13 @@ def load_fixture_group(name: str) -> list[str]:
 
 
 def default_seed_playbook(group: str) -> Path:
+    if group == "challenge_v6_frontier":
+        seed = ROOT / "playbooks" / "challenge_v5_attribution_v1.md"
+        if seed.exists():
+            return seed
+        seed = ROOT / "playbooks" / "challenge_v4_count_v1.md"
+        if seed.exists():
+            return seed
     if group in {"challenge_v5_attribution", "challenge_v5_tree_tally"}:
         seed = ROOT / "playbooks" / "challenge_v4_count_v1.md"
         if seed.exists():

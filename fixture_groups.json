@@ -95,7 +95,17 @@
       "challenge_v5_tally_acc_pair",
       "challenge_v5_partition_count_length",
       "challenge_v5_filter_rev_count_combo",
-      "challenge_v5_tree_tally_mirror"
+      "challenge_v5_tree_tally_mirror",
+      "challenge_v6_stats_acc_rev",
+      "challenge_v6_tree_partition_mirror",
+      "challenge_v6_mapSucc_rev_count_sum",
+      "challenge_v6_mutual_depth_stats_mirror"
+    ],
+    "challenge_v6_frontier": [
+      "challenge_v6_stats_acc_rev",
+      "challenge_v6_tree_partition_mirror",
+      "challenge_v6_mapSucc_rev_count_sum",
+      "challenge_v6_mutual_depth_stats_mirror"
     ]
   },
   "descriptions": {
@@ -110,6 +120,7 @@
     "challenge_v4_count": "Four no-expected-proof count/list/tree fixtures covering occurrence counting, reverse preservation, tree mirror/flatten, and successor-map-after-reverse.",
     "challenge_v5_attribution": "Four no-expected-proof fixtures designed to separate seeded, unseeded, and direct repair on simultaneous invariants and multi-helper composition.",
     "challenge_v5_tree_tally": "The hardest v5 tree/tally mirror fixture for repeated attribution controls.",
-    "challenge_extended_transfer": "All v2/v3/v4/v5 challenge fixtures; no expected proofs are bundled."
+    "challenge_extended_transfer": "All v2/v3/v4/v5/v6 challenge fixtures; no expected proofs are bundled.",
+    "challenge_v6_frontier": "Four no-expected-proof frontier fixtures covering multi-accumulator reverse invariants, nested tree partition stats, successor-map reverse count/sum, and mutually recursive tree depth statistics."
   }
 }

@@ -74,3 +74,17 @@ Settings: Pi provider, v6 seed playbook, `--no-pregenerate`, synthetic hints dis
 | `challenge_v13_partition_metrics_from_side_hyps` | proved | failed | proved |
 
 Interpretation: the v12/v13 frontier is not raw tree-mirror metrics, not append/filter sub-lemma synthesis, not final conjunction reassembly, and not side-grouped keep/drop triple bundles once unrelated `statsAcc` definitions are removed. The remaining miss is the reordered all-three simultaneous metric grouping (`sum`, then `count`, then `length`), where seeded stayed at `0/1` and unseeded/direct also failed. This points to proof-search sensitivity to conjunction ordering/grouping in the full simultaneous metric bundle, rather than theorem falsehood or missing low-level lemmas.
+
+## Focused seeded stability repeat
+
+The v13 miss `challenge_v13_partition_reordered_metrics_flatten_mirror` was repeated three times in seeded-only mode with the same controlled repair settings (`--no-pregenerate`, synthetic hints disabled, `--structured-alternate-retry`, `--max-attempts 2`, `--rounds 2`, `--timeout 120`, provider `pi`) under:
+
+`/tmp/pi-v14-order-stability-20260512T`
+
+| Repeat | Seeded result | Final attempt | Pi calls | Pi elapsed | Lean attempts |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 1 | failed | — | 2 | 265.13s | 2 |
+| 2 | proved | 1 | 1 | 132.60s | 3 |
+| 3 | proved | 1 | 1 | 105.07s | 3 |
+
+Focused repeat aggregate: seeded `2/3`. Including the original v13 full-suite miss, this exact fixture is now seeded `2/4`; including the equivalent v14 `sum/count/length` success, the theorem-shape/order observation is `3/5`. This confirms the v13 miss was stochastic, not a stable failure of the `sum/count/length` ordering.

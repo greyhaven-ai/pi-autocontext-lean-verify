@@ -66,3 +66,17 @@ Settings: Pi provider, v6 seed playbook, `--no-pregenerate`, synthetic hints dis
 | `challenge_v14_order_sum_length_count_flatten_mirror` | proved | failed | failed |
 
 Interpretation: v14 shows the order/grouping frontier is stochastic and not a simple fixed `sum`-first failure. Five of six metric-order permutations solved seeded in this run, including canonical count/length/sum and the sum/count/length order that failed in v13. The only seeded miss was length/count/sum. Unseeded and direct solved none. The frontier is now best characterized as non-canonical conjunction-order sensitivity under a small attempt budget, with strong seeded advantage but remaining variance across equivalent metric-order shapes.
+
+## Focused seeded stability repeat
+
+The v14 miss `challenge_v14_order_length_count_sum_flatten_mirror` was repeated three times in seeded-only mode with the same controlled repair settings (`--no-pregenerate`, synthetic hints disabled, `--structured-alternate-retry`, `--max-attempts 2`, `--rounds 2`, `--timeout 120`, provider `pi`) under:
+
+`/tmp/pi-v14-order-stability-20260512T`
+
+| Repeat | Seeded result | Final attempt | Pi calls | Pi elapsed | Lean attempts |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 1 | proved | 1 | 1 | 213.56s | 3 |
+| 2 | failed | — | 2 | 265.13s | 2 |
+| 3 | proved | 1 | 1 | 188.49s | 3 |
+
+Focused repeat aggregate: seeded `2/3`. Including the original v14 full-suite miss, this exact fixture is now seeded `2/4`. Together with the v13 `sum/count/length` repeat, the current evidence supports stochastic order sensitivity rather than a deterministic bad ordering.

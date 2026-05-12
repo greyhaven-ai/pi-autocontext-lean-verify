@@ -62,3 +62,27 @@ Settings: Pi provider, v6 seed playbook, `--no-pregenerate`, synthetic hints dis
 | `challenge_v15_order_length_count_sum_with_append_and_reassembly_hyp` | failed | failed | failed |
 
 Interpretation: v15 separates final reassembly from tree-induction proof synthesis. Metric-group and side-group reassembly are easy enough that direct Pi solves them, while unseeded autocontext still fails under the isolated repair loop. Supplying append/filter helper lemmas lets seeded autocontext solve the hard length/count/sum tree-mirror theorem at timeout 120; direct and unseeded still fail it. Adding an explicit final reassembly hypothesis did **not** help in this run and likely increased prompt/type complexity: the only seeded miss was `with_append_and_reassembly_hyp`, whose primary repair returned no extracted proof. The frontier therefore is not final conjunction assembly alone; it is the interaction of recognizing the induction/simp proof shape with the available helper hypotheses under a small Pi repair budget.
+
+## Focused seeded stability repeat
+
+The two v15 fixtures nearest the frontier were repeated three times in seeded-only mode with the same controlled repair settings (`--no-pregenerate`, synthetic hints disabled, `--structured-alternate-retry`, `--max-attempts 2`, `--rounds 2`, `--timeout 120`, provider `pi`) under:
+
+`/tmp/pi-v15-focused-stability-20260512T201537Z`
+
+| Fixture | Repeat 1 | Repeat 2 | Repeat 3 | Focused aggregate | Including original v15 attribution |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `challenge_v15_order_length_count_sum_with_append_hyps` | proved | proved | proved | 3 / 3 | 4 / 4 |
+| `challenge_v15_order_length_count_sum_with_append_and_reassembly_hyp` | proved | failed | failed | 1 / 3 | 1 / 4 |
+
+Per-repeat costs:
+
+| Run | Result | Final attempt | Pi calls | Pi elapsed | Lean attempts | Features |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| append/filter hyps repeat 1 | proved | 1 | 1 | 82.87s | 3 | induction, simp, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm |
+| append/filter hyps repeat 2 | proved | 1 | 1 | 109.94s | 3 | induction, simp, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm |
+| append/filter hyps repeat 3 | proved | 1 | 1 | 125.42s | 3 | induction, simp, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm |
+| append/filter + reassembly hyp repeat 1 | proved | 1 | 2 | 334.35s | 2 | induction, simp, exact, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm |
+| append/filter + reassembly hyp repeat 2 | failed | — | 2 | 263.05s | 2 | rfl |
+| append/filter + reassembly hyp repeat 3 | failed | — | 2 | 260.88s | 2 | rfl |
+
+Interpretation update: the append/filter-helper fixture is stable for seeded autocontext under the baseline timeout (`4/4` including the original attribution run). The explicit reassembly-hyp variant is not impossible—the first repeat found a Lean-verified proof via the alternate repair path—but it is substantially less stable (`1/4` including the original run) and more expensive. That supports the prompt/type-complexity diagnosis: compact helper hypotheses expose the right induction/simp proof shape, while the large higher-order reassembly hypothesis tends to distract or exhaust the repair budget.

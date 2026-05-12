@@ -80,3 +80,32 @@ The v14 miss `challenge_v14_order_length_count_sum_flatten_mirror` was repeated 
 | 3 | proved | 1 | 1 | 188.49s | 3 |
 
 Focused repeat aggregate: seeded `2/3`. Including the original v14 full-suite miss, this exact fixture is now seeded `2/4`. Together with the v13 `sum/count/length` repeat, the current evidence supports stochastic order sensitivity rather than a deterministic bad ordering.
+
+
+## Budget and timeout probes
+
+A full-suite v14 `--max-attempts 3`, `--timeout 120` attribution attempt was abandoned as too noisy/expensive: it completed only the seeded prefix before the outer command timed out. The completed prefix proved `3/4`, including the original v14 `length/count/sum` miss at final attempt 1, but then spent excessive wall-clock on `length/sum/count`. Run root:
+
+`/var/folders/5l/4d99c0cd27183q3rdnm8ybg00000gn/T/pi-autocontext-lean-verify/20260512T051712_attribution_challenge_v14_metric_order_permutations`
+
+The isolated v14 miss was then repeated three times with `--max-attempts 3` while keeping `--timeout 120` and the same seeded/no-pregenerate/structured-alternate controls:
+
+`/tmp/pi-order-budget3-focused-20260512T160429Z`
+
+| Repeat | Seeded result | Final attempt | Pi calls | Pi elapsed | Lean attempts | Fixture seconds |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | failed | — | 4 | 539.41s | 3 | 539.93s |
+| 2 | failed | — | 4 | 542.82s | 3 | 543.34s |
+| 3 | failed | — | 4 | 541.27s | 3 | 543.13s |
+
+All six Pi repair calls across these three focused repeats returned no extracted proof; stderr showed `Pi CLI timed out after 120s`. Raising attempt count alone therefore did not stabilize this fixture under the 120s per-call ceiling.
+
+A separate timeout probe kept the original `--max-attempts 2` but raised `--timeout 240` for one seeded repeat:
+
+`/tmp/pi-order-timeout240-focused-20260512T170137Z`
+
+| Probe | Seeded result | Final attempt | Pi calls | Pi elapsed | Lean attempts | Fixture seconds |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| timeout 240, maxAttempts 2 | proved | 1 | 1 | 319.55s | 3 | 320.25s |
+
+Interpretation: the current frontier is not fixed by adding more attempts under the same 120s provider timeout. For these order-sensitive fixtures, a larger per-call Pi timeout can recover proofs with the original two-attempt harness budget, while unseeded/direct remain unsolved in the controlled v14 attribution baseline.

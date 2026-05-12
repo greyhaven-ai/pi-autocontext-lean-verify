@@ -88,3 +88,28 @@ The v13 miss `challenge_v13_partition_reordered_metrics_flatten_mirror` was repe
 | 3 | proved | 1 | 1 | 105.07s | 3 |
 
 Focused repeat aggregate: seeded `2/3`. Including the original v13 full-suite miss, this exact fixture is now seeded `2/4`; including the equivalent v14 `sum/count/length` success, the theorem-shape/order observation is `3/5`. This confirms the v13 miss was stochastic, not a stable failure of the `sum/count/length` ordering.
+
+
+## Budget and timeout probes
+
+A focused attempt-budget probe repeated the same v13 miss three times with `--max-attempts 3` while keeping `--timeout 120` and the same seeded/no-pregenerate/structured-alternate controls:
+
+`/tmp/pi-order-budget3-focused-20260512T160429Z`
+
+| Repeat | Seeded result | Final attempt | Pi calls | Pi elapsed | Lean attempts | Fixture seconds |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | failed | — | 4 | 545.17s | 3 | 550.59s |
+| 2 | failed | — | 4 | 552.76s | 3 | 554.74s |
+| 3 | failed | — | 4 | 543.11s | 3 | 544.98s |
+
+All six Pi repair calls across these three repeats returned no extracted proof; stderr showed `Pi CLI timed out after 120s`. Raising attempt count alone therefore did not stabilize this fixture under the 120s per-call ceiling.
+
+A separate timeout probe kept the original `--max-attempts 2` but raised `--timeout 240` for one seeded repeat:
+
+`/tmp/pi-order-timeout240-focused-20260512T170137Z`
+
+| Probe | Seeded result | Final attempt | Pi calls | Pi elapsed | Lean attempts | Fixture seconds |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| timeout 240, maxAttempts 2 | proved | 1 | 1 | 336.86s | 3 | 337.59s |
+
+Interpretation: for the v13 reordered full-bundle miss, the useful budget knob is currently provider wall-clock timeout, not additional repair attempts at the same 120s timeout.

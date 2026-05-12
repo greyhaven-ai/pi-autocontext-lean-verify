@@ -250,7 +250,7 @@ These fixtures intentionally ship without `expected_proof.lean`; local witness p
 
 ## v15 proof-shape hint suite
 
-The source tree after `0.1.11` adds `challenge_v15_proof_shape_hints`, a four-fixture diagnostic suite for the hard length/count/sum full simultaneous keep/drop theorem shape:
+Version `0.1.12` adds `challenge_v15_proof_shape_hints`, a four-fixture diagnostic suite for the hard length/count/sum full simultaneous keep/drop theorem shape:
 
 - metric-grouped hypotheses only;
 - side-grouped keep/drop hypotheses only;

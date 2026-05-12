@@ -678,6 +678,48 @@
       "difficulty": "challenge_simultaneous_metric_composition",
       "initial_proof": "rfl",
       "expected_proof": false
+    },
+    {
+      "id": "challenge_v13_partition_side_bundle_no_stats_flatten_mirror",
+      "category": "challenge_v13_side_bundle_order",
+      "difficulty": "challenge_decomposition_order",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v13_partition_reordered_metrics_flatten_mirror",
+      "category": "challenge_v13_reordered_metrics",
+      "difficulty": "challenge_decomposition_order",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v13_raw_count_length_sum_flatten_mirror",
+      "category": "challenge_v13_raw_triple_metrics",
+      "difficulty": "challenge_decomposition_order",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v13_keep_drop_triple_metrics_append",
+      "category": "challenge_v13_append_metric_bundle",
+      "difficulty": "challenge_decomposition_order",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v13_partition_metrics_with_append_hyps_flatten_mirror",
+      "category": "challenge_v13_append_hypotheses",
+      "difficulty": "challenge_decomposition_order",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v13_partition_metrics_from_side_hyps",
+      "category": "challenge_v13_conjunction_reassembly",
+      "difficulty": "challenge_decomposition_order",
+      "initial_proof": "rfl",
+      "expected_proof": false
     }
   ]
 }

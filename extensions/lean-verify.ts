@@ -35,6 +35,7 @@ const FIXTURE_GROUP_NAMES = [
 	"challenge_v10_stats_reification",
 	"challenge_v11_metric_composition",
 	"challenge_v12_simultaneous_metrics",
+	"challenge_v13_decomposition_order",
 	"challenge_extended_transfer",
 ] as const;
 
@@ -56,7 +57,7 @@ const formalProofSchema = Type.Object({
 	fixtureGroup: Type.Optional(
 		StringEnum(FIXTURE_GROUP_NAMES, {
 			description:
-				"Named fixture group to run when fixtures is omitted. Defaults to broader for run actions, challenge_v3_generalization for benchmark actions, and challenge_v5_attribution for attribution actions. Includes frontier groups through challenge_v12_simultaneous_metrics.",
+				"Named fixture group to run when fixtures is omitted. Defaults to broader for run actions, challenge_v3_generalization for benchmark actions, and challenge_v5_attribution for attribution actions. Includes frontier groups through challenge_v13_decomposition_order.",
 		}),
 	),
 	mode: Type.Optional(
@@ -559,10 +560,18 @@ async function runAttributionBenchmark(
 	if (params.seedPlaybook) {
 		args.push("--seed-playbook", params.seedPlaybook);
 	}
-	const timeoutMs = Math.max(
-		900_000,
-		(params.timeoutSeconds ?? 120) * Math.max(fixtures.length, 1) * Math.max(params.maxAttempts ?? 2, 1) * 5_000,
+	const perFixtureCommandTimeoutMs = Math.max(
+		1_800_000,
+		(params.timeoutSeconds ?? 120) * Math.max(params.maxAttempts ?? 2, 1) * 8_000 + 600_000,
 	);
+	const aggregateCommandTimeoutMs = Math.max(
+		perFixtureCommandTimeoutMs * Math.max(fixtures.length, 1),
+		3_600_000,
+	);
+	const timeoutMs =
+		aggregateCommandTimeoutMs * 2 +
+		perFixtureCommandTimeoutMs * Math.max(fixtures.length, 1) +
+		600_000;
 	const result = await pi.exec("python3", args, {
 		cwd: root,
 		signal,

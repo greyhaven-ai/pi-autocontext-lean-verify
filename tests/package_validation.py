@@ -74,6 +74,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "challenge_v10_stats_reification",
             "challenge_v11_metric_composition",
             "challenge_v12_simultaneous_metrics",
+            "challenge_v13_decomposition_order",
             "challenge_extended_transfer",
         ]:
             with self.subTest(group=group_name):
@@ -199,11 +200,13 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "harness/fixtures/challenge_v10_stats_acc_reify_list/Theorem.template.lean",
             "harness/fixtures/challenge_v11_partition_stats_from_metric_bundles/Theorem.template.lean",
             "harness/fixtures/challenge_v12_partition_count_length_sum_metrics_flatten_mirror/Theorem.template.lean",
+            "harness/fixtures/challenge_v13_partition_metrics_with_append_hyps_flatten_mirror/Theorem.template.lean",
             "docs/V8_DIAGNOSTIC_REPORT.md",
             "docs/V9_COMPOSITION_GRADIENT_REPORT.md",
             "docs/V10_STATS_REIFICATION_REPORT.md",
             "docs/V11_METRIC_COMPOSITION_REPORT.md",
             "docs/V12_SIMULTANEOUS_METRICS_REPORT.md",
+            "docs/V13_DECOMPOSITION_ORDER_REPORT.md",
         }
         self.assertTrue(required.issubset(paths))
         self.assertFalse(any(path.startswith("harness/results/") for path in paths))

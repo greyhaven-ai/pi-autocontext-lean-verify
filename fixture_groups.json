@@ -80,6 +80,14 @@
     "challenge_v5_tree_tally": [
       "challenge_v5_tree_tally_mirror"
     ],
+    "challenge_v13_decomposition_order": [
+      "challenge_v13_partition_side_bundle_no_stats_flatten_mirror",
+      "challenge_v13_partition_reordered_metrics_flatten_mirror",
+      "challenge_v13_raw_count_length_sum_flatten_mirror",
+      "challenge_v13_keep_drop_triple_metrics_append",
+      "challenge_v13_partition_metrics_with_append_hyps_flatten_mirror",
+      "challenge_v13_partition_metrics_from_side_hyps"
+    ],
     "challenge_extended_transfer": [
       "challenge_v2_length_rev_no_helper",
       "challenge_v2_sum_rev_no_helper",
@@ -132,7 +140,13 @@
       "challenge_v12_partition_count_length_metrics_flatten_mirror",
       "challenge_v12_partition_count_sum_metrics_flatten_mirror",
       "challenge_v12_partition_length_sum_metrics_flatten_mirror",
-      "challenge_v12_partition_count_length_sum_metrics_flatten_mirror"
+      "challenge_v12_partition_count_length_sum_metrics_flatten_mirror",
+      "challenge_v13_partition_side_bundle_no_stats_flatten_mirror",
+      "challenge_v13_partition_reordered_metrics_flatten_mirror",
+      "challenge_v13_raw_count_length_sum_flatten_mirror",
+      "challenge_v13_keep_drop_triple_metrics_append",
+      "challenge_v13_partition_metrics_with_append_hyps_flatten_mirror",
+      "challenge_v13_partition_metrics_from_side_hyps"
     ],
     "challenge_v6_frontier": [
       "challenge_v6_stats_acc_rev",

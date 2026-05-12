@@ -19,7 +19,8 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v10_stats_reification` | 6 | StatsAcc-reification fixtures isolating tuple normalization, metric extensionality, count metrics, and stats equality from metric hypotheses. |
 | `challenge_v11_metric_composition` | 6 | Metric-composition fixtures combining keep/drop metric bundles with statsAcc extensionality boundaries. |
 | `challenge_v12_simultaneous_metrics` | 7 | Simultaneous-metric fixtures splitting keep/drop count-only, length-only, sum-only, pair, and triple metric bundles. |
-| `challenge_extended_transfer` | 52 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12 challenge fixtures. |
+| `challenge_v13_decomposition_order` | 6 | Decomposition/order fixtures isolating triple-bundle grouping, append/filter sub-lemmas, raw tree metrics, and conjunction reassembly. |
+| `challenge_extended_transfer` | 58 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13 challenge fixtures. |
 
 ## Reproducible commands
 
@@ -36,6 +37,7 @@ npm run benchmark:v9
 npm run benchmark:v10
 npm run benchmark:v11
 npm run benchmark:v12
+npm run benchmark:v13
 ```
 
 Seeded autocontext vs unseeded isolated autocontext vs direct Pi repair-loop:
@@ -49,6 +51,7 @@ npm run benchmark:v9
 npm run benchmark:v10
 npm run benchmark:v11
 npm run benchmark:v12
+npm run benchmark:v13
 ```
 
 Equivalent explicit harness invocations:
@@ -141,6 +144,7 @@ npm run benchmark:v9
 npm run benchmark:v10
 npm run benchmark:v11
 npm run benchmark:v12
+npm run benchmark:v13
 ```
 
 Or through Pi with `action="attribution"` and the corresponding `fixtureGroup`.
@@ -207,3 +211,17 @@ Version `0.1.10` adds `challenge_v12_simultaneous_metrics`, a seven-fixture suit
 - simultaneous count+length+sum metric bundle.
 
 These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `6/7`, unseeded `0/7`, and direct `0/7`: all one-metric and two-metric simultaneous bundles solved seeded, while the full count+length+sum bundle failed. Isolated repeats of that triple bundle show seeded stochasticity (`1/3` across full-suite plus isolated observations), not theorem falsehood.
+
+
+## v13 decomposition/order suite
+
+The source tree after `0.1.10` adds `challenge_v13_decomposition_order`, a six-fixture suite isolating the v12 full-triple metric frontier:
+
+- full keep/drop triple metric bundles grouped by side and stripped of unrelated `statsAcc` definitions;
+- full simultaneous metric content with a different metric-group order;
+- raw count/length/sum metrics through tree mirror without keep/drop;
+- list-only append composition for keep/drop count/length/sum;
+- full tree-mirror triple bundle with append/filter composition supplied as hypotheses;
+- conjunction reassembly from side-grouped keep/drop metric hypotheses.
+
+These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. Attribution results are pending. The suite should distinguish proof-order sensitivity from missing append/filter sub-lemmas and from actual tree/mirror composition cost.

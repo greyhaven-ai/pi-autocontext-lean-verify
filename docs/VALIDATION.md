@@ -6,7 +6,7 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 
 | Claim                                                      |                    Evidence | Artifact                                                                                          |
 | ---------------------------------------------------------- | --------------------------: | ------------------------------------------------------------------------------------------------- |
-| Harness sanity: every expected proof still verifies        | 52 / 52 expected-proof fixtures (104 manifest fixtures) | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
+| Harness sanity: every expected proof still verifies        | 52 / 52 expected-proof fixtures (110 manifest fixtures) | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
 | Package setup works through Pi                             |           1 / 1 smoke proof | `results/20260506T_pi_package_setup_action_smoke`                                                 |
 | Post-registry package setup works through Pi               |           1 / 1 smoke proof | `results/20260506T_pi_package_registry_setup_smoke`                                               |
 | Package fixture groups work through Pi                     |           1 / 1 smoke proof | `results/20260506T_pi_package_fixture_group_smoke`                                                |
@@ -49,6 +49,8 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v12 seeded simultaneous-metric attribution   |               6 / 7 proofs | `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`                                                         |
 | Challenge v12 triple-bundle seeded stability           |   1 / 3 observations | `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`                                                         |
 | Challenge v12 unseeded/direct simultaneous-metric contrast |     unseeded 0 / 7; direct 0 / 7 | `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`                                                         |
+| Challenge v13 decomposition/order fixtures have local Lean witnesses |      6 / 6 fixture templates | `docs/V13_DECOMPOSITION_ORDER_REPORT.md`                                                          |
+| Attribution timeout/process-group robustness patch         | subprocess group cleanup and scaled budgets | `docs/V13_DECOMPOSITION_ORDER_REPORT.md`                                                          |
 | Default benchmark run roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="attribution"` npm smoke without explicit `runRoot`                                      |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 
@@ -137,6 +139,7 @@ npm run benchmark:v9
 npm run benchmark:v10
 npm run benchmark:v11
 npm run benchmark:v12
+npm run benchmark:v13
 ```
 
 For seeded/unseeded/direct attribution through Pi:

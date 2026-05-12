@@ -29,7 +29,7 @@ The harness rejects or avoids:
 
 Benchmark and attribution actions default to short temp result paths under `the system temp directory (`pi-autocontext-lean-verify/...`)` (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) so npm-loaded packages avoid Pi session path-length failures.
 
-Use `challenge_v6_frontier` and `challenge_v7_frontier` for the first packaged verifier-only frontier suites. v7 is the first packaged suite where seeded autocontext is intentionally unstable while unseeded/direct solve none. Version `0.1.10` also packages `challenge_v8_diagnostics`, `challenge_v9_composition_gradient`, `challenge_v10_stats_reification`, `challenge_v11_metric_composition`, and `challenge_v12_simultaneous_metrics` to isolate the partition-heavy accumulator frontier into smaller components.
+Use `challenge_v6_frontier` and `challenge_v7_frontier` for the first packaged verifier-only frontier suites. v7 is the first packaged suite where seeded autocontext is intentionally unstable while unseeded/direct solve none. Version `0.1.10` also packages `challenge_v8_diagnostics`, `challenge_v9_composition_gradient`, `challenge_v10_stats_reification`, `challenge_v11_metric_composition`, `challenge_v12_simultaneous_metrics`, and `challenge_v13_decomposition_order` to isolate the partition-heavy accumulator frontier into smaller components.
 
 
 1. Run setup or preflight first:
@@ -140,7 +140,8 @@ This mode uses `--no-pregenerate` and `--structured-alternate-retry`; synthetic 
 - `challenge_v10_stats_reification`: six statsAcc-reification fixtures isolating tuple normalization, metric extensionality, count metrics, and stats equality from metric hypotheses.
 - `challenge_v11_metric_composition`: six metric-composition fixtures combining keep/drop metric bundles with statsAcc extensionality boundaries.
 - `challenge_v12_simultaneous_metrics`: seven simultaneous-metric fixtures splitting keep/drop count-only, length-only, sum-only, pair, and triple metric bundles.
-- `challenge_extended_transfer`: all v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12 challenge fixtures (`52` fixtures).
+- `challenge_v13_decomposition_order`: six decomposition/order fixtures isolating v12 triple-bundle ordering, append/filter sub-lemmas, tree-only metrics, and conjunction reassembly.
+- `challenge_extended_transfer`: all v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13 challenge fixtures (`58` fixtures).
 
 ## Modes
 

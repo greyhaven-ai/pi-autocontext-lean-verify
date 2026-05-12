@@ -1,0 +1,64 @@
+set_option linter.unusedSimpArgs false
+
+/-- Slow append over Nat lists. -/
+def appendSlow : List Nat -> List Nat -> List Nat
+| [], ys => ys
+| x :: xs, ys => x :: appendSlow xs ys
+
+/-- Slow length over Nat lists. -/
+def lengthSlow : List Nat -> Nat
+| [] => 0
+| _ :: xs => Nat.succ (lengthSlow xs)
+
+/-- Slow sum over Nat lists. -/
+def sumSlow : List Nat -> Nat
+| [] => 0
+| x :: xs => x + sumSlow xs
+
+/-- Count occurrences of a target Nat in a list, using local recursion. -/
+def countSlow (target : Nat) : List Nat -> Nat
+| [] => 0
+| x :: xs => (if x = target then 1 else 0) + countSlow target xs
+
+/-- Keep elements equal to the target. -/
+def keepEqSlow (target : Nat) : List Nat -> List Nat
+| [] => []
+| x :: xs => if x = target then x :: keepEqSlow target xs else keepEqSlow target xs
+
+/-- Drop elements equal to the target. -/
+def dropEqSlow (target : Nat) : List Nat -> List Nat
+| [] => []
+| x :: xs => if x = target then dropEqSlow target xs else x :: dropEqSlow target xs
+
+/-- Binary tree carrying Nat values. -/
+inductive NatTree where
+| leaf : NatTree
+| node : NatTree -> Nat -> NatTree -> NatTree
+
+open NatTree
+
+/-- Mirror a tree. -/
+def mirror : NatTree -> NatTree
+| leaf => leaf
+| node left value right => node (mirror right) value (mirror left)
+
+/-- In-order flattening of a tree. -/
+def flatten : NatTree -> List Nat
+| leaf => []
+| node left value right => appendSlow (flatten left) (value :: flatten right)
+
+/-- Challenge v13: list-only append composition for keep/drop count, length, and sum metric bundles. -/
+theorem keepDropTripleMetrics_append (target : Nat) (xs ys : List Nat) :
+    (countSlow target (keepEqSlow target (appendSlow xs ys)) =
+        countSlow target (keepEqSlow target xs) + countSlow target (keepEqSlow target ys) ∧
+      countSlow target (dropEqSlow target (appendSlow xs ys)) =
+        countSlow target (dropEqSlow target xs) + countSlow target (dropEqSlow target ys)) ∧
+      (lengthSlow (keepEqSlow target (appendSlow xs ys)) =
+        lengthSlow (keepEqSlow target xs) + lengthSlow (keepEqSlow target ys) ∧
+      lengthSlow (dropEqSlow target (appendSlow xs ys)) =
+        lengthSlow (dropEqSlow target xs) + lengthSlow (dropEqSlow target ys)) ∧
+      (sumSlow (keepEqSlow target (appendSlow xs ys)) =
+        sumSlow (keepEqSlow target xs) + sumSlow (keepEqSlow target ys) ∧
+      sumSlow (dropEqSlow target (appendSlow xs ys)) =
+        sumSlow (dropEqSlow target xs) + sumSlow (dropEqSlow target ys)) := by
+{{PROOF}}

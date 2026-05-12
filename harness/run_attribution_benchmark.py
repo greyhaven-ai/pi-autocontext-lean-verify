@@ -5,6 +5,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import signal
 import subprocess
 import tempfile
 import time
@@ -34,35 +36,14 @@ def load_fixture_group(name: str) -> list[str]:
 
 
 def default_seed_playbook(group: str) -> Path:
-    if group == "challenge_v12_simultaneous_metrics":
-        seed = ROOT / "playbooks" / "challenge_v6_frontier_v1.md"
-        if seed.exists():
-            return seed
-        seed = ROOT / "playbooks" / "challenge_v5_attribution_v1.md"
-        if seed.exists():
-            return seed
-    if group == "challenge_v11_metric_composition":
-        seed = ROOT / "playbooks" / "challenge_v6_frontier_v1.md"
-        if seed.exists():
-            return seed
-        seed = ROOT / "playbooks" / "challenge_v5_attribution_v1.md"
-        if seed.exists():
-            return seed
-    if group == "challenge_v10_stats_reification":
-        seed = ROOT / "playbooks" / "challenge_v6_frontier_v1.md"
-        if seed.exists():
-            return seed
-        seed = ROOT / "playbooks" / "challenge_v5_attribution_v1.md"
-        if seed.exists():
-            return seed
-    if group == "challenge_v9_composition_gradient":
-        seed = ROOT / "playbooks" / "challenge_v6_frontier_v1.md"
-        if seed.exists():
-            return seed
-        seed = ROOT / "playbooks" / "challenge_v5_attribution_v1.md"
-        if seed.exists():
-            return seed
-    if group == "challenge_v8_diagnostics":
+    if group in {
+        "challenge_v8_diagnostics",
+        "challenge_v9_composition_gradient",
+        "challenge_v10_stats_reification",
+        "challenge_v11_metric_composition",
+        "challenge_v12_simultaneous_metrics",
+        "challenge_v13_decomposition_order",
+    }:
         seed = ROOT / "playbooks" / "challenge_v6_frontier_v1.md"
         if seed.exists():
             return seed
@@ -107,21 +88,24 @@ def run_command(
     timeout_seconds: int,
 ) -> dict[str, Any]:
     started = time.time()
+    proc = subprocess.Popen(
+        cmd,
+        cwd=cwd,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        start_new_session=True,
+    )
     try:
-        proc = subprocess.run(
-            cmd,
-            cwd=cwd,
-            text=True,
-            capture_output=True,
-            timeout=timeout_seconds,
-            check=False,
-        )
-        stdout = proc.stdout
-        stderr = proc.stderr
+        stdout, stderr = proc.communicate(timeout=timeout_seconds)
         exit_code = proc.returncode
-    except subprocess.TimeoutExpired as exc:
-        stdout = exc.stdout if isinstance(exc.stdout, str) else (exc.stdout or b"").decode(errors="replace")
-        stderr = exc.stderr if isinstance(exc.stderr, str) else (exc.stderr or b"").decode(errors="replace")
+    except subprocess.TimeoutExpired:
+        try:
+            os.killpg(proc.pid, signal.SIGTERM)
+            stdout, stderr = proc.communicate(timeout=15)
+        except subprocess.TimeoutExpired:
+            os.killpg(proc.pid, signal.SIGKILL)
+            stdout, stderr = proc.communicate()
         stderr += f"\n{name.upper()}_TIMEOUT after {timeout_seconds}s\n"
         exit_code = 124
     elapsed = round(time.time() - started, 2)
@@ -313,7 +297,8 @@ def main() -> int:
         run_root = ROOT / run_root
     run_root.mkdir(parents=True, exist_ok=True)
 
-    command_timeout = max(args.timeout * len(fixtures) * args.max_attempts + 240, 300)
+    single_fixture_timeout = max(args.timeout * args.max_attempts * 8 + 600, 1800)
+    command_timeout = max(single_fixture_timeout * max(len(fixtures), 1), 3600)
     command_results: list[dict[str, Any]] = []
 
     seeded_root = run_root / "seeded_autocontext"
@@ -364,7 +349,7 @@ def main() -> int:
             "--run-root",
             str(unseeded_root),
         ]
-        command_results.append(run_command(name=f"unseeded_{fixture}", cmd=unseeded_cmd, cwd=ROOT, log_dir=run_root, timeout_seconds=max(args.timeout * args.max_attempts + 240, 300)))
+        command_results.append(run_command(name=f"unseeded_{fixture}", cmd=unseeded_cmd, cwd=ROOT, log_dir=run_root, timeout_seconds=single_fixture_timeout))
         summary = read_json_if_exists(unseeded_root / "transfer_summary.json")
         if summary:
             unseeded_summaries[fixture] = summary

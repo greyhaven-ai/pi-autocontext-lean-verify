@@ -7,13 +7,17 @@ on:
 
 permissions:
   contents: read
-  id-token: write
 
 jobs:
   publish:
     name: Publish package
     runs-on: ubuntu-latest
     environment: publish-pi-autocontext-lean-verify
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      NPM_CONFIG_MIN_RELEASE_AGE: "7"
 
     steps:
       - name: Check out repository
@@ -30,12 +34,17 @@ jobs:
           python-version: "3.12"
 
       - name: Install npm dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
-      - name: Upgrade npm for trusted publishing
+      - name: Verify npm supports trusted publishing
         run: |
-          npm install -g npm@latest
-          npm --version
+          npm_version="$(npm --version)"
+          echo "npm ${npm_version}"
+          major="${npm_version%%.*}"
+          if [ "${major}" -lt 11 ]; then
+            echo "npm ${npm_version} is too old for trusted publishing; update the Node.js toolchain." >&2
+            exit 1
+          fi
 
       - name: Validate package invariants
         run: npm run validate
@@ -68,4 +77,4 @@ jobs:
           NPM_CONFIG_PROVENANCE: "true"
         run: |
           unset NODE_AUTH_TOKEN NPM_TOKEN
-          npm publish --provenance --access public
+          npm publish --ignore-scripts --provenance --access public

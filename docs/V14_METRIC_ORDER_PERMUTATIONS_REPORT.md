@@ -108,4 +108,19 @@ A separate timeout probe kept the original `--max-attempts 2` but raised `--time
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | timeout 240, maxAttempts 2 | proved | 1 | 1 | 319.55s | 3 | 320.25s |
 
-Interpretation: the current frontier is not fixed by adding more attempts under the same 120s provider timeout. For these order-sensitive fixtures, a larger per-call Pi timeout can recover proofs with the original two-attempt harness budget, while unseeded/direct remain unsolved in the controlled v14 attribution baseline.
+Interpretation: the current frontier is not fixed by adding more attempts under the same 120s provider timeout. For these order-sensitive fixtures, a larger per-call Pi timeout can recover proofs with the original two-attempt harness budget, while unseeded/direct remain unsolved in the controlled v14 attribution baseline; later repeats show timeout 240 is helpful but not a complete stability fix.
+
+
+## Timeout-240 stability repeat
+
+The v14 `length/count/sum` miss was then repeated three more times with the larger per-call timeout, still using the original two-attempt seeded/no-pregenerate/structured-alternate controls:
+
+`/tmp/pi-order-timeout240-stability-20260512T184828Z`
+
+| Repeat | Seeded result | Final attempt | Pi calls | Pi elapsed | Lean attempts | Fixture seconds |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | proved | 1 | 1 | 419.25s | 3 | 420.13s |
+| 2 | failed | — | 2 | 513.43s | 2 | 513.79s |
+| 3 | proved | 1 | 2 | 525.84s | 3 | 528.17s |
+
+Timeout-240 repeat aggregate: seeded `2/3`; including the earlier registry timeout-240 smoke, this fixture is `3/4` at timeout 240. Timeout 240 can recover proofs and avoids the pure `0/3` timeout-empty behavior seen when only attempt count was raised, but it does **not** fully stabilize this order-sensitive frontier. Because the focused repeats were still stochastic, the planned full v14 seeded-only timeout-240 suite was skipped as likely costly/noisy.

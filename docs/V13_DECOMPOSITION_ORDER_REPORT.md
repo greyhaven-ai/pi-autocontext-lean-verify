@@ -112,4 +112,19 @@ A separate timeout probe kept the original `--max-attempts 2` but raised `--time
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | timeout 240, maxAttempts 2 | proved | 1 | 1 | 336.86s | 3 | 337.59s |
 
-Interpretation: for the v13 reordered full-bundle miss, the useful budget knob is currently provider wall-clock timeout, not additional repair attempts at the same 120s timeout.
+Interpretation: for the v13 reordered full-bundle miss, provider wall-clock timeout is a more useful knob than additional repair attempts at the same 120s timeout, but later repeats show it is not a complete stability fix.
+
+
+## Timeout-240 stability repeat
+
+The v13 reordered miss was then repeated three more times with the larger per-call timeout, still using the original two-attempt seeded/no-pregenerate/structured-alternate controls:
+
+`/tmp/pi-order-timeout240-stability-20260512T184828Z`
+
+| Repeat | Seeded result | Final attempt | Pi calls | Pi elapsed | Lean attempts | Fixture seconds |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | failed | — | 2 | 512.75s | 2 | 514.77s |
+| 2 | proved | 1 | 1 | 251.80s | 3 | 254.20s |
+| 3 | proved | 1 | 1 | 266.91s | 3 | 267.75s |
+
+Timeout-240 repeat aggregate: seeded `2/3`; including the earlier timeout-240 smoke, this fixture is `3/4` at timeout 240. Timeout 240 can recover proofs and avoids the pure `0/3` timeout-empty behavior seen when only attempt count was raised, but it does **not** fully stabilize this order-sensitive frontier.

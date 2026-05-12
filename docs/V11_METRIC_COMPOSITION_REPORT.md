@@ -1,6 +1,6 @@
 # V11 Metric-Composition Fixtures
 
-`challenge_v11_metric_composition` is a source-only follow-up to the v10 stats-reification suite. V10 showed that seed context solves tuple reification and metric-hypothesis application, while unseeded struggles with extensionality. V11 bridges the v9 metric layer and v10 extensionality layer without asking for the full v7/v8 stats-accumulator theorem outright.
+`challenge_v11_metric_composition` is a `0.1.10` follow-up to the v10 stats-reification suite. V10 showed that seed context solves tuple reification and metric-hypothesis application, while unseeded struggles with extensionality. V11 bridges the v9 metric layer and v10 extensionality layer without asking for the full v7/v8 stats-accumulator theorem outright.
 
 Lean remains the only correctness oracle. These fixtures intentionally do **not** bundle `expected_proof.lean`; local witness proofs were used only to validate theorem truth and initial `rfl` failure.
 

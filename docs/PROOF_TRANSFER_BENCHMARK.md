@@ -148,7 +148,7 @@ Or through Pi with `action="attribution"` and the corresponding `fixtureGroup`.
 
 ## v8 diagnostic suite
 
-The source tree after `0.1.9` adds `challenge_v8_diagnostics`, a four-fixture suite that decomposes the v7 partition-heavy accumulator frontier into smaller theorem obligations:
+Version `0.1.10` adds `challenge_v8_diagnostics`, a four-fixture suite that decomposes the v7 partition-heavy accumulator frontier into smaller theorem obligations:
 
 - raw `statsAcc` invariance through tree mirror, before partitioning;
 - keep-side partition stats through tree mirror;
@@ -160,7 +160,7 @@ These fixtures intentionally ship without `expected_proof.lean`; local witness p
 
 ## v9 composition-gradient suite
 
-The source tree after v8 adds `challenge_v9_composition_gradient`, a six-fixture suite focused on the stochastic keep/drop partition-through-mirror components:
+Version `0.1.10` adds `challenge_v9_composition_gradient`, a six-fixture suite focused on the stochastic keep/drop partition-through-mirror components:
 
 - keep-side length through tree mirror;
 - keep-side sum through tree mirror;
@@ -174,7 +174,7 @@ These fixtures intentionally ship without `expected_proof.lean`; local witness p
 
 ## v10 stats-reification suite
 
-The source tree after v9 adds `challenge_v10_stats_reification`, a six-fixture suite focused on the `statsAcc` triple reification frontier:
+Version `0.1.10` adds `challenge_v10_stats_reification`, a six-fixture suite focused on the `statsAcc` triple reification frontier:
 
 - generic reification of `statsAcc` into `(count, length, sum)` metrics;
 - extensionality of `statsAcc` from equal count/length/sum metrics;
@@ -186,7 +186,7 @@ These fixtures intentionally ship without `expected_proof.lean`; local witness p
 
 ## v11 metric-composition suite
 
-The source tree after v10 adds `challenge_v11_metric_composition`, a six-fixture suite bridging metric proofs and `statsAcc` equality without asking the model to synthesize the full v7/v8 theorem outright:
+Version `0.1.10` adds `challenge_v11_metric_composition`, a six-fixture suite bridging metric proofs and `statsAcc` equality without asking the model to synthesize the full v7/v8 theorem outright:
 
 - keep-side and drop-side metric bundles through tree mirror;
 - keep-side and drop-side `statsAcc` equality from bundled metric proofs;
@@ -198,7 +198,7 @@ These fixtures intentionally ship without `expected_proof.lean`; local witness p
 
 ## v12 simultaneous-metric suite
 
-The source tree after v11 adds `challenge_v12_simultaneous_metrics`, a seven-fixture suite isolating the combined keep/drop metric-bundle proof:
+Version `0.1.10` adds `challenge_v12_simultaneous_metrics`, a seven-fixture suite isolating the combined keep/drop metric-bundle proof:
 
 - simultaneous keep/drop count metrics;
 - simultaneous keep/drop length metrics;

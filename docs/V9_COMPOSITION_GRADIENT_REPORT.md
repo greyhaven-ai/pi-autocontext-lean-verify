@@ -1,6 +1,6 @@
 # V9 Composition-Gradient Fixtures
 
-`challenge_v9_composition_gradient` is a source-only follow-up to the v8 diagnostic suite. V8 showed that raw tree/mirror `statsAcc` and list-only partition reassembly were stable for seeded autocontext, while keep/drop partition-through-mirror components were stochastic. V9 splits those partition-through-mirror components into scalar length/sum obligations and paired length+sum obligations.
+`challenge_v9_composition_gradient` is a `0.1.10` follow-up to the v8 diagnostic suite. V8 showed that raw tree/mirror `statsAcc` and list-only partition reassembly were stable for seeded autocontext, while keep/drop partition-through-mirror components were stochastic. V9 splits those partition-through-mirror components into scalar length/sum obligations and paired length+sum obligations.
 
 Lean remains the only correctness oracle. These fixtures intentionally do **not** bundle `expected_proof.lean`; local witness proofs were used only to validate theorem truth and initial `rfl` failure.
 

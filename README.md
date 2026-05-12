@@ -361,7 +361,7 @@ See `docs/PROOF_TRANSFER_BENCHMARK.md` for fixture groups, commands, and interpr
 
 ## Release
 
-Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was the first successful GitHub OIDC trusted-publisher release with npm provenance attestations. Version `0.1.6` promotes the v2/v3 challenge fixtures and proof-transfer benchmark runner. Version `0.1.7` promotes the v4/v5 fixtures and attribution benchmark runner. Version `0.1.8` fixes default benchmark run roots for npm-loaded extensions to avoid Pi session `ENAMETOOLONG` failures. Version `0.1.9` promotes the v6/v7 frontier fixtures and reports. Unpublished attempts `0.1.1`–`0.1.3` do not exist in the npm registry.
+Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was the first successful GitHub OIDC trusted-publisher release with npm provenance attestations. Version `0.1.6` promotes the v2/v3 challenge fixtures and proof-transfer benchmark runner. Version `0.1.7` promotes the v4/v5 fixtures and attribution benchmark runner. Version `0.1.8` fixes default benchmark run roots for npm-loaded extensions to avoid Pi session `ENAMETOOLONG` failures. Version `0.1.9` promotes the v6/v7 frontier fixtures and reports. Version `0.1.10` promotes the v8-v12 diagnostic/frontier fixtures and reports. Unpublished attempts `0.1.1`–`0.1.3` do not exist in the npm registry.
 
 Future releases use GitHub's npm trusted publisher workflow on version tags:
 

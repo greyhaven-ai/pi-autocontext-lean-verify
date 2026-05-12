@@ -1,6 +1,6 @@
 # V12 Simultaneous-Metric Fixtures
 
-`challenge_v12_simultaneous_metrics` is a source-only follow-up to the v11 metric-composition suite. V11 showed that one-sided keep/drop metric bundles were solvable with seed context, but the combined keep/drop metric bundle was the remaining miss. V12 splits that combined bundle by metric type and by incremental pair/triple composition.
+`challenge_v12_simultaneous_metrics` is a `0.1.10` follow-up to the v11 metric-composition suite. V11 showed that one-sided keep/drop metric bundles were solvable with seed context, but the combined keep/drop metric bundle was the remaining miss. V12 splits that combined bundle by metric type and by incremental pair/triple composition.
 
 Lean remains the only correctness oracle. These fixtures intentionally do **not** bundle `expected_proof.lean`; local witness proofs were used only to validate theorem truth and initial `rfl` failure.
 

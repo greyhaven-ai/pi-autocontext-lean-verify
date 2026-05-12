@@ -1,6 +1,6 @@
 # V10 StatsAcc-Reification Fixtures
 
-`challenge_v10_stats_reification` is a source-only follow-up to the v9 composition-gradient suite. V9 showed that scalar and paired length/sum partition-through-mirror obligations are learnable with seed context. V10 isolates the remaining suspected frontier: reifying and using the three-field `statsAcc` accumulator as a `(count, length, sum)` tuple.
+`challenge_v10_stats_reification` is a `0.1.10` follow-up to the v9 composition-gradient suite. V9 showed that scalar and paired length/sum partition-through-mirror obligations are learnable with seed context. V10 isolates the remaining suspected frontier: reifying and using the three-field `statsAcc` accumulator as a `(count, length, sum)` tuple.
 
 Lean remains the only correctness oracle. These fixtures intentionally do **not** bundle `expected_proof.lean`; local witness proofs were used only to validate theorem truth and initial `rfl` failure.
 

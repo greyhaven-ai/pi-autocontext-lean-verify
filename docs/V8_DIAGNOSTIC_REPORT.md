@@ -1,6 +1,6 @@
 # V8 Diagnostic Frontier Fixtures
 
-`challenge_v8_diagnostics` is a source-only follow-up suite after the `0.1.9` v6/v7 frontier release. It isolates the hardest v7 pattern — partition/filter plus tree mirror plus three-field accumulator normalization — into smaller theorem obligations.
+`challenge_v8_diagnostics` is a `0.1.10` follow-up suite after the `0.1.9` v6/v7 frontier release. It isolates the hardest v7 pattern — partition/filter plus tree mirror plus three-field accumulator normalization — into smaller theorem obligations.
 
 Lean remains the only correctness oracle. These fixtures intentionally do **not** bundle `expected_proof.lean`; local witness proofs were used only to validate that each theorem is true and that the initial `rfl` proof fails.
 

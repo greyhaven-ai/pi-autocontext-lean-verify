@@ -148,6 +148,7 @@ npm run benchmark:v10
 npm run benchmark:v11
 npm run benchmark:v12
 npm run benchmark:v13
+npm run benchmark:v14
 ```
 
 ### Attribution
@@ -176,6 +177,7 @@ npm run benchmark:v10
 npm run benchmark:v11
 npm run benchmark:v12
 npm run benchmark:v13
+npm run benchmark:v14
 ```
 
 ### Summarize
@@ -212,7 +214,8 @@ Reads a saved run summary.
 | `challenge_v11_metric_composition` | Six no-expected-proof metric-composition fixtures combining keep/drop metric bundles with statsAcc extensionality boundaries. |
 | `challenge_v12_simultaneous_metrics` | Seven no-expected-proof simultaneous-metric fixtures isolating keep/drop count-only, length-only, sum-only, pair, and triple metric bundles. |
 | `challenge_v13_decomposition_order` | Six no-expected-proof fixtures isolating v12 triple-bundle ordering, append/filter sub-lemmas, tree-only metrics, and conjunction reassembly. |
-| `challenge_extended_transfer` | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13 challenge fixtures (`58` fixtures). |
+| `challenge_v14_metric_order_permutations` | Six no-expected-proof fixtures covering all metric-order permutations for the full simultaneous keep/drop triple bundle. |
+| `challenge_extended_transfer` | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14 challenge fixtures (`64` fixtures). |
 
 ## Modes
 
@@ -251,8 +254,9 @@ It maps to:
 - v11 metric composition: seeded solves `5/6`, unseeded `0/6`, direct `1/6`; the remaining seeded miss is the combined keep/drop metric-bundle proof, while applying provided metric bundles to `statsAcc` is comparatively easy.
 - v12 simultaneous metrics: seeded solves all single-metric and two-metric simultaneous keep/drop bundles (`6/7` full suite); isolated repeats show the full count+length+sum bundle is stochastic for seeded (`1/3` across observations), while unseeded/direct have not solved it.
 - v13 decomposition/order: seeded solves `5/6`, unseeded `0/6`, direct `1/6`; raw tree metrics, append/filter sub-lemmas, supplied append/filter hypotheses, side-grouped bundles, and conjunction reassembly all pass seeded. The only seeded miss is reordered full simultaneous metric grouping (`sum`, then `count`, then `length`), sharpening the frontier to conjunction ordering/grouping sensitivity.
+- v14 metric-order permutations test all six metric-order shapes for the full simultaneous keep/drop triple bundle. Attribution results are pending.
 
-See `docs/V6_FRONTIER_REPORT.md`, `docs/V7_FRONTIER_REPORT.md`, `docs/V8_DIAGNOSTIC_REPORT.md`, `docs/V9_COMPOSITION_GRADIENT_REPORT.md`, `docs/V10_STATS_REIFICATION_REPORT.md`, `docs/V11_METRIC_COMPOSITION_REPORT.md`, `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`, and `docs/V13_DECOMPOSITION_ORDER_REPORT.md`.
+See `docs/V6_FRONTIER_REPORT.md`, `docs/V7_FRONTIER_REPORT.md`, `docs/V8_DIAGNOSTIC_REPORT.md`, `docs/V9_COMPOSITION_GRADIENT_REPORT.md`, `docs/V10_STATS_REIFICATION_REPORT.md`, `docs/V11_METRIC_COMPOSITION_REPORT.md`, `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`, `docs/V13_DECOMPOSITION_ORDER_REPORT.md`, and `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md`.
 
 ## Guardrails
 
@@ -283,8 +287,8 @@ Lean version: 4.29.1
 Python: 3.14.2
 uvx: uv-tool-uvx 0.6.17
 Autocontext runtime: autocontext==0.4.8 via uvx autoctx improve (ok)
-Fixture count: 110
-Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7, challenge_v4_count=4, challenge_v5_attribution=4, challenge_v5_tree_tally=1, challenge_v6_frontier=4, challenge_v7_frontier=4, challenge_v8_diagnostics=4, challenge_v9_composition_gradient=6, challenge_v10_stats_reification=6, challenge_v11_metric_composition=6, challenge_v12_simultaneous_metrics=7, challenge_v13_decomposition_order=6, challenge_extended_transfer=58
+Fixture count: 116
+Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7, challenge_v4_count=4, challenge_v5_attribution=4, challenge_v5_tree_tally=1, challenge_v6_frontier=4, challenge_v7_frontier=4, challenge_v8_diagnostics=4, challenge_v9_composition_gradient=6, challenge_v10_stats_reification=6, challenge_v11_metric_composition=6, challenge_v12_simultaneous_metrics=7, challenge_v13_decomposition_order=6, challenge_v14_metric_order_permutations=6, challenge_extended_transfer=64
 ```
 
 A zero-Pi-call run smoke test was completed:

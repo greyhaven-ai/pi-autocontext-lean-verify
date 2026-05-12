@@ -20,7 +20,8 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v11_metric_composition` | 6 | Metric-composition fixtures combining keep/drop metric bundles with statsAcc extensionality boundaries. |
 | `challenge_v12_simultaneous_metrics` | 7 | Simultaneous-metric fixtures splitting keep/drop count-only, length-only, sum-only, pair, and triple metric bundles. |
 | `challenge_v13_decomposition_order` | 6 | Decomposition/order fixtures isolating triple-bundle grouping, append/filter sub-lemmas, raw tree metrics, and conjunction reassembly. |
-| `challenge_extended_transfer` | 58 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13 challenge fixtures. |
+| `challenge_v14_metric_order_permutations` | 6 | Metric-order permutation fixtures covering all six count/length/sum orderings in the full simultaneous keep/drop triple bundle. |
+| `challenge_extended_transfer` | 64 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14 challenge fixtures. |
 
 ## Reproducible commands
 
@@ -38,6 +39,7 @@ npm run benchmark:v10
 npm run benchmark:v11
 npm run benchmark:v12
 npm run benchmark:v13
+npm run benchmark:v14
 ```
 
 Seeded autocontext vs unseeded isolated autocontext vs direct Pi repair-loop:
@@ -52,6 +54,7 @@ npm run benchmark:v10
 npm run benchmark:v11
 npm run benchmark:v12
 npm run benchmark:v13
+npm run benchmark:v14
 ```
 
 Equivalent explicit harness invocations:
@@ -145,6 +148,7 @@ npm run benchmark:v10
 npm run benchmark:v11
 npm run benchmark:v12
 npm run benchmark:v13
+npm run benchmark:v14
 ```
 
 Or through Pi with `action="attribution"` and the corresponding `fixtureGroup`.
@@ -225,3 +229,17 @@ The source tree after `0.1.10` adds `challenge_v13_decomposition_order`, a six-f
 - conjunction reassembly from side-grouped keep/drop metric hypotheses.
 
 These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `5/6`, unseeded `0/6`, and direct `1/6`. Raw tree metrics, list-only append composition, supplied append/filter hypotheses, side-grouped bundles, and final conjunction reassembly all solved seeded. The only seeded miss was the reordered full simultaneous metric grouping, pointing to proof-search sensitivity to conjunction ordering/grouping rather than theorem falsehood or missing low-level lemmas.
+
+
+## v14 metric-order permutation suite
+
+The source tree after v13 adds `challenge_v14_metric_order_permutations`, a six-fixture suite testing every metric-order permutation of the full simultaneous keep/drop count/length/sum tree-mirror theorem:
+
+- count, length, sum;
+- count, sum, length;
+- length, count, sum;
+- length, sum, count;
+- sum, count, length;
+- sum, length, count.
+
+These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. Attribution results are pending. This suite should distinguish whether the v13 miss is specific to `sum/count/length`, to any `sum`-first order, or to broader non-canonical metric ordering.

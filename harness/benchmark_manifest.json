@@ -720,6 +720,48 @@
       "difficulty": "challenge_decomposition_order",
       "initial_proof": "rfl",
       "expected_proof": false
+    },
+    {
+      "id": "challenge_v14_order_count_length_sum_flatten_mirror",
+      "category": "challenge_v14_order_count_length_sum",
+      "difficulty": "challenge_metric_order_permutation",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v14_order_count_sum_length_flatten_mirror",
+      "category": "challenge_v14_order_count_sum_length",
+      "difficulty": "challenge_metric_order_permutation",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v14_order_length_count_sum_flatten_mirror",
+      "category": "challenge_v14_order_length_count_sum",
+      "difficulty": "challenge_metric_order_permutation",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v14_order_length_sum_count_flatten_mirror",
+      "category": "challenge_v14_order_length_sum_count",
+      "difficulty": "challenge_metric_order_permutation",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v14_order_sum_count_length_flatten_mirror",
+      "category": "challenge_v14_order_sum_count_length",
+      "difficulty": "challenge_metric_order_permutation",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v14_order_sum_length_count_flatten_mirror",
+      "category": "challenge_v14_order_sum_length_count",
+      "difficulty": "challenge_metric_order_permutation",
+      "initial_proof": "rfl",
+      "expected_proof": false
     }
   ]
 }

@@ -6,7 +6,7 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 
 | Claim                                                      |                    Evidence | Artifact                                                                                          |
 | ---------------------------------------------------------- | --------------------------: | ------------------------------------------------------------------------------------------------- |
-| Harness sanity: every expected proof still verifies        | 52 / 52 expected-proof fixtures (110 manifest fixtures) | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
+| Harness sanity: every expected proof still verifies        | 52 / 52 expected-proof fixtures (116 manifest fixtures) | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
 | Package setup works through Pi                             |           1 / 1 smoke proof | `results/20260506T_pi_package_setup_action_smoke`                                                 |
 | Post-registry package setup works through Pi               |           1 / 1 smoke proof | `results/20260506T_pi_package_registry_setup_smoke`                                               |
 | Package fixture groups work through Pi                     |           1 / 1 smoke proof | `results/20260506T_pi_package_fixture_group_smoke`                                                |
@@ -53,6 +53,7 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v13 seeded decomposition/order attribution      |               5 / 6 proofs | `docs/V13_DECOMPOSITION_ORDER_REPORT.md`                                                          |
 | Challenge v13 unseeded/direct decomposition/order contrast |     unseeded 0 / 6; direct 1 / 6 | `docs/V13_DECOMPOSITION_ORDER_REPORT.md`                                                          |
 | Attribution timeout/process-group robustness patch         | subprocess group cleanup and scaled budgets | `docs/V13_DECOMPOSITION_ORDER_REPORT.md`                                                          |
+| Challenge v14 metric-order permutation fixtures have local Lean witnesses |      6 / 6 fixture templates | `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md`                                                    |
 | Default benchmark run roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="attribution"` npm smoke without explicit `runRoot`                                      |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 
@@ -142,6 +143,7 @@ npm run benchmark:v10
 npm run benchmark:v11
 npm run benchmark:v12
 npm run benchmark:v13
+npm run benchmark:v14
 ```
 
 For seeded/unseeded/direct attribution through Pi:

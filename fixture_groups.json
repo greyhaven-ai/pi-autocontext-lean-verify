@@ -88,6 +88,14 @@
       "challenge_v13_partition_metrics_with_append_hyps_flatten_mirror",
       "challenge_v13_partition_metrics_from_side_hyps"
     ],
+    "challenge_v14_metric_order_permutations": [
+      "challenge_v14_order_count_length_sum_flatten_mirror",
+      "challenge_v14_order_count_sum_length_flatten_mirror",
+      "challenge_v14_order_length_count_sum_flatten_mirror",
+      "challenge_v14_order_length_sum_count_flatten_mirror",
+      "challenge_v14_order_sum_count_length_flatten_mirror",
+      "challenge_v14_order_sum_length_count_flatten_mirror"
+    ],
     "challenge_extended_transfer": [
       "challenge_v2_length_rev_no_helper",
       "challenge_v2_sum_rev_no_helper",
@@ -146,7 +154,13 @@
       "challenge_v13_raw_count_length_sum_flatten_mirror",
       "challenge_v13_keep_drop_triple_metrics_append",
       "challenge_v13_partition_metrics_with_append_hyps_flatten_mirror",
-      "challenge_v13_partition_metrics_from_side_hyps"
+      "challenge_v13_partition_metrics_from_side_hyps",
+      "challenge_v14_order_count_length_sum_flatten_mirror",
+      "challenge_v14_order_count_sum_length_flatten_mirror",
+      "challenge_v14_order_length_count_sum_flatten_mirror",
+      "challenge_v14_order_length_sum_count_flatten_mirror",
+      "challenge_v14_order_sum_count_length_flatten_mirror",
+      "challenge_v14_order_sum_length_count_flatten_mirror"
     ],
     "challenge_v6_frontier": [
       "challenge_v6_stats_acc_rev",

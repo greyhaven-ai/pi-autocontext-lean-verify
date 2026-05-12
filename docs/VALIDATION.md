@@ -69,6 +69,9 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Release `0.1.11` candidate contents                       |  v13/v14 fixtures + timeout robustness | `package.json`, `docs/V13_DECOMPOSITION_ORDER_REPORT.md`, `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md` |
 | Release `0.1.11` trusted publish                          |  npm latest + 2 attestations | `v0.1.11`, workflow `25753534079`, npm attestations endpoint                                      |
 | Release `0.1.12` candidate contents                       |  v15 fixtures + proof-shape stability evidence | `package.json`, `docs/V15_PROOF_SHAPE_HINTS_REPORT.md`                                           |
+| Release `0.1.12` trusted publish                          |  npm latest + 2 attestations | `v0.1.12`, workflow `25761371690`, npm attestations endpoint                                      |
+| Registry-installed `0.1.12` setup smoke                    |  1 / 1 proof; 120 fixtures | `/var/folders/5l/4d99c0cd27183q3rdnm8ybg00000gn/T/pi-extensions/npm/f35b2129/node_modules/pi-autocontext-lean-verify/harness/results/pi_package_setup_20260512T205217` |
+| Registry-installed `0.1.12` v15 append/filter attribution smoke | seeded 1 / 1; unseeded 0 / 1; direct 0 / 1 | `/var/folders/5l/4d99c0cd27183q3rdnm8ybg00000gn/T/pi-autocontext-lean-verify/20260512T205258_attribution_challenge_v15_proof_shape_hints` |
 | Registry-installed `0.1.11` setup smoke                    |  1 / 1 proof; 116 fixtures; Lean 4.29.1 | `/var/folders/5l/4d99c0cd27183q3rdnm8ybg00000gn/T/pi-extensions/npm/f35b2129/node_modules/pi-autocontext-lean-verify/harness/results/pi_package_setup_20260512T181956` |
 | Registry-installed `0.1.11` v14 timeout-240 attribution smoke | seeded 1 / 1; unseeded 0 / 1; direct 0 / 1 | `/var/folders/5l/4d99c0cd27183q3rdnm8ybg00000gn/T/pi-autocontext-lean-verify/20260512T182026_attribution_challenge_v14_metric_order_permutations` |
 

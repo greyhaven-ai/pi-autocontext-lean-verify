@@ -54,6 +54,8 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v13 unseeded/direct decomposition/order contrast |     unseeded 0 / 6; direct 1 / 6 | `docs/V13_DECOMPOSITION_ORDER_REPORT.md`                                                          |
 | Attribution timeout/process-group robustness patch         | subprocess group cleanup and scaled budgets | `docs/V13_DECOMPOSITION_ORDER_REPORT.md`                                                          |
 | Challenge v14 metric-order permutation fixtures have local Lean witnesses |      6 / 6 fixture templates | `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md`                                                    |
+| Challenge v14 seeded metric-order attribution             |               5 / 6 proofs | `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md`                                                    |
+| Challenge v14 unseeded/direct metric-order contrast       |     unseeded 0 / 6; direct 0 / 6 | `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md`                                                    |
 | Default benchmark run roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="attribution"` npm smoke without explicit `runRoot`                                      |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 

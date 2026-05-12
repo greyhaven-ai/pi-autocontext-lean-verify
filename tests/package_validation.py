@@ -158,6 +158,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
         self.assertIn("tags:", workflow)
         self.assertIn('"v*"', workflow)
         self.assertIn("actions/setup-node@v6", workflow)
+        self.assertIn("package-manager-cache: false", workflow)
         self.assertIn("Verify npm supports trusted publishing", workflow)
         self.assertIn("NPM_CONFIG_MIN_RELEASE_AGE", workflow)
         self.assertIn("npm ci --ignore-scripts", workflow)

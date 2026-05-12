@@ -21,7 +21,8 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v12_simultaneous_metrics` | 7 | Simultaneous-metric fixtures splitting keep/drop count-only, length-only, sum-only, pair, and triple metric bundles. |
 | `challenge_v13_decomposition_order` | 6 | Decomposition/order fixtures isolating triple-bundle grouping, append/filter sub-lemmas, raw tree metrics, and conjunction reassembly. |
 | `challenge_v14_metric_order_permutations` | 6 | Metric-order permutation fixtures covering all six count/length/sum orderings in the full simultaneous keep/drop triple bundle. |
-| `challenge_extended_transfer` | 64 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14 challenge fixtures. |
+| `challenge_v15_proof_shape_hints` | 4 | Proof-shape hint fixtures exposing metric-bundle, side-bundle, append/filter, and reassembly hypotheses for the hard length/count/sum order. |
+| `challenge_extended_transfer` | 68 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15 challenge fixtures. |
 
 ## Reproducible commands
 
@@ -40,6 +41,7 @@ npm run benchmark:v11
 npm run benchmark:v12
 npm run benchmark:v13
 npm run benchmark:v14
+npm run benchmark:v15
 ```
 
 Seeded autocontext vs unseeded isolated autocontext vs direct Pi repair-loop:
@@ -55,6 +57,7 @@ npm run benchmark:v11
 npm run benchmark:v12
 npm run benchmark:v13
 npm run benchmark:v14
+npm run benchmark:v15
 ```
 
 Equivalent explicit harness invocations:
@@ -243,3 +246,15 @@ Version `0.1.11` also adds `challenge_v14_metric_order_permutations`, a six-fixt
 - sum, length, count.
 
 These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `5/6`, unseeded `0/6`, and direct `0/6`. Canonical count/length/sum and the v13-failed sum/count/length order both solved seeded; the only seeded miss was length/count/sum. Focused seeded-only repeats then solved the v13 `sum/count/length` miss `2/3` and the v14 `length/count/sum` miss `2/3`, indicating stochastic/non-canonical conjunction-order sensitivity rather than a simple fixed `sum`-first failure. A budget follow-up showed that adding attempts alone (`maxAttempts=3`, timeout 120s) produced only Pi-timeout-empty repairs on the two misses. Increasing the per-call timeout to 240s with the original `maxAttempts=2` can recover proofs, but focused stability repeats were still `2/3` for each miss (`3/4` each including the earlier timeout-240 smoke), so timeout 240 is a useful robustness knob rather than a full stabilization fix.
+
+
+## v15 proof-shape hint suite
+
+The source tree after `0.1.11` adds `challenge_v15_proof_shape_hints`, a four-fixture diagnostic suite for the hard length/count/sum full simultaneous keep/drop theorem shape:
+
+- metric-grouped hypotheses only;
+- side-grouped keep/drop hypotheses only;
+- append metric plus keep/drop append helper hypotheses;
+- append/filter helper hypotheses plus an explicit final reassembly hypothesis.
+
+These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `3/4`, unseeded `0/4`, and direct `2/4`. Direct solved the two pure reassembly fixtures, proving final conjunction assembly is not the frontier by itself. Seeded also solved the append/filter-hypothesis tree-induction fixture while direct and unseeded failed it, showing the v6 seed playbook still contributes proof-shape transfer. The only seeded miss was the append/filter-plus-explicit-reassembly-hyp fixture, suggesting the explicit reassembly hypothesis added prompt/type complexity rather than removing the bottleneck.

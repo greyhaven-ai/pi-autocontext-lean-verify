@@ -762,6 +762,34 @@
       "difficulty": "challenge_metric_order_permutation",
       "initial_proof": "rfl",
       "expected_proof": false
+    },
+    {
+      "id": "challenge_v15_order_length_count_sum_from_metric_hyps",
+      "category": "challenge_v15_proof_shape_hints",
+      "difficulty": "challenge_proof_shape_hint",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v15_order_length_count_sum_from_side_hyps",
+      "category": "challenge_v15_proof_shape_hints",
+      "difficulty": "challenge_proof_shape_hint",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v15_order_length_count_sum_with_append_hyps",
+      "category": "challenge_v15_proof_shape_hints",
+      "difficulty": "challenge_proof_shape_hint",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v15_order_length_count_sum_with_append_and_reassembly_hyp",
+      "category": "challenge_v15_proof_shape_hints",
+      "difficulty": "challenge_proof_shape_hint",
+      "initial_proof": "rfl",
+      "expected_proof": false
     }
   ]
 }

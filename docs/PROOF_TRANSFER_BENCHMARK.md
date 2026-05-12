@@ -219,7 +219,7 @@ These fixtures intentionally ship without `expected_proof.lean`; local witness p
 
 ## v13 decomposition/order suite
 
-The source tree after `0.1.10` adds `challenge_v13_decomposition_order`, a six-fixture suite isolating the v12 full-triple metric frontier:
+Version `0.1.11` adds `challenge_v13_decomposition_order`, a six-fixture suite isolating the v12 full-triple metric frontier:
 
 - full keep/drop triple metric bundles grouped by side and stripped of unrelated `statsAcc` definitions;
 - full simultaneous metric content with a different metric-group order;
@@ -233,7 +233,7 @@ These fixtures intentionally ship without `expected_proof.lean`; local witness p
 
 ## v14 metric-order permutation suite
 
-The source tree after v13 adds `challenge_v14_metric_order_permutations`, a six-fixture suite testing every metric-order permutation of the full simultaneous keep/drop count/length/sum tree-mirror theorem:
+Version `0.1.11` also adds `challenge_v14_metric_order_permutations`, a six-fixture suite testing every metric-order permutation of the full simultaneous keep/drop count/length/sum tree-mirror theorem:
 
 - count, length, sum;
 - count, sum, length;

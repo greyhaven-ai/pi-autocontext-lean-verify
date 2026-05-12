@@ -45,6 +45,7 @@ def default_seed_playbook(group: str) -> Path:
         "challenge_v13_decomposition_order",
         "challenge_v14_metric_order_permutations",
         "challenge_v15_proof_shape_hints",
+        "challenge_v16_compact_reassembly_hints",
     }:
         seed = ROOT / "playbooks" / "challenge_v6_frontier_v1.md"
         if seed.exists():

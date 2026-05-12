@@ -22,7 +22,8 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v13_decomposition_order` | 6 | Decomposition/order fixtures isolating triple-bundle grouping, append/filter sub-lemmas, raw tree metrics, and conjunction reassembly. |
 | `challenge_v14_metric_order_permutations` | 6 | Metric-order permutation fixtures covering all six count/length/sum orderings in the full simultaneous keep/drop triple bundle. |
 | `challenge_v15_proof_shape_hints` | 4 | Proof-shape hint fixtures exposing metric-bundle, side-bundle, append/filter, and reassembly hypotheses for the hard length/count/sum order. |
-| `challenge_extended_transfer` | 68 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15 challenge fixtures. |
+| `challenge_v16_compact_reassembly_hints` | 4 | Compact reassembly-hint fixtures replacing the large v15 higher-order hypothesis with generic/named packers. |
+| `challenge_extended_transfer` | 72 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16 challenge fixtures. |
 
 ## Reproducible commands
 
@@ -42,6 +43,7 @@ npm run benchmark:v12
 npm run benchmark:v13
 npm run benchmark:v14
 npm run benchmark:v15
+npm run benchmark:v16
 ```
 
 Seeded autocontext vs unseeded isolated autocontext vs direct Pi repair-loop:
@@ -58,6 +60,7 @@ npm run benchmark:v12
 npm run benchmark:v13
 npm run benchmark:v14
 npm run benchmark:v15
+npm run benchmark:v16
 ```
 
 Equivalent explicit harness invocations:
@@ -258,3 +261,15 @@ Version `0.1.12` adds `challenge_v15_proof_shape_hints`, a four-fixture diagnost
 - append/filter helper hypotheses plus an explicit final reassembly hypothesis.
 
 These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `3/4`, unseeded `0/4`, and direct `2/4`. Direct solved the two pure reassembly fixtures, proving final conjunction assembly is not the frontier by itself. Seeded also solved the append/filter-hypothesis tree-induction fixture while direct and unseeded failed it, showing the v6 seed playbook still contributes proof-shape transfer. The only seeded miss was the append/filter-plus-explicit-reassembly-hyp fixture, suggesting the explicit reassembly hypothesis added prompt/type complexity rather than removing the bottleneck. Focused seeded repeats strengthened that split: append/filter hypotheses repeated `3/3` (`4/4` including the original attribution), while append/filter plus explicit reassembly repeated only `1/3` (`1/4` including original).
+
+
+## v16 compact reassembly hint suite
+
+The source tree after `0.1.12` adds `challenge_v16_compact_reassembly_hints`, a four-fixture diagnostic suite that keeps the hard v15 length/count/sum simultaneous keep/drop theorem shape but replaces the large tree-specific higher-order reassembly hypothesis with compact packer hypotheses:
+
+- top-level generic Prop packer;
+- generic Prop pair packer plus top-level packer;
+- generic first-order Nat scalar equality packer;
+- named length/count/sum pair packers plus top-level packer.
+
+These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. Local witnesses verify `4/4`, and initial `rfl` is rejected for `4/4`. The first controlled attribution probe solved seeded `2/4`, unseeded `0/4`, and direct `0/4`. Seeded solved the top-level Prop packer and generic Nat scalar packer variants, while the pair+top and named-metric variants missed in the full-suite run. Focused seeded repeats of those two misses then solved each `2/3` (`2/4` each including the original miss), showing they are stochastic rather than impossible. V16 therefore supports the v15 prompt-shape diagnosis: compact reassembly hints are less harmful than a large tree-specific higher-order hypothesis, but the remaining bottleneck is still stochastic recognition of the tree-induction/simp proof shape under a small repair budget.

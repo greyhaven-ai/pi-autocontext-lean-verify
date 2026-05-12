@@ -790,6 +790,34 @@
       "difficulty": "challenge_proof_shape_hint",
       "initial_proof": "rfl",
       "expected_proof": false
+    },
+    {
+      "id": "challenge_v16_order_length_count_sum_with_top_level_packer",
+      "category": "challenge_v16_compact_reassembly_hints",
+      "difficulty": "challenge_compact_reassembly_hint",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v16_order_length_count_sum_with_pair_and_top_packers",
+      "category": "challenge_v16_compact_reassembly_hints",
+      "difficulty": "challenge_compact_reassembly_hint",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v16_order_length_count_sum_with_nat_scalar_packer",
+      "category": "challenge_v16_compact_reassembly_hints",
+      "difficulty": "challenge_compact_reassembly_hint",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v16_order_length_count_sum_with_named_metric_packers",
+      "category": "challenge_v16_compact_reassembly_hints",
+      "difficulty": "challenge_compact_reassembly_hint",
+      "initial_proof": "rfl",
+      "expected_proof": false
     }
   ]
 }

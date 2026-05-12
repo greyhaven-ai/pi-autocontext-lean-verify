@@ -224,4 +224,4 @@ The source tree after `0.1.10` adds `challenge_v13_decomposition_order`, a six-f
 - full tree-mirror triple bundle with append/filter composition supplied as hypotheses;
 - conjunction reassembly from side-grouped keep/drop metric hypotheses.
 
-These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. Attribution results are pending. The suite should distinguish proof-order sensitivity from missing append/filter sub-lemmas and from actual tree/mirror composition cost.
+These fixtures intentionally ship without `expected_proof.lean`; local witness proofs were used only to verify theorem truth and are not bundled. The first controlled attribution probe solved seeded `5/6`, unseeded `0/6`, and direct `1/6`. Raw tree metrics, list-only append composition, supplied append/filter hypotheses, side-grouped bundles, and final conjunction reassembly all solved seeded. The only seeded miss was the reordered full simultaneous metric grouping, pointing to proof-search sensitivity to conjunction ordering/grouping rather than theorem falsehood or missing low-level lemmas.

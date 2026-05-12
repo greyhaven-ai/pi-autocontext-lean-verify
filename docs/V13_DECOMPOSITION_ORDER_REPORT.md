@@ -50,3 +50,27 @@ Equivalent Pi tool input:
 ```
 
 Use the same controlled comparison interpretation as v8-v12: Pi provider only, no pregeneration, synthetic hints disabled, structured alternate retry, and Lean verification as the only success oracle.
+
+## Controlled attribution result
+
+Run root:
+`/var/folders/5l/4d99c0cd27183q3rdnm8ybg00000gn/T/pi-autocontext-lean-verify/20260512T024818_attribution_challenge_v13_decomposition_order`
+
+Settings: Pi provider, v6 seed playbook, `--no-pregenerate`, synthetic hints disabled, `--structured-alternate-retry`, `--max-attempts 2`, `--rounds 2`, `--timeout 120`, no explicit `runRoot`.
+
+| Method | Result | Pi calls | Pi elapsed | Lean verifier attempts |
+| --- | ---: | ---: | ---: | ---: |
+| seeded autocontext | 5 / 6 | 8 | 1039.35s | 16 |
+| unseeded isolated autocontext | 0 / 6 | 12 | 10.82s | 12 |
+| direct Pi repair-loop | 1 / 6 | 6 | 621.65s | n/a |
+
+| Fixture | Seeded | Unseeded | Direct |
+| --- | ---: | ---: | ---: |
+| `challenge_v13_partition_side_bundle_no_stats_flatten_mirror` | proved | failed | failed |
+| `challenge_v13_partition_reordered_metrics_flatten_mirror` | failed | failed | failed |
+| `challenge_v13_raw_count_length_sum_flatten_mirror` | proved | failed | failed |
+| `challenge_v13_keep_drop_triple_metrics_append` | proved | failed | failed |
+| `challenge_v13_partition_metrics_with_append_hyps_flatten_mirror` | proved | failed | failed |
+| `challenge_v13_partition_metrics_from_side_hyps` | proved | failed | proved |
+
+Interpretation: the v12/v13 frontier is not raw tree-mirror metrics, not append/filter sub-lemma synthesis, not final conjunction reassembly, and not side-grouped keep/drop triple bundles once unrelated `statsAcc` definitions are removed. The remaining miss is the reordered all-three simultaneous metric grouping (`sum`, then `count`, then `length`), where seeded stayed at `0/1` and unseeded/direct also failed. This points to proof-search sensitivity to conjunction ordering/grouping in the full simultaneous metric bundle, rather than theorem falsehood or missing low-level lemmas.

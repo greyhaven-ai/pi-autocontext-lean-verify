@@ -250,7 +250,7 @@ It maps to:
 - v10 stats reification: seeded solves the full layer (`6/6`), unseeded solves core reification/count metrics (`3/6`), and direct solves only drop-count (`1/6`); the frontier is composing tuple normalization with metric equalities in the keep/drop tree-mirror setting.
 - v11 metric composition: seeded solves `5/6`, unseeded `0/6`, direct `1/6`; the remaining seeded miss is the combined keep/drop metric-bundle proof, while applying provided metric bundles to `statsAcc` is comparatively easy.
 - v12 simultaneous metrics: seeded solves all single-metric and two-metric simultaneous keep/drop bundles (`6/7` full suite); isolated repeats show the full count+length+sum bundle is stochastic for seeded (`1/3` across observations), while unseeded/direct have not solved it.
-- v13 decomposition/order fixtures split that v12 triple-bundle frontier by side grouping, metric ordering, raw tree metrics, list-only append composition, supplied append/filter hypotheses, and conjunction reassembly. Attribution results are pending.
+- v13 decomposition/order: seeded solves `5/6`, unseeded `0/6`, direct `1/6`; raw tree metrics, append/filter sub-lemmas, supplied append/filter hypotheses, side-grouped bundles, and conjunction reassembly all pass seeded. The only seeded miss is reordered full simultaneous metric grouping (`sum`, then `count`, then `length`), sharpening the frontier to conjunction ordering/grouping sensitivity.
 
 See `docs/V6_FRONTIER_REPORT.md`, `docs/V7_FRONTIER_REPORT.md`, `docs/V8_DIAGNOSTIC_REPORT.md`, `docs/V9_COMPOSITION_GRADIENT_REPORT.md`, `docs/V10_STATS_REIFICATION_REPORT.md`, `docs/V11_METRIC_COMPOSITION_REPORT.md`, `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`, and `docs/V13_DECOMPOSITION_ORDER_REPORT.md`.
 

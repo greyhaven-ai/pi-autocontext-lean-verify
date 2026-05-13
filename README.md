@@ -387,7 +387,7 @@ Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was th
 
 `0.1.12` was published through GitHub trusted publishing from tag `v0.1.12` (workflow `25761371690`), has two npm provenance attestations, and was registry-smoked with setup `1/1` over 120 fixtures plus a focused v15 append/filter-hypothesis attribution contrast: seeded `1/1`, unseeded `0/1`, direct `0/1`.
 
-`0.1.13` is the current release candidate and adds package-visible v16/v17 fixtures, benchmark scripts, and reports.
+`0.1.13` was published through GitHub trusted publishing from tag `v0.1.13` (workflow `25774592204`), is npm `latest`, has two npm provenance attestations, and was registry-smoked with setup `1/1` over 128 fixtures plus a focused v17 detailed proof-plan attribution contrast: seeded `1/1`, unseeded `0/1`, direct `0/1`.
 
 Future releases use GitHub's npm trusted publisher workflow on version tags:
 

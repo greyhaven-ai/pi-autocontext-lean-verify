@@ -268,7 +268,7 @@ These fixtures intentionally ship without `expected_proof.lean`; local witness p
 
 ## v16 compact reassembly hint suite
 
-The source tree after `0.1.12` adds `challenge_v16_compact_reassembly_hints`, a four-fixture diagnostic suite that keeps the hard v15 length/count/sum simultaneous keep/drop theorem shape but replaces the large tree-specific higher-order reassembly hypothesis with compact packer hypotheses:
+Version `0.1.13` adds `challenge_v16_compact_reassembly_hints`, a four-fixture diagnostic suite that keeps the hard v15 length/count/sum simultaneous keep/drop theorem shape but replaces the large tree-specific higher-order reassembly hypothesis with compact packer hypotheses:
 
 - top-level generic Prop packer;
 - generic Prop pair packer plus top-level packer;
@@ -280,6 +280,6 @@ These fixtures intentionally ship without `expected_proof.lean`; local witness p
 
 ## v17 proof-plan skeleton hint suite
 
-The source tree after `0.1.12` also adds `challenge_v17_proof_plan_hints`, a four-fixture suite that keeps the hard v16 compact packer shapes and adds harmless proof-plan/skeleton hint hypotheses of type `True`. The hints carry no mathematical content; their names expose the intended proof plan: tree induction, leaf simplification, node case split on `value = target`, simplification with append/filter helpers, Nat addition normalization, and packer-based finish.
+Version `0.1.13` also adds `challenge_v17_proof_plan_hints`, a four-fixture suite that keeps the hard v16 compact packer shapes and adds harmless proof-plan/skeleton hint hypotheses of type `True`. The hints carry no mathematical content; their names expose the intended proof plan: tree induction, leaf simplification, node case split on `value = target`, simplification with append/filter helpers, Nat addition normalization, and packer-based finish.
 
 Local witnesses verify `4/4`, and initial `rfl` is rejected for `4/4`. The first controlled attribution probe solved seeded `4/4`, unseeded `0/4`, and direct `1/4` at the baseline timeout 120. Seeded proofs all used the target induction/simp/add-normalization shape at final attempt 1. A seeded-only stability repeat showed a split by hint granularity: detailed plan hints repeated `3/3` for both pair+top and named-metric packer shapes (`4/4` including the original attribution), while coarse plan hints repeated `2/3` for each (`3/4` including original). V17 therefore indicates that the missing prompt structure is not more mathematical content or a longer timeout; detailed proof skeleton names materially improve seeded stability while preserving Lean as the only success oracle.

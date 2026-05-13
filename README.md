@@ -153,6 +153,7 @@ npm run benchmark:v15
 npm run benchmark:v16
 npm run benchmark:v17
 npm run benchmark:v18
+npm run benchmark:v19
 ```
 
 ### Attribution
@@ -186,6 +187,7 @@ npm run benchmark:v15
 npm run benchmark:v16
 npm run benchmark:v17
 npm run benchmark:v18
+npm run benchmark:v19
 ```
 
 ### Summarize
@@ -227,6 +229,7 @@ Reads a saved run summary.
 | `challenge_v16_compact_reassembly_hints` | Four no-expected-proof fixtures replacing the large v15 reassembly hypothesis with compact generic/named packer hypotheses. |
 | `challenge_v17_proof_plan_hints` | Four no-expected-proof fixtures adding harmless `True` proof-plan skeleton names to v16 compact packer shapes. |
 | `challenge_v18_prompt_only_skeleton_hints` | Two no-expected-proof fixtures reusing v16 theorem statements while supplying detailed skeleton names only through seeded playbook context. |
+| `challenge_v19_bare_skeleton_names` | Ablation over the two clean v18 fixtures using only bare skeleton-name bullets in the seeded playbook. |
 | `challenge_extended_transfer` | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16/v17/v18 challenge fixtures (`78` fixtures). |
 
 ## Modes
@@ -271,8 +274,9 @@ It maps to:
 - v16 compact reassembly hints: seeded solves `2/4`, unseeded/direct `0/4`; compact top-level Prop and generic Nat scalar packers solve in the full suite. The two first-run compact-packer misses each solve `2/3` on focused repeat (`2/4` including original), so compact packers reduce the v15 higher-order-hypothesis drag but do not remove stochastic induction/simp proof-search variance. Timeout 240 improves named-metric repeats to `3/3` but pair+top remains `2/3`, with severe wall-clock blowups despite Pi timeout messages, so it is not a clean stabilization knob.
 - v17 proof-plan skeleton hints: seeded solves `4/4`, unseeded `0/4`, direct `1/4`; harmless `True` names expose the intended induction/by-cases/simp/add-normalization skeleton. Detailed plan names are stable on repeat (`3/3`, `4/4` including original for both packer shapes), while coarse plan names remain stochastic (`2/3`, `3/4` including original). This points to detailed skeleton naming as the missing prompt structure.
 - v18 prompt-only skeleton hints: two clean v16 theorem-shape fixtures remove the v17 `True` plan hypotheses and move the same detailed skeleton names into the seeded playbook only. Seeded solves `2/2`, direct remains `0/2`, and seeded focused repeats are stable (`3/3` for both shapes, `4/4` including original). Unseeded is no longer zero (`1/2` attribution; repeats `1/3` pair+top and `1/3` named metric), so prompt-only skeleton context acts as a stabilizer rather than an exclusive capability source.
+- v19 bare skeleton-name ablation: reuses the two clean v18 fixtures and swaps descriptive skeleton guidance for bare semantic labels only. Seeded solves `2/2` in the full attribution run, but repeats are unstable (`2/3` pair+top, `1/3` named metric; `3/4` and `2/4` including original). Unseeded is also stochastic (`0/3` pair+top, `1/3` named metric after a `2/2` full run), and direct remains `0/2`. Bare semantic labels alone do not reproduce v18 descriptive-context stabilization.
 
-See `docs/V6_FRONTIER_REPORT.md`, `docs/V7_FRONTIER_REPORT.md`, `docs/V8_DIAGNOSTIC_REPORT.md`, `docs/V9_COMPOSITION_GRADIENT_REPORT.md`, `docs/V10_STATS_REIFICATION_REPORT.md`, `docs/V11_METRIC_COMPOSITION_REPORT.md`, `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`, `docs/V13_DECOMPOSITION_ORDER_REPORT.md`, `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md`, `docs/V15_PROOF_SHAPE_HINTS_REPORT.md`, `docs/V16_COMPACT_REASSEMBLY_HINTS_REPORT.md`, `docs/V17_PROOF_PLAN_HINTS_REPORT.md`, and `docs/V18_PROMPT_ONLY_SKELETON_HINTS_REPORT.md`.
+See `docs/V6_FRONTIER_REPORT.md`, `docs/V7_FRONTIER_REPORT.md`, `docs/V8_DIAGNOSTIC_REPORT.md`, `docs/V9_COMPOSITION_GRADIENT_REPORT.md`, `docs/V10_STATS_REIFICATION_REPORT.md`, `docs/V11_METRIC_COMPOSITION_REPORT.md`, `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`, `docs/V13_DECOMPOSITION_ORDER_REPORT.md`, `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md`, `docs/V15_PROOF_SHAPE_HINTS_REPORT.md`, `docs/V16_COMPACT_REASSEMBLY_HINTS_REPORT.md`, `docs/V17_PROOF_PLAN_HINTS_REPORT.md`, `docs/V18_PROMPT_ONLY_SKELETON_HINTS_REPORT.md`, and `docs/V19_BARE_SKELETON_NAMES_REPORT.md`.
 
 ## Guardrails
 
@@ -304,7 +308,7 @@ Python: 3.14.2
 uvx: uv-tool-uvx 0.6.17
 Autocontext runtime: autocontext==0.4.8 via uvx autoctx improve (ok)
 Fixture count: 130
-Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7, challenge_v4_count=4, challenge_v5_attribution=4, challenge_v5_tree_tally=1, challenge_v6_frontier=4, challenge_v7_frontier=4, challenge_v8_diagnostics=4, challenge_v9_composition_gradient=6, challenge_v10_stats_reification=6, challenge_v11_metric_composition=6, challenge_v12_simultaneous_metrics=7, challenge_v13_decomposition_order=6, challenge_v14_metric_order_permutations=6, challenge_v15_proof_shape_hints=4, challenge_v16_compact_reassembly_hints=4, challenge_v17_proof_plan_hints=4, challenge_v18_prompt_only_skeleton_hints=2, challenge_extended_transfer=78
+Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7, challenge_v4_count=4, challenge_v5_attribution=4, challenge_v5_tree_tally=1, challenge_v6_frontier=4, challenge_v7_frontier=4, challenge_v8_diagnostics=4, challenge_v9_composition_gradient=6, challenge_v10_stats_reification=6, challenge_v11_metric_composition=6, challenge_v12_simultaneous_metrics=7, challenge_v13_decomposition_order=6, challenge_v14_metric_order_permutations=6, challenge_v15_proof_shape_hints=4, challenge_v16_compact_reassembly_hints=4, challenge_v17_proof_plan_hints=4, challenge_v18_prompt_only_skeleton_hints=2, challenge_v19_bare_skeleton_names=2, challenge_extended_transfer=78
 ```
 
 A zero-Pi-call run smoke test was completed:

@@ -25,6 +25,7 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v16_compact_reassembly_hints` | 4 | Compact reassembly-hint fixtures replacing the large v15 higher-order hypothesis with generic/named packers. |
 | `challenge_v17_proof_plan_hints` | 4 | Proof-plan skeleton hint fixtures adding harmless `True` induction/case-split/simp/add-normalization names. |
 | `challenge_v18_prompt_only_skeleton_hints` | 2 | Prompt-only skeleton hint fixtures reusing v16 theorem statements while putting detailed proof-plan names only in the seeded playbook. |
+| `challenge_v19_bare_skeleton_names` | 2 | Bare-name ablation reusing the clean v18 fixtures with only skeleton-label bullets in the seeded playbook. |
 | `challenge_extended_transfer` | 78 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16/v17/v18 challenge fixtures. |
 
 ## Reproducible commands
@@ -48,6 +49,7 @@ npm run benchmark:v15
 npm run benchmark:v16
 npm run benchmark:v17
 npm run benchmark:v18
+npm run benchmark:v19
 ```
 
 Seeded autocontext vs unseeded isolated autocontext vs direct Pi repair-loop:
@@ -67,6 +69,7 @@ npm run benchmark:v15
 npm run benchmark:v16
 npm run benchmark:v17
 npm run benchmark:v18
+npm run benchmark:v19
 ```
 
 Equivalent explicit harness invocations:
@@ -293,3 +296,10 @@ Local witnesses verify `4/4`, and initial `rfl` is rejected for `4/4`. The first
 The source tree after `0.1.13` adds `challenge_v18_prompt_only_skeleton_hints`, a two-fixture diagnostic suite that keeps the v16 compact-packer theorem statements but removes the v17 harmless `True` plan hypotheses. Detailed skeleton names are supplied only by `harness/playbooks/challenge_v18_prompt_only_skeleton_v1.md` during seeded attribution.
 
 Local witnesses verify `2/2`, initial `rfl` is rejected for `2/2`, and no expected proofs are bundled. The controlled Pi attribution run at timeout 120 solved seeded `2/2`, unseeded `1/2`, and direct `0/2`. Focused stability repeats showed seeded prompt-only skeleton context is stable (`3/3` repeats for both pair+top and named-metric clean fixtures, `4/4` including original), while unseeded remains stochastic (`1/3` repeats for each fixture; `1/4` pair+top and `2/4` named-metric including original). V18 therefore strengthens the v17 interpretation: detailed skeleton names need not be theorem hypotheses, but in prompt-only form they stabilize rather than exclusively enable proof search.
+
+
+## V19 bare skeleton-name ablation
+
+The source tree after v18 adds `challenge_v19_bare_skeleton_names`, an ablation group that reuses the two clean v18 theorem templates but swaps the seeded context from descriptive prompt-only skeleton guidance to bare semantic labels only. The manifest fixture count stays `130`; the group points at `challenge_v18_pair_top_packers_clean` and `challenge_v18_named_metric_packers_clean`.
+
+The controlled Pi attribution run solved seeded `2/2`, unseeded `2/2`, and direct `0/2`. Focused repeats then showed bare names do **not** preserve the v18 stabilization: seeded repeats were pair+top `2/3` and named metric `1/3` (`3/4` and `2/4` including original), while unseeded repeats were pair+top `0/3` and named metric `1/3` (`1/4` and `2/4` including original). V19 therefore points to the descriptive proof skeleton text, not just semantic labels, as the stabilizing prompt ingredient.

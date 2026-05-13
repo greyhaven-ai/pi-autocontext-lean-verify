@@ -78,6 +78,9 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v18 prompt-only seeded attribution               |               2 / 2 proofs | `docs/V18_PROMPT_ONLY_SKELETON_HINTS_REPORT.md`                                                    |
 | Challenge v18 unseeded/direct prompt-only contrast         |     unseeded 1 / 2; direct 0 / 2 | `docs/V18_PROMPT_ONLY_SKELETON_HINTS_REPORT.md`                                                   |
 | Challenge v18 prompt-only stability repeats                |     seeded 3 / 3 each; unseeded 1 / 3 each | `docs/V18_PROMPT_ONLY_SKELETON_HINTS_REPORT.md`                                                   |
+| Challenge v19 bare-name ablation setup                     |      2 clean reused fixtures | `docs/V19_BARE_SKELETON_NAMES_REPORT.md`                                                          |
+| Challenge v19 bare-name attribution                        |     seeded 2 / 2; unseeded 2 / 2; direct 0 / 2 | `docs/V19_BARE_SKELETON_NAMES_REPORT.md`                                             |
+| Challenge v19 bare-name stability repeats                  |     seeded pair+top 2 / 3; seeded named metric 1 / 3 | `docs/V19_BARE_SKELETON_NAMES_REPORT.md`                                      |
 | Default benchmark run roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="attribution"` npm smoke without explicit `runRoot`                                      |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 | Release `0.1.11` candidate contents                       |  v13/v14 fixtures + timeout robustness | `package.json`, `docs/V13_DECOMPOSITION_ORDER_REPORT.md`, `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md` |
@@ -184,6 +187,7 @@ npm run benchmark:v15
 npm run benchmark:v16
 npm run benchmark:v17
 npm run benchmark:v18
+npm run benchmark:v19
 ```
 
 For seeded/unseeded/direct attribution through Pi:

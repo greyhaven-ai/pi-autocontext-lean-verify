@@ -40,6 +40,10 @@ def load_fixture_group(name: str) -> list[str]:
 
 
 def default_seed_playbook(group: str) -> Path:
+    if group == "challenge_v18_prompt_only_skeleton_hints":
+        seed = ROOT / "playbooks" / "challenge_v18_prompt_only_skeleton_v1.md"
+        if seed.exists():
+            return seed
     if group == "challenge_v7_frontier":
         seed = ROOT / "playbooks" / "challenge_v6_frontier_v1.md"
         if seed.exists():

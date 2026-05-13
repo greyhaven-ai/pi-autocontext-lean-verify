@@ -846,6 +846,20 @@
       "difficulty": "challenge_proof_plan_hint",
       "initial_proof": "rfl",
       "expected_proof": false
+    },
+    {
+      "id": "challenge_v18_pair_top_packers_clean",
+      "category": "challenge_v18_prompt_only_skeleton_hints",
+      "difficulty": "challenge_compact_packer_clean_context",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v18_named_metric_packers_clean",
+      "category": "challenge_v18_prompt_only_skeleton_hints",
+      "difficulty": "challenge_compact_packer_clean_context",
+      "initial_proof": "rfl",
+      "expected_proof": false
     }
   ]
 }

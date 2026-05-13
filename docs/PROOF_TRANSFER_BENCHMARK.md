@@ -24,7 +24,8 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v15_proof_shape_hints` | 4 | Proof-shape hint fixtures exposing metric-bundle, side-bundle, append/filter, and reassembly hypotheses for the hard length/count/sum order. |
 | `challenge_v16_compact_reassembly_hints` | 4 | Compact reassembly-hint fixtures replacing the large v15 higher-order hypothesis with generic/named packers. |
 | `challenge_v17_proof_plan_hints` | 4 | Proof-plan skeleton hint fixtures adding harmless `True` induction/case-split/simp/add-normalization names. |
-| `challenge_extended_transfer` | 76 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16/v17 challenge fixtures. |
+| `challenge_v18_prompt_only_skeleton_hints` | 2 | Prompt-only skeleton hint fixtures reusing v16 theorem statements while putting detailed proof-plan names only in the seeded playbook. |
+| `challenge_extended_transfer` | 78 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16/v17/v18 challenge fixtures. |
 
 ## Reproducible commands
 
@@ -46,6 +47,7 @@ npm run benchmark:v14
 npm run benchmark:v15
 npm run benchmark:v16
 npm run benchmark:v17
+npm run benchmark:v18
 ```
 
 Seeded autocontext vs unseeded isolated autocontext vs direct Pi repair-loop:
@@ -64,6 +66,7 @@ npm run benchmark:v14
 npm run benchmark:v15
 npm run benchmark:v16
 npm run benchmark:v17
+npm run benchmark:v18
 ```
 
 Equivalent explicit harness invocations:
@@ -283,3 +286,10 @@ These fixtures intentionally ship without `expected_proof.lean`; local witness p
 Version `0.1.13` also adds `challenge_v17_proof_plan_hints`, a four-fixture suite that keeps the hard v16 compact packer shapes and adds harmless proof-plan/skeleton hint hypotheses of type `True`. The hints carry no mathematical content; their names expose the intended proof plan: tree induction, leaf simplification, node case split on `value = target`, simplification with append/filter helpers, Nat addition normalization, and packer-based finish.
 
 Local witnesses verify `4/4`, and initial `rfl` is rejected for `4/4`. The first controlled attribution probe solved seeded `4/4`, unseeded `0/4`, and direct `1/4` at the baseline timeout 120. Seeded proofs all used the target induction/simp/add-normalization shape at final attempt 1. A seeded-only stability repeat showed a split by hint granularity: detailed plan hints repeated `3/3` for both pair+top and named-metric packer shapes (`4/4` including the original attribution), while coarse plan hints repeated `2/3` for each (`3/4` including original). V17 therefore indicates that the missing prompt structure is not more mathematical content or a longer timeout; detailed proof skeleton names materially improve seeded stability while preserving Lean as the only success oracle.
+
+
+## V18 prompt-only skeleton hints
+
+The source tree after `0.1.13` adds `challenge_v18_prompt_only_skeleton_hints`, a two-fixture diagnostic suite that keeps the v16 compact-packer theorem statements but removes the v17 harmless `True` plan hypotheses. Detailed skeleton names are supplied only by `harness/playbooks/challenge_v18_prompt_only_skeleton_v1.md` during seeded attribution.
+
+Local witnesses verify `2/2`, initial `rfl` is rejected for `2/2`, and no expected proofs are bundled. The controlled Pi attribution run at timeout 120 solved seeded `2/2`, unseeded `1/2`, and direct `0/2`. Focused stability repeats showed seeded prompt-only skeleton context is stable (`3/3` repeats for both pair+top and named-metric clean fixtures, `4/4` including original), while unseeded remains stochastic (`1/3` repeats for each fixture; `1/4` pair+top and `2/4` named-metric including original). V18 therefore strengthens the v17 interpretation: detailed skeleton names need not be theorem hypotheses, but in prompt-only form they stabilize rather than exclusively enable proof search.

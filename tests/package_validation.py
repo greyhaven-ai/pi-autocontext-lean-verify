@@ -79,6 +79,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "challenge_v15_proof_shape_hints",
             "challenge_v16_compact_reassembly_hints",
             "challenge_v17_proof_plan_hints",
+            "challenge_v18_prompt_only_skeleton_hints",
             "challenge_extended_transfer",
         ]:
             with self.subTest(group=group_name):
@@ -195,6 +196,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "harness/playbooks/challenge_v4_count_v1.md",
             "harness/playbooks/challenge_v5_attribution_v1.md",
             "harness/playbooks/challenge_v6_frontier_v1.md",
+            "harness/playbooks/challenge_v18_prompt_only_skeleton_v1.md",
             "harness/run_playbook_transfer.py",
             "harness/run_direct_baseline_benchmark.py",
             "harness/direct_pi_prove.py",
@@ -213,6 +215,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "harness/fixtures/challenge_v15_order_length_count_sum_with_append_and_reassembly_hyp/Theorem.template.lean",
             "harness/fixtures/challenge_v16_order_length_count_sum_with_named_metric_packers/Theorem.template.lean",
             "harness/fixtures/challenge_v17_named_metric_packers_with_detailed_plan_hints/Theorem.template.lean",
+            "harness/fixtures/challenge_v18_named_metric_packers_clean/Theorem.template.lean",
             "docs/V8_DIAGNOSTIC_REPORT.md",
             "docs/V9_COMPOSITION_GRADIENT_REPORT.md",
             "docs/V10_STATS_REIFICATION_REPORT.md",
@@ -223,6 +226,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "docs/V15_PROOF_SHAPE_HINTS_REPORT.md",
             "docs/V16_COMPACT_REASSEMBLY_HINTS_REPORT.md",
             "docs/V17_PROOF_PLAN_HINTS_REPORT.md",
+            "docs/V18_PROMPT_ONLY_SKELETON_HINTS_REPORT.md",
         }
         self.assertTrue(required.issubset(paths))
         self.assertFalse(any(path.startswith("harness/results/") for path in paths))

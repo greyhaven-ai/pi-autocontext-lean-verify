@@ -29,7 +29,7 @@ The harness rejects or avoids:
 
 Benchmark and attribution actions default to short temp result paths under `the system temp directory (`pi-autocontext-lean-verify/...`)` (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) so npm-loaded packages avoid Pi session path-length failures.
 
-Use `challenge_v6_frontier` and `challenge_v7_frontier` for the first packaged verifier-only frontier suites. v7 is the first packaged suite where seeded autocontext is intentionally unstable while unseeded/direct solve none. Version `0.1.10` packages `challenge_v8_diagnostics`, `challenge_v9_composition_gradient`, `challenge_v10_stats_reification`, `challenge_v11_metric_composition`, and `challenge_v12_simultaneous_metrics`. Version `0.1.11` packages `challenge_v13_decomposition_order` and `challenge_v14_metric_order_permutations`; version `0.1.12` packages `challenge_v15_proof_shape_hints`. The current source tree also includes `challenge_v16_compact_reassembly_hints` to test compact generic/named packers against the v15 large reassembly-hypothesis prompt shape.
+Use `challenge_v6_frontier` and `challenge_v7_frontier` for the first packaged verifier-only frontier suites. v7 is the first packaged suite where seeded autocontext is intentionally unstable while unseeded/direct solve none. Version `0.1.10` packages `challenge_v8_diagnostics`, `challenge_v9_composition_gradient`, `challenge_v10_stats_reification`, `challenge_v11_metric_composition`, and `challenge_v12_simultaneous_metrics`. Version `0.1.11` packages `challenge_v13_decomposition_order` and `challenge_v14_metric_order_permutations`; version `0.1.12` packages `challenge_v15_proof_shape_hints`. The current source tree also includes `challenge_v16_compact_reassembly_hints` and `challenge_v17_proof_plan_hints` to test compact generic/named packers and harmless proof-plan skeleton names against the v15 large reassembly-hypothesis prompt shape.
 
 
 1. Run setup or preflight first:
@@ -144,7 +144,8 @@ This mode uses `--no-pregenerate` and `--structured-alternate-retry`; synthetic 
 - `challenge_v14_metric_order_permutations`: six metric-order permutation fixtures covering all count/length/sum orderings in the full simultaneous keep/drop triple bundle.
 - `challenge_v15_proof_shape_hints`: four proof-shape hint fixtures exposing metric-bundle, side-bundle, append/filter, and final reassembly hypotheses.
 - `challenge_v16_compact_reassembly_hints`: four compact reassembly-hint fixtures replacing the large v15 higher-order hypothesis with generic/named packers.
-- `challenge_extended_transfer`: all v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16 challenge fixtures (`72` fixtures).
+- `challenge_v17_proof_plan_hints`: four harmless `True` proof-plan skeleton hint fixtures naming induction, case split, simp, and Nat add normalization steps.
+- `challenge_extended_transfer`: all v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16/v17 challenge fixtures (`76` fixtures).
 
 ## Modes
 

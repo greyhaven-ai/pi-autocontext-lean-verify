@@ -6,7 +6,7 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 
 | Claim                                                      |                    Evidence | Artifact                                                                                          |
 | ---------------------------------------------------------- | --------------------------: | ------------------------------------------------------------------------------------------------- |
-| Harness sanity: every expected proof still verifies        | 52 / 52 expected-proof fixtures (124 manifest fixtures) | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
+| Harness sanity: every expected proof still verifies        | 52 / 52 expected-proof fixtures (128 manifest fixtures) | `benchmark_manifest.json` plus fixture `expected_proof.lean` checks                               |
 | Package setup works through Pi                             |           1 / 1 smoke proof | `results/20260506T_pi_package_setup_action_smoke`                                                 |
 | Post-registry package setup works through Pi               |           1 / 1 smoke proof | `results/20260506T_pi_package_registry_setup_smoke`                                               |
 | Package fixture groups work through Pi                     |           1 / 1 smoke proof | `results/20260506T_pi_package_fixture_group_smoke`                                                |
@@ -69,6 +69,10 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v16 unseeded/direct compact reassembly contrast  |     unseeded 0 / 4; direct 0 / 4 | `docs/V16_COMPACT_REASSEMBLY_HINTS_REPORT.md`                                                     |
 | Challenge v16 focused seeded miss repeats                  |     pair+top 2 / 3; named metric 2 / 3 | `docs/V16_COMPACT_REASSEMBLY_HINTS_REPORT.md`                                                     |
 | Challenge v16 timeout-240 focused repeats                  |     pair+top 2 / 3; named metric 3 / 3; severe wall-clock blowups | `docs/V16_COMPACT_REASSEMBLY_HINTS_REPORT.md`                                                     |
+| Challenge v17 proof-plan hint fixtures have local Lean witnesses |      4 / 4 fixture templates | `docs/V17_PROOF_PLAN_HINTS_REPORT.md`                                                             |
+| Challenge v17 seeded proof-plan attribution                |               4 / 4 proofs | `docs/V17_PROOF_PLAN_HINTS_REPORT.md`                                                             |
+| Challenge v17 unseeded/direct proof-plan contrast          |     unseeded 0 / 4; direct 1 / 4 | `docs/V17_PROOF_PLAN_HINTS_REPORT.md`                                                             |
+| Challenge v17 seeded stability repeats                    |     detailed 3 / 3 each; coarse 2 / 3 each | `docs/V17_PROOF_PLAN_HINTS_REPORT.md`                                                             |
 | Default benchmark run roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="attribution"` npm smoke without explicit `runRoot`                                      |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 | Release `0.1.11` candidate contents                       |  v13/v14 fixtures + timeout robustness | `package.json`, `docs/V13_DECOMPOSITION_ORDER_REPORT.md`, `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md` |
@@ -169,6 +173,7 @@ npm run benchmark:v13
 npm run benchmark:v14
 npm run benchmark:v15
 npm run benchmark:v16
+npm run benchmark:v17
 ```
 
 For seeded/unseeded/direct attribution through Pi:

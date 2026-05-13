@@ -151,6 +151,7 @@ npm run benchmark:v13
 npm run benchmark:v14
 npm run benchmark:v15
 npm run benchmark:v16
+npm run benchmark:v17
 ```
 
 ### Attribution
@@ -182,6 +183,7 @@ npm run benchmark:v13
 npm run benchmark:v14
 npm run benchmark:v15
 npm run benchmark:v16
+npm run benchmark:v17
 ```
 
 ### Summarize
@@ -221,7 +223,8 @@ Reads a saved run summary.
 | `challenge_v14_metric_order_permutations` | Six no-expected-proof fixtures covering all metric-order permutations for the full simultaneous keep/drop triple bundle. |
 | `challenge_v15_proof_shape_hints` | Four no-expected-proof fixtures exposing metric-bundle, side-bundle, append/filter, and reassembly hypotheses for the hard length/count/sum order. |
 | `challenge_v16_compact_reassembly_hints` | Four no-expected-proof fixtures replacing the large v15 reassembly hypothesis with compact generic/named packer hypotheses. |
-| `challenge_extended_transfer` | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16 challenge fixtures (`72` fixtures). |
+| `challenge_v17_proof_plan_hints` | Four no-expected-proof fixtures adding harmless `True` proof-plan skeleton names to v16 compact packer shapes. |
+| `challenge_extended_transfer` | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16/v17 challenge fixtures (`76` fixtures). |
 
 ## Modes
 
@@ -263,8 +266,9 @@ It maps to:
 - v14 metric-order permutations: seeded solves `5/6`, unseeded/direct `0/6`; canonical count/length/sum and v13's failed sum/count/length order both solve seeded, while length/count/sum misses. Focused seeded repeats put the v13 miss at `2/3` and the v14 miss at `2/3`, confirming stochastic/non-canonical conjunction-order sensitivity rather than a simple fixed order failure. A later focused budget probe showed `maxAttempts=3` with the same 120s Pi timeout produced only timeout-empty repairs (`0/3` for each miss). Raising timeout to 240s with the original `maxAttempts=2` recovers proofs but does not fully stabilize the frontier (`2/3` focused repeats for each miss; `3/4` each including the earlier timeout-240 smoke).
 - v15 proof-shape hints: seeded solves `3/4`, unseeded `0/4`, direct `2/4`; metric/side reassembly is easy for direct, append/filter hypotheses let seeded solve the hard length/count/sum tree-induction shape, and the explicit reassembly-hyp variant misses in the full run. Focused repeats show append/filter hypotheses are stable seeded (`3/3`, `4/4` including original), while the larger explicit reassembly-hyp variant remains unstable (`1/3`, `1/4` including original). The frontier is not final conjunction assembly alone; compact helper hypotheses help more than large higher-order proof-shape hints.
 - v16 compact reassembly hints: seeded solves `2/4`, unseeded/direct `0/4`; compact top-level Prop and generic Nat scalar packers solve in the full suite. The two first-run compact-packer misses each solve `2/3` on focused repeat (`2/4` including original), so compact packers reduce the v15 higher-order-hypothesis drag but do not remove stochastic induction/simp proof-search variance. Timeout 240 improves named-metric repeats to `3/3` but pair+top remains `2/3`, with severe wall-clock blowups despite Pi timeout messages, so it is not a clean stabilization knob.
+- v17 proof-plan skeleton hints: seeded solves `4/4`, unseeded `0/4`, direct `1/4`; harmless `True` names expose the intended induction/by-cases/simp/add-normalization skeleton. Detailed plan names are stable on repeat (`3/3`, `4/4` including original for both packer shapes), while coarse plan names remain stochastic (`2/3`, `3/4` including original). This points to detailed skeleton naming as the missing prompt structure.
 
-See `docs/V6_FRONTIER_REPORT.md`, `docs/V7_FRONTIER_REPORT.md`, `docs/V8_DIAGNOSTIC_REPORT.md`, `docs/V9_COMPOSITION_GRADIENT_REPORT.md`, `docs/V10_STATS_REIFICATION_REPORT.md`, `docs/V11_METRIC_COMPOSITION_REPORT.md`, `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`, `docs/V13_DECOMPOSITION_ORDER_REPORT.md`, `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md`, `docs/V15_PROOF_SHAPE_HINTS_REPORT.md`, and `docs/V16_COMPACT_REASSEMBLY_HINTS_REPORT.md`.
+See `docs/V6_FRONTIER_REPORT.md`, `docs/V7_FRONTIER_REPORT.md`, `docs/V8_DIAGNOSTIC_REPORT.md`, `docs/V9_COMPOSITION_GRADIENT_REPORT.md`, `docs/V10_STATS_REIFICATION_REPORT.md`, `docs/V11_METRIC_COMPOSITION_REPORT.md`, `docs/V12_SIMULTANEOUS_METRICS_REPORT.md`, `docs/V13_DECOMPOSITION_ORDER_REPORT.md`, `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md`, `docs/V15_PROOF_SHAPE_HINTS_REPORT.md`, `docs/V16_COMPACT_REASSEMBLY_HINTS_REPORT.md`, and `docs/V17_PROOF_PLAN_HINTS_REPORT.md`.
 
 ## Guardrails
 
@@ -295,8 +299,8 @@ Lean version: 4.29.1
 Python: 3.14.2
 uvx: uv-tool-uvx 0.6.17
 Autocontext runtime: autocontext==0.4.8 via uvx autoctx improve (ok)
-Fixture count: 124
-Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7, challenge_v4_count=4, challenge_v5_attribution=4, challenge_v5_tree_tally=1, challenge_v6_frontier=4, challenge_v7_frontier=4, challenge_v8_diagnostics=4, challenge_v9_composition_gradient=6, challenge_v10_stats_reification=6, challenge_v11_metric_composition=6, challenge_v12_simultaneous_metrics=7, challenge_v13_decomposition_order=6, challenge_v14_metric_order_permutations=6, challenge_v15_proof_shape_hints=4, challenge_v16_compact_reassembly_hints=4, challenge_extended_transfer=72
+Fixture count: 128
+Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7, challenge_v4_count=4, challenge_v5_attribution=4, challenge_v5_tree_tally=1, challenge_v6_frontier=4, challenge_v7_frontier=4, challenge_v8_diagnostics=4, challenge_v9_composition_gradient=6, challenge_v10_stats_reification=6, challenge_v11_metric_composition=6, challenge_v12_simultaneous_metrics=7, challenge_v13_decomposition_order=6, challenge_v14_metric_order_permutations=6, challenge_v15_proof_shape_hints=4, challenge_v16_compact_reassembly_hints=4, challenge_v17_proof_plan_hints=4, challenge_extended_transfer=76
 ```
 
 A zero-Pi-call run smoke test was completed:
@@ -381,7 +385,7 @@ Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was th
 
 `0.1.11` was published through GitHub trusted publishing from tag `v0.1.11` (workflow `25753534079`), had two npm provenance attestations, and was registry-smoked with setup `1/1` plus a v14 timeout-240 attribution contrast: seeded `1/1`, unseeded `0/1`, direct `0/1`.
 
-`0.1.12` was published through GitHub trusted publishing from tag `v0.1.12` (workflow `25761371690`), is npm `latest`, has two npm provenance attestations, and was registry-smoked with setup `1/1` over 120 fixtures plus a focused v15 append/filter-hypothesis attribution contrast: seeded `1/1`, unseeded `0/1`, direct `0/1`. The source tree after `0.1.12` adds v16 compact reassembly hint diagnostics; wait for a future release until v16 or later evidence is stable enough to package.
+`0.1.12` was published through GitHub trusted publishing from tag `v0.1.12` (workflow `25761371690`), is npm `latest`, has two npm provenance attestations, and was registry-smoked with setup `1/1` over 120 fixtures plus a focused v15 append/filter-hypothesis attribution contrast: seeded `1/1`, unseeded `0/1`, direct `0/1`. The source tree after `0.1.12` adds v16/v17 diagnostics; v17 detailed proof-plan hints are promising, but a future release should wait for an explicit package decision and registry smoke plan.
 
 Future releases use GitHub's npm trusted publisher workflow on version tags:
 

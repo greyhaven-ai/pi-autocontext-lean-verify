@@ -818,6 +818,34 @@
       "difficulty": "challenge_compact_reassembly_hint",
       "initial_proof": "rfl",
       "expected_proof": false
+    },
+    {
+      "id": "challenge_v17_pair_top_packers_with_coarse_plan_hints",
+      "category": "challenge_v17_proof_plan_hints",
+      "difficulty": "challenge_proof_plan_hint",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v17_pair_top_packers_with_detailed_plan_hints",
+      "category": "challenge_v17_proof_plan_hints",
+      "difficulty": "challenge_proof_plan_hint",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v17_named_metric_packers_with_coarse_plan_hints",
+      "category": "challenge_v17_proof_plan_hints",
+      "difficulty": "challenge_proof_plan_hint",
+      "initial_proof": "rfl",
+      "expected_proof": false
+    },
+    {
+      "id": "challenge_v17_named_metric_packers_with_detailed_plan_hints",
+      "category": "challenge_v17_proof_plan_hints",
+      "difficulty": "challenge_proof_plan_hint",
+      "initial_proof": "rfl",
+      "expected_proof": false
     }
   ]
 }

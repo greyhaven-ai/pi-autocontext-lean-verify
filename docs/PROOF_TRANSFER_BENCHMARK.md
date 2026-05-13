@@ -296,20 +296,20 @@ Local witnesses verify `4/4`, and initial `rfl` is rejected for `4/4`. The first
 
 ## V18 prompt-only skeleton hints
 
-The source tree after `0.1.13` adds `challenge_v18_prompt_only_skeleton_hints`, a two-fixture diagnostic suite that keeps the v16 compact-packer theorem statements but removes the v17 harmless `True` plan hypotheses. Detailed skeleton names are supplied only by `harness/playbooks/challenge_v18_prompt_only_skeleton_v1.md` during seeded attribution.
+Version `0.1.14` adds `challenge_v18_prompt_only_skeleton_hints`, a two-fixture diagnostic suite that keeps the v16 compact-packer theorem statements but removes the v17 harmless `True` plan hypotheses. Detailed skeleton names are supplied only by `harness/playbooks/challenge_v18_prompt_only_skeleton_v1.md` during seeded attribution.
 
 Local witnesses verify `2/2`, initial `rfl` is rejected for `2/2`, and no expected proofs are bundled. The controlled Pi attribution run at timeout 120 solved seeded `2/2`, unseeded `1/2`, and direct `0/2`. Focused stability repeats showed seeded prompt-only skeleton context is stable (`3/3` repeats for both pair+top and named-metric clean fixtures, `4/4` including original), while unseeded remains stochastic (`1/3` repeats for each fixture; `1/4` pair+top and `2/4` named-metric including original). V18 therefore strengthens the v17 interpretation: detailed skeleton names need not be theorem hypotheses, but in prompt-only form they stabilize rather than exclusively enable proof search.
 
 
 ## V19 bare skeleton-name ablation
 
-The source tree after v18 adds `challenge_v19_bare_skeleton_names`, an ablation group that reuses the two clean v18 theorem templates but swaps the seeded context from descriptive prompt-only skeleton guidance to bare semantic labels only. The manifest fixture count stays `130`; the group points at `challenge_v18_pair_top_packers_clean` and `challenge_v18_named_metric_packers_clean`.
+Version `0.1.14` also adds `challenge_v19_bare_skeleton_names`, an ablation group that reuses the two clean v18 theorem templates but swaps the seeded context from descriptive prompt-only skeleton guidance to bare semantic labels only. The manifest fixture count stays `130`; the group points at `challenge_v18_pair_top_packers_clean` and `challenge_v18_named_metric_packers_clean`.
 
 The controlled Pi attribution run solved seeded `2/2`, unseeded `2/2`, and direct `0/2`. Focused repeats then showed bare names do **not** preserve the v18 stabilization: seeded repeats were pair+top `2/3` and named metric `1/3` (`3/4` and `2/4` including original), while unseeded repeats were pair+top `0/3` and named metric `1/3` (`1/4` and `2/4` including original). V19 therefore points to the descriptive proof skeleton text, not just semantic labels, as the stabilizing prompt ingredient.
 
 
 ## V20 description-only skeleton ablation
 
-The source tree after v19 adds `challenge_v20_description_only_skeleton`, another ablation group over the two clean v18 theorem templates. It removes the `plan_...` labels from seeded context while preserving compact natural-language proof-skeleton descriptions. The manifest fixture count stays `130`.
+Version `0.1.14` also adds `challenge_v20_description_only_skeleton`, another ablation group over the two clean v18 theorem templates. It removes the `plan_...` labels from seeded context while preserving compact natural-language proof-skeleton descriptions. The manifest fixture count stays `130`.
 
 The controlled Pi attribution run solved seeded `2/2` (`2` Pi calls, `283.29s`, `6` Lean verifier attempts), while unseeded solved `0/2` (`4` Pi calls, `528.66s`, `4` Lean attempts) and direct solved `0/2`. Focused repeats then showed that description-only context is capable but not fully stable: seeded repeats were `2/3` for both pair+top and named-metric fixtures (`3/4` each including original), with the failed repeat producing timeout-empty repairs for both fixtures. Unseeded repeats remained stochastic: pair+top `2/3` (`2/4` including original) and named metric `1/3` (`1/4` including original). V20 therefore refines the v18/v19 ablation: compact descriptive skeleton text is the main stabilizing ingredient and works without theorem-level `True` hypotheses, but labels paired with descriptions may provide additional anchoring because descriptions alone did not reproduce v18's `3/3` seeded stability.

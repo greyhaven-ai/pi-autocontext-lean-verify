@@ -70,12 +70,39 @@ Per-repeat costs:
 | named metric repeat 2 | failed | — | 2 | 260.90s | 2 | rfl |
 | named metric repeat 3 | proved | 1 | 1 | 169.53s | 3 | induction, simp, exact, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm |
 
+## Timeout-240 focused repeat probe
+
+The same two first-run misses were also repeated three times each with the same seeded-only settings except `--timeout 240`.
+
+Run root:
+
+`/tmp/pi-v16-timeout240-focused-stability-20260512T214817Z`
+
+| Fixture | Repeat 1 | Repeat 2 | Repeat 3 | Timeout-240 aggregate |
+| --- | ---: | ---: | ---: | ---: |
+| pair + top-level Prop packers | proved | proved | failed | 2 / 3 |
+| named metric packers | proved | proved | proved | 3 / 3 |
+
+Per-repeat costs:
+
+| Run | Result | Final attempt | Pi calls | Pi elapsed | Lean attempts | Features |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| pair + top timeout-240 repeat 1 | proved | 1 | 1 | 182.95s | 3 | induction, simp, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm |
+| pair + top timeout-240 repeat 2 | proved | 1 | 1 | 173.05s | 3 | induction, simp, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm |
+| pair + top timeout-240 repeat 3 | failed | — | 2 | 7064.45s | 2 | rfl |
+| named metric timeout-240 repeat 1 | proved | 1 | 2 | 2972.73s | 2 | induction, simp, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm |
+| named metric timeout-240 repeat 2 | proved | 1 | 1 | 128.00s | 3 | induction, simp, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm |
+| named metric timeout-240 repeat 3 | proved | 1 | 1 | 165.98s | 3 | induction, simp, exact, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm |
+
+Important caveat: timeout 240 improved the named-metric focused aggregate but did **not** stabilize pair+top. It also exposed severe wall-clock blowups. In the pair+top failed repeat, both primary and alternate repairs reported `pi CLI timed out after 240s`, but the recorded process elapsed times were 1869.95s and 5194.50s. In the named-metric first repeat, the primary repair reported the same Pi timeout but consumed 2756.93s before the alternate repair succeeded in 215.80s. Timeout 240 is therefore not a clean practical stabilization knob for v16.
+
 ## Interpretation
 
 V16 sharpens the v15 prompt-shape result. Compact generic hints are not a full stabilization fix, but they are less harmful than the large v15 tree-specific `mkMetrics` hypothesis:
 
 - top-level Prop packing and generic Nat scalar packing solved in the first controlled seeded run;
 - the two first-run compact-packer misses were stochastic, solving `2/3` on focused repeat (`2/4` including the original miss for each);
+- timeout 240 improved the named-metric focused repeat to `3/3`, but pair+top remained `2/3` and the run showed pathological wall-clock blowups despite Pi timeout messages;
 - unseeded isolated autocontext and direct Pi repair-loop solved none of the four v16 tree-induction fixtures.
 
-Compared with v15, final conjunction assembly remains secondary: the real frontier is recognizing the tree-induction/simp arithmetic proof shape under compact-but-extra helper hypotheses. The v15 large higher-order reassembly hypothesis was `1/4` including its original run; v16 compact variants recover more often but still show stochastic timeout/empty-repair behavior under the two-attempt, 120s baseline.
+Compared with v15, final conjunction assembly remains secondary: the real frontier is recognizing the tree-induction/simp arithmetic proof shape under compact-but-extra helper hypotheses. The v15 large higher-order reassembly hypothesis was `1/4` including its original run; v16 compact variants recover more often but still show stochastic timeout/empty-repair behavior under the two-attempt, 120s baseline. Timeout 240 is evidence of recoverability, not a release-quality stabilization strategy.

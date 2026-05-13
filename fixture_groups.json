@@ -252,6 +252,10 @@
     "challenge_v19_bare_skeleton_names": [
       "challenge_v18_pair_top_packers_clean",
       "challenge_v18_named_metric_packers_clean"
+    ],
+    "challenge_v20_description_only_skeleton": [
+      "challenge_v18_pair_top_packers_clean",
+      "challenge_v18_named_metric_packers_clean"
     ]
   },
   "descriptions": {
@@ -280,6 +284,7 @@
     "challenge_v16_compact_reassembly_hints": "Four no-expected-proof compact reassembly-hint fixtures replacing the large v15 higher-order reassembly hypothesis with smaller generic or named first-order packers.",
     "challenge_v17_proof_plan_hints": "Four no-expected-proof proof-plan hint fixtures adding harmless True-valued skeleton names to compact v16-style packer hypotheses.",
     "challenge_v18_prompt_only_skeleton_hints": "Two no-expected-proof fixtures reusing v16 compact packer theorem statements while supplying detailed proof-plan skeleton names only through the seeded playbook context.",
-    "challenge_v19_bare_skeleton_names": "Ablation group reusing the two clean v18 compact-packer fixtures while supplying only bare skeleton-name bullets in the seeded playbook context."
+    "challenge_v19_bare_skeleton_names": "Ablation group reusing the two clean v18 compact-packer fixtures while supplying only bare skeleton-name bullets in the seeded playbook context.",
+    "challenge_v20_description_only_skeleton": "Ablation group reusing the two clean v18 compact-packer fixtures while supplying compact natural-language skeleton descriptions without plan labels in the seeded playbook context."
   }
 }

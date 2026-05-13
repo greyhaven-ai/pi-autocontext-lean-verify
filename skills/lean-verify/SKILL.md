@@ -29,7 +29,7 @@ The harness rejects or avoids:
 
 Benchmark and attribution actions default to short temp result paths under `the system temp directory (`pi-autocontext-lean-verify/...`)` (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) so npm-loaded packages avoid Pi session path-length failures.
 
-Use `challenge_v6_frontier` and `challenge_v7_frontier` for the first packaged verifier-only frontier suites. v7 is the first packaged suite where seeded autocontext is intentionally unstable while unseeded/direct solve none. Version `0.1.10` packages `challenge_v8_diagnostics`, `challenge_v9_composition_gradient`, `challenge_v10_stats_reification`, `challenge_v11_metric_composition`, and `challenge_v12_simultaneous_metrics`. Version `0.1.11` packages `challenge_v13_decomposition_order` and `challenge_v14_metric_order_permutations`; version `0.1.12` packages `challenge_v15_proof_shape_hints`. Version `0.1.13` packages `challenge_v16_compact_reassembly_hints` and `challenge_v17_proof_plan_hints`; the current source tree also includes `challenge_v18_prompt_only_skeleton_hints` and `challenge_v19_bare_skeleton_names` to test whether detailed or bare proof-plan skeleton names can live only in seeded playbook context without theorem-level `True` hypotheses.
+Use `challenge_v6_frontier` and `challenge_v7_frontier` for the first packaged verifier-only frontier suites. v7 is the first packaged suite where seeded autocontext is intentionally unstable while unseeded/direct solve none. Version `0.1.10` packages `challenge_v8_diagnostics`, `challenge_v9_composition_gradient`, `challenge_v10_stats_reification`, `challenge_v11_metric_composition`, and `challenge_v12_simultaneous_metrics`. Version `0.1.11` packages `challenge_v13_decomposition_order` and `challenge_v14_metric_order_permutations`; version `0.1.12` packages `challenge_v15_proof_shape_hints`. Version `0.1.13` packages `challenge_v16_compact_reassembly_hints` and `challenge_v17_proof_plan_hints`; the current source tree also includes `challenge_v18_prompt_only_skeleton_hints`, `challenge_v19_bare_skeleton_names`, and `challenge_v20_description_only_skeleton` to test whether detailed descriptions, bare labels, or both can live only in seeded playbook context without theorem-level `True` hypotheses.
 
 
 1. Run setup or preflight first:
@@ -147,6 +147,7 @@ This mode uses `--no-pregenerate` and `--structured-alternate-retry`; synthetic 
 - `challenge_v17_proof_plan_hints`: four harmless `True` proof-plan skeleton hint fixtures naming induction, case split, simp, and Nat add normalization steps.
 - `challenge_v18_prompt_only_skeleton_hints`: two v16 theorem-shape fixtures where detailed proof-plan skeleton names are present only in seeded playbook context.
 - `challenge_v19_bare_skeleton_names`: ablation over the clean v18 fixtures using only bare skeleton-name bullets in the seeded playbook.
+- `challenge_v20_description_only_skeleton`: ablation over the clean v18 fixtures using compact skeleton descriptions without `plan_...` labels in the seeded playbook.
 - `challenge_extended_transfer`: all v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16/v17/v18 challenge fixtures (`78` fixtures).
 
 ## Modes

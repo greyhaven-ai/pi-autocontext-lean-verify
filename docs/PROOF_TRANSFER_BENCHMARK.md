@@ -26,6 +26,7 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v17_proof_plan_hints` | 4 | Proof-plan skeleton hint fixtures adding harmless `True` induction/case-split/simp/add-normalization names. |
 | `challenge_v18_prompt_only_skeleton_hints` | 2 | Prompt-only skeleton hint fixtures reusing v16 theorem statements while putting detailed proof-plan names only in the seeded playbook. |
 | `challenge_v19_bare_skeleton_names` | 2 | Bare-name ablation reusing the clean v18 fixtures with only skeleton-label bullets in the seeded playbook. |
+| `challenge_v20_description_only_skeleton` | 2 | Description-only ablation reusing the clean v18 fixtures with compact skeleton descriptions but no `plan_...` labels in the seeded playbook. |
 | `challenge_extended_transfer` | 78 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16/v17/v18 challenge fixtures. |
 
 ## Reproducible commands
@@ -50,6 +51,7 @@ npm run benchmark:v16
 npm run benchmark:v17
 npm run benchmark:v18
 npm run benchmark:v19
+npm run benchmark:v20
 ```
 
 Seeded autocontext vs unseeded isolated autocontext vs direct Pi repair-loop:
@@ -70,6 +72,7 @@ npm run benchmark:v16
 npm run benchmark:v17
 npm run benchmark:v18
 npm run benchmark:v19
+npm run benchmark:v20
 ```
 
 Equivalent explicit harness invocations:
@@ -303,3 +306,10 @@ Local witnesses verify `2/2`, initial `rfl` is rejected for `2/2`, and no expect
 The source tree after v18 adds `challenge_v19_bare_skeleton_names`, an ablation group that reuses the two clean v18 theorem templates but swaps the seeded context from descriptive prompt-only skeleton guidance to bare semantic labels only. The manifest fixture count stays `130`; the group points at `challenge_v18_pair_top_packers_clean` and `challenge_v18_named_metric_packers_clean`.
 
 The controlled Pi attribution run solved seeded `2/2`, unseeded `2/2`, and direct `0/2`. Focused repeats then showed bare names do **not** preserve the v18 stabilization: seeded repeats were pair+top `2/3` and named metric `1/3` (`3/4` and `2/4` including original), while unseeded repeats were pair+top `0/3` and named metric `1/3` (`1/4` and `2/4` including original). V19 therefore points to the descriptive proof skeleton text, not just semantic labels, as the stabilizing prompt ingredient.
+
+
+## V20 description-only skeleton ablation
+
+The source tree after v19 adds `challenge_v20_description_only_skeleton`, another ablation group over the two clean v18 theorem templates. It removes the `plan_...` labels from seeded context while preserving compact natural-language proof-skeleton descriptions. The manifest fixture count stays `130`.
+
+The controlled Pi attribution run solved seeded `2/2` (`2` Pi calls, `283.29s`, `6` Lean verifier attempts), while unseeded solved `0/2` (`4` Pi calls, `528.66s`, `4` Lean attempts) and direct solved `0/2`. Focused repeats then showed that description-only context is capable but not fully stable: seeded repeats were `2/3` for both pair+top and named-metric fixtures (`3/4` each including original), with the failed repeat producing timeout-empty repairs for both fixtures. Unseeded repeats remained stochastic: pair+top `2/3` (`2/4` including original) and named metric `1/3` (`1/4` including original). V20 therefore refines the v18/v19 ablation: compact descriptive skeleton text is the main stabilizing ingredient and works without theorem-level `True` hypotheses, but labels paired with descriptions may provide additional anchoring because descriptions alone did not reproduce v18's `3/3` seeded stability.

@@ -82,6 +82,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "challenge_v18_prompt_only_skeleton_hints",
             "challenge_v19_bare_skeleton_names",
             "challenge_v20_description_only_skeleton",
+            "challenge_v21_neutral_anchor_skeleton",
             "challenge_extended_transfer",
         ]:
             with self.subTest(group=group_name):
@@ -201,6 +202,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "harness/playbooks/challenge_v18_prompt_only_skeleton_v1.md",
             "harness/playbooks/challenge_v19_bare_skeleton_names_v1.md",
             "harness/playbooks/challenge_v20_description_only_skeleton_v1.md",
+            "harness/playbooks/challenge_v21_neutral_anchor_skeleton_v1.md",
             "harness/run_playbook_transfer.py",
             "harness/run_direct_baseline_benchmark.py",
             "harness/direct_pi_prove.py",
@@ -233,6 +235,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "docs/V18_PROMPT_ONLY_SKELETON_HINTS_REPORT.md",
             "docs/V19_BARE_SKELETON_NAMES_REPORT.md",
             "docs/V20_DESCRIPTION_ONLY_SKELETON_REPORT.md",
+            "docs/V21_NEUTRAL_ANCHOR_SKELETON_REPORT.md",
         }
         self.assertTrue(required.issubset(paths))
         self.assertFalse(any(path.startswith("harness/results/") for path in paths))

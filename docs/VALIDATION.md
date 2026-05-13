@@ -84,6 +84,9 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v20 description-only ablation setup              |      2 clean reused fixtures | `docs/V20_DESCRIPTION_ONLY_SKELETON_REPORT.md`                                                    |
 | Challenge v20 description-only attribution                  |     seeded 2 / 2; unseeded 0 / 2; direct 0 / 2 | `docs/V20_DESCRIPTION_ONLY_SKELETON_REPORT.md`                                      |
 | Challenge v20 description-only stability repeats            |     seeded 2 / 3 each; unseeded pair+top 2 / 3; unseeded named metric 1 / 3 | `docs/V20_DESCRIPTION_ONLY_SKELETON_REPORT.md`              |
+| Challenge v21 neutral-anchor ablation setup                 |      2 clean reused fixtures | `docs/V21_NEUTRAL_ANCHOR_SKELETON_REPORT.md`                                                     |
+| Challenge v21 neutral-anchor attribution                     |     seeded 1 / 2; unseeded 1 / 2; direct 0 / 2 | `docs/V21_NEUTRAL_ANCHOR_SKELETON_REPORT.md`                                      |
+| Challenge v21 neutral-anchor focused probes                  |     seeded repeat 0 / 2; partial second seeded repeat failed pair+top; severe wall-clock blowups | `docs/V21_NEUTRAL_ANCHOR_SKELETON_REPORT.md` |
 | Default benchmark run roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="attribution"` npm smoke without explicit `runRoot`                                      |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 | Release `0.1.11` candidate contents                       |  v13/v14 fixtures + timeout robustness | `package.json`, `docs/V13_DECOMPOSITION_ORDER_REPORT.md`, `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md` |
@@ -198,6 +201,7 @@ npm run benchmark:v17
 npm run benchmark:v18
 npm run benchmark:v19
 npm run benchmark:v20
+npm run benchmark:v21
 ```
 
 For seeded/unseeded/direct attribution through Pi:

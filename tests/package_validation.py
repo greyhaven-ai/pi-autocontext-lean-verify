@@ -87,6 +87,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "challenge_v22_code_like_anchor_skeleton",
             "challenge_v23_exact_labels_without_plan_prefix",
             "challenge_v24_plan_prefix_generic_labels",
+            "challenge_v25_step_prefix_exact_labels",
             "challenge_extended_transfer",
         ]:
             with self.subTest(group=group_name):
@@ -204,6 +205,21 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             with self.subTest(exact_v18_label=label):
                 self.assertNotIn(label, playbook)
 
+    def test_v25_seed_uses_step_prefix_exact_label_roots(self) -> None:
+        playbook = (HARNESS / "playbooks" / "challenge_v25_step_prefix_exact_labels_v1.md").read_text(encoding="utf-8")
+        step_labels = [
+            "step_induct_on_tree",
+            "step_leaf_simp_definitions",
+            "step_node_by_cases_value_eq_target",
+            "step_simp_mirror_flatten_keep_drop_append",
+            "step_normalize_nat_add_assoc_comm_left_comm",
+            "step_finish_with_metric_packers",
+        ]
+        for label in step_labels:
+            with self.subTest(step_label=label):
+                self.assertIn(label, playbook)
+        self.assertNotIn("plan_", playbook)
+
     def test_autocontext_runtime_dependency_contract_is_explicit(self) -> None:
         proof_runner = PROVE_WITH_AUTOCONTEXT.read_text(encoding="utf-8")
         self.assertIn('"uvx"', proof_runner)
@@ -280,6 +296,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "harness/playbooks/challenge_v22_code_like_anchor_skeleton_v1.md",
             "harness/playbooks/challenge_v23_exact_labels_without_plan_prefix_v1.md",
             "harness/playbooks/challenge_v24_plan_prefix_generic_labels_v1.md",
+            "harness/playbooks/challenge_v25_step_prefix_exact_labels_v1.md",
             "harness/run_playbook_transfer.py",
             "harness/process_utils.py",
             "harness/run_direct_baseline_benchmark.py",

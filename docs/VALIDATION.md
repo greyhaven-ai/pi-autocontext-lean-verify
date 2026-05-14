@@ -95,6 +95,7 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v23 focused seeded retry set                       | retries 2 / 2, 0 / 2, 2 / 2; pair+top 2 / 3; named metric 2 / 3 | `docs/V23_EXACT_LABELS_WITHOUT_PLAN_PREFIX_REPORT.md`              |
 | Challenge v24 generic plan-prefix setup                      | 2 clean reused fixtures; seed has generic `plan_` labels and excludes v18 exact labels | `harness/playbooks/challenge_v24_plan_prefix_generic_labels_v1.md` |
 | Challenge v24 focused seeded repeats                         | repeats 1 / 2, 1 / 2, 2 / 2; pair+top 2 / 3; named metric 2 / 3 | `docs/V24_PLAN_PREFIX_GENERIC_LABELS_REPORT.md`              |
+| Challenge v25 step-prefix exact-label setup                  | 2 clean reused fixtures; seed has `step_` exact label roots and excludes original `plan_` token | `harness/playbooks/challenge_v25_step_prefix_exact_labels_v1.md` |
 | Default run/benchmark/attribution roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="run"`, `action="benchmark"`, and `action="attribution"` defaults use temp roots |
 | Harness timeout cleanup kills child process groups          | tracked process groups + SIGTERM/SIGKILL cleanup | `harness/process_utils.py`, `tests/package_validation.py`                                        |
 | Harness timeout cleanup closes leaked pipes promptly        | escaped-descendant pipe-leak regression returns in <2s with timeout marker | `tests/test_process_utils.py`                                           |

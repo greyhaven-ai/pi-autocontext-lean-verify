@@ -47,6 +47,7 @@ const FIXTURE_GROUP_NAMES = [
 	"challenge_v22_code_like_anchor_skeleton",
 	"challenge_v23_exact_labels_without_plan_prefix",
 	"challenge_v24_plan_prefix_generic_labels",
+	"challenge_v25_step_prefix_exact_labels",
 	"challenge_extended_transfer",
 ] as const;
 
@@ -68,7 +69,7 @@ const formalProofSchema = Type.Object({
 	fixtureGroup: Type.Optional(
 		StringEnum(FIXTURE_GROUP_NAMES, {
 			description:
-				"Named fixture group to run when fixtures is omitted. Defaults to broader for run actions, challenge_v3_generalization for benchmark actions, and challenge_v5_attribution for attribution actions. Includes frontier groups through challenge_v24_plan_prefix_generic_labels.",
+				"Named fixture group to run when fixtures is omitted. Defaults to broader for run actions, challenge_v3_generalization for benchmark actions, and challenge_v5_attribution for attribution actions. Includes frontier groups through challenge_v25_step_prefix_exact_labels.",
 		}),
 	),
 	mode: Type.Optional(

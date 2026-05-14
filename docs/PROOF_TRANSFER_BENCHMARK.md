@@ -31,6 +31,7 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v22_code_like_anchor_skeleton` | 2 | Code-like-anchor ablation reusing the clean v18 fixtures with compact descriptions and snake_case step anchors but no earlier detailed-plan prefix. |
 | `challenge_v23_exact_labels_without_plan_prefix` | 2 | Exact-label-minus-prefix ablation reusing the clean v18 fixtures with v18 detailed labels after removing only the prefix. |
 | `challenge_v24_plan_prefix_generic_labels` | 2 | Generic plan-prefix ablation reusing the clean v18 fixtures with compact descriptions and shorter generic `plan_` labels. |
+| `challenge_v25_step_prefix_exact_labels` | 2 | Step-prefix exact-label ablation reusing the clean v18 fixtures with compact descriptions and `step_` prefixed exact v18 label roots. |
 | `challenge_extended_transfer` | 78 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16/v17/v18 challenge fixtures. |
 
 ## Reproducible commands
@@ -347,3 +348,8 @@ The first full attribution attempt was curtailed by timeout/runtime pathology af
 The source tree after the v23 report adds `challenge_v24_plan_prefix_generic_labels`, another ablation group over the two clean v18 theorem templates. It keeps compact descriptions and restores the `plan_` prefix, but changes the labels to shorter generic anchors: `plan_tree_induction`, `plan_leaf_simplification`, `plan_node_split`, `plan_append_filter_simplification`, `plan_nat_add_normalization`, and `plan_packer_finish`. The seed playbook is checked to include these generic `plan_` labels while excluding v18's exact detailed labels. The manifest fixture count stays `130` because the group reuses `challenge_v18_pair_top_packers_clean` and `challenge_v18_named_metric_packers_clean`.
 
 Focused seeded repeats solved `1/2`, `1/2`, and `2/2` (`2/3` per fixture). Because the prefix-only generic labels did not show v18-like stability, expensive unseeded/direct attribution components were skipped. V24 therefore indicates that the prefix alone is insufficient; V18 likely depends on the prefix plus exact semantically rich label wording paired with compact descriptions.
+
+
+## V25 step-prefix exact labels
+
+The source tree after the v24 report adds `challenge_v25_step_prefix_exact_labels`, another ablation group over the two clean v18 theorem templates. It keeps compact descriptions and preserves v18's exact semantic label roots, but replaces the original prefix with `step_`: `step_induct_on_tree`, `step_leaf_simp_definitions`, `step_node_by_cases_value_eq_target`, `step_simp_mirror_flatten_keep_drop_append`, `step_normalize_nat_add_assoc_comm_left_comm`, and `step_finish_with_metric_packers`. The seed playbook is checked to include these `step_` labels and exclude the original `plan_` token. The manifest fixture count stays `130` because the group reuses `challenge_v18_pair_top_packers_clean` and `challenge_v18_named_metric_packers_clean`.

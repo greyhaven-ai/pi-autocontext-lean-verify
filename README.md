@@ -419,7 +419,7 @@ Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was th
 
 `0.1.16` was published through GitHub trusted publishing from tag `v0.1.16` (workflow `25875599303`), has two npm provenance attestations, and includes v22 code-like snake_case anchor fixtures, v23 exact-label-minus-prefix fixtures, v24 generic plan-prefix fixtures, v25 step-prefix exact-label fixtures, their reports, and a second timeout hardening patch that bounds post-kill waits and force-closes leaked subprocess pipes. Registry smoke covered preflight, setup `1/1`, default `action="run"` short temp-root behavior, and packaged `process_utils.py` leaked-pipe cleanup. The combined v22-v25 evidence indicates v18's original full prefixed label form remains the strongest stability signal.
 
-`0.1.17` updates the explicit autocontext runtime dependency from `autocontext==0.4.8` to `autocontext==0.5.1` so Pi-provider repair runs use the upstream hardened `PiCLIRuntime` timeout/process cleanup.
+`0.1.17` was published through GitHub trusted publishing from tag `v0.1.17` (workflow `25887654100`), is npm `latest`, has two npm provenance attestations, and updates the explicit autocontext runtime dependency from `autocontext==0.4.8` to `autocontext==0.5.1` so Pi-provider repair runs use the upstream hardened `PiCLIRuntime` timeout/process cleanup. Registry smoke covered preflight (`autocontext==0.5.1`, 130 fixtures) plus a bounded Pi/Lean sanity run on `mul_add_distrib_right`: 1/1 proved with final proof `exact Nat.mul_add c a b`, 1 Pi call, and 3 Lean verifier attempts.
 
 Future releases use GitHub's npm trusted publisher workflow on version tags:
 

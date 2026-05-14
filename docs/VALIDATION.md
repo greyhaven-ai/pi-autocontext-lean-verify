@@ -88,6 +88,8 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v21 neutral-anchor attribution                     |     seeded 1 / 2; unseeded 1 / 2; direct 0 / 2 | `docs/V21_NEUTRAL_ANCHOR_SKELETON_REPORT.md`                                      |
 | Challenge v21 neutral-anchor focused probes                  |     seeded repeat 0 / 2; partial second seeded repeat failed pair+top; severe wall-clock blowups | `docs/V21_NEUTRAL_ANCHOR_SKELETON_REPORT.md` |
 | Challenge v22 code-like-anchor ablation setup                |      2 clean reused fixtures | `harness/playbooks/challenge_v22_code_like_anchor_skeleton_v1.md`                              |
+| Challenge v22 code-like-anchor attribution                   | seeded 2 / 2; unseeded 0 / 2; direct 0 / 2 | `docs/V22_CODE_LIKE_ANCHOR_SKELETON_REPORT.md`                                      |
+| Challenge v22 code-like-anchor seeded stability repeats      | pair+top 2 / 3; named metric 2 / 3; each 3 / 4 including attribution | `docs/V22_CODE_LIKE_ANCHOR_SKELETON_REPORT.md`              |
 | Default run/benchmark/attribution roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="run"`, `action="benchmark"`, and `action="attribution"` defaults use temp roots |
 | Harness timeout cleanup kills child process groups          | tracked process groups + SIGTERM/SIGKILL cleanup | `harness/process_utils.py`, `tests/package_validation.py`                                        |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |

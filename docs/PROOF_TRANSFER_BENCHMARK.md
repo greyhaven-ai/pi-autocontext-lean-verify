@@ -329,3 +329,5 @@ The controlled Pi attribution run solved seeded `1/2` (`3` Pi calls, `417.34s`, 
 ## V22 code-like anchor skeleton ablation
 
 The source tree after `0.1.15` adds `challenge_v22_code_like_anchor_skeleton`, another ablation group over the two clean v18 theorem templates. It keeps the compact descriptions from v20, adds code-like snake_case anchors such as `tree_induction_step`, `node_value_target_split_step`, `append_filter_simplification_step`, `nat_add_normalization_step`, and `metric_packer_finish_step`, and deliberately omits the v18/v19 `plan_` prefix. The manifest fixture count stays `130` because the group reuses `challenge_v18_pair_top_packers_clean` and `challenge_v18_named_metric_packers_clean`.
+
+The controlled Pi attribution run solved seeded `2/2`, unseeded `0/2`, and direct `0/2`. Seeded focused repeats were pair+top `2/3` and named metric `2/3` (`3/4` each including attribution). V22 therefore recovers attribution success with code-like snake_case anchors, but it does not reproduce V18's `3/3` per-fixture stability; its profile is closer to V20 description-only context.

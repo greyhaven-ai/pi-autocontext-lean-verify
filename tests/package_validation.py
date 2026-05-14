@@ -267,6 +267,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "docs/V19_BARE_SKELETON_NAMES_REPORT.md",
             "docs/V20_DESCRIPTION_ONLY_SKELETON_REPORT.md",
             "docs/V21_NEUTRAL_ANCHOR_SKELETON_REPORT.md",
+            "docs/V22_CODE_LIKE_ANCHOR_SKELETON_REPORT.md",
         }
         self.assertTrue(required.issubset(paths))
         self.assertFalse(any(path.startswith("harness/results/") for path in paths))

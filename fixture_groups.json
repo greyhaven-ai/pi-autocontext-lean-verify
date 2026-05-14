@@ -268,6 +268,10 @@
     "challenge_v23_exact_labels_without_plan_prefix": [
       "challenge_v18_pair_top_packers_clean",
       "challenge_v18_named_metric_packers_clean"
+    ],
+    "challenge_v24_plan_prefix_generic_labels": [
+      "challenge_v18_pair_top_packers_clean",
+      "challenge_v18_named_metric_packers_clean"
     ]
   },
   "descriptions": {
@@ -300,6 +304,7 @@
     "challenge_v20_description_only_skeleton": "Ablation group reusing the two clean v18 compact-packer fixtures while supplying compact natural-language skeleton descriptions without plan labels in the seeded playbook context.",
     "challenge_v21_neutral_anchor_skeleton": "Ablation group reusing the two clean v18 compact-packer fixtures while supplying neutral natural-language step anchors plus compact skeleton descriptions without plan labels in the seeded playbook context.",
     "challenge_v22_code_like_anchor_skeleton": "Ablation group reusing the two clean v18 compact-packer fixtures while supplying compact skeleton descriptions plus code-like snake_case step anchors without the v18 plan_ prefix.",
-    "challenge_v23_exact_labels_without_plan_prefix": "Ablation group reusing the two clean v18 compact-packer fixtures while supplying the v18 detailed skeleton labels with only the detailed-plan prefix removed."
+    "challenge_v23_exact_labels_without_plan_prefix": "Ablation group reusing the two clean v18 compact-packer fixtures while supplying the v18 detailed skeleton labels with only the detailed-plan prefix removed.",
+    "challenge_v24_plan_prefix_generic_labels": "Ablation group reusing the two clean v18 compact-packer fixtures while supplying compact descriptions plus generic plan_ labels that differ from v18 exact labels."
   }
 }

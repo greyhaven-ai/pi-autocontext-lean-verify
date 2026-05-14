@@ -86,6 +86,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "challenge_v21_neutral_anchor_skeleton",
             "challenge_v22_code_like_anchor_skeleton",
             "challenge_v23_exact_labels_without_plan_prefix",
+            "challenge_v24_plan_prefix_generic_labels",
             "challenge_extended_transfer",
         ]:
             with self.subTest(group=group_name):
@@ -174,6 +175,31 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             with self.subTest(label=label):
                 self.assertIn(label, playbook)
 
+    def test_v24_seed_uses_generic_plan_prefix_labels(self) -> None:
+        playbook = (HARNESS / "playbooks" / "challenge_v24_plan_prefix_generic_labels_v1.md").read_text(encoding="utf-8")
+        generic_labels = [
+            "plan_tree_induction",
+            "plan_leaf_simplification",
+            "plan_node_split",
+            "plan_append_filter_simplification",
+            "plan_nat_add_normalization",
+            "plan_packer_finish",
+        ]
+        exact_v18_labels = [
+            "plan_induct_on_tree",
+            "plan_leaf_simp_definitions",
+            "plan_node_by_cases_value_eq_target",
+            "plan_simp_mirror_flatten_keep_drop_append",
+            "plan_normalize_nat_add_assoc_comm_left_comm",
+            "plan_finish_with_metric_packers",
+        ]
+        for label in generic_labels:
+            with self.subTest(generic_label=label):
+                self.assertIn(label, playbook)
+        for label in exact_v18_labels:
+            with self.subTest(exact_v18_label=label):
+                self.assertNotIn(label, playbook)
+
     def test_autocontext_runtime_dependency_contract_is_explicit(self) -> None:
         proof_runner = PROVE_WITH_AUTOCONTEXT.read_text(encoding="utf-8")
         self.assertIn('"uvx"', proof_runner)
@@ -249,6 +275,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "harness/playbooks/challenge_v21_neutral_anchor_skeleton_v1.md",
             "harness/playbooks/challenge_v22_code_like_anchor_skeleton_v1.md",
             "harness/playbooks/challenge_v23_exact_labels_without_plan_prefix_v1.md",
+            "harness/playbooks/challenge_v24_plan_prefix_generic_labels_v1.md",
             "harness/run_playbook_transfer.py",
             "harness/process_utils.py",
             "harness/run_direct_baseline_benchmark.py",

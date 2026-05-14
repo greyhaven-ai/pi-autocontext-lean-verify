@@ -407,7 +407,7 @@ Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was th
 
 `0.1.14` was published through GitHub trusted publishing from tag `v0.1.14` (workflow `25813274000`), has two npm provenance attestations, and was registry-smoked with setup `1/1` over 130 fixtures plus a focused v20 description-only seeded timeout-240 smoke: seeded `1/1`.
 
-`0.1.15` was published through GitHub trusted publishing from tag `v0.1.15` (workflow `25838541595`), is npm `latest`, has two npm provenance attestations, and includes the process-group timeout/short-run-root hardening required before v22 prompt-transfer stress tests.
+`0.1.15` was published through GitHub trusted publishing from tag `v0.1.15` (workflow `25838541595`), is npm `latest`, has two npm provenance attestations, and includes the process-group timeout/short-run-root hardening required before v22 prompt-transfer stress tests. Registry smoke covered preflight, setup `1/1`, default `action="run"` short temp-root behavior, and packaged `process_utils.py` process-group cleanup.
 
 Future releases use GitHub's npm trusted publisher workflow on version tags:
 

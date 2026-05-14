@@ -412,9 +412,7 @@ async function runHarness(
 ) {
 	const fixtures = selectedFixtures(params);
 	const mode = params.mode || "pre_repair_hint";
-	const runRoot =
-		params.runRoot ||
-		`results/pi_package_${mode}_${new Date().toISOString().replace(/[-:.]/g, "").slice(0, 15)}`;
+	const runRoot = params.runRoot || defaultShortRunRoot("run", params.fixtureGroup || mode);
 	const args = [
 		"run_playbook_transfer.py",
 		"--fixtures",

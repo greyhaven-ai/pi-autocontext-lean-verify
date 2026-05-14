@@ -5,14 +5,13 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
-import signal
-import subprocess
 import tempfile
 import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+from process_utils import communicate_process_group, popen_process_group
 
 ROOT = Path(__file__).resolve().parent
 PACKAGE_ROOT = ROOT.parent
@@ -108,26 +107,13 @@ def run_command(
     timeout_seconds: int,
 ) -> dict[str, Any]:
     started = time.time()
-    proc = subprocess.Popen(
-        cmd,
-        cwd=cwd,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        start_new_session=True,
+    proc = popen_process_group(cmd, cwd=cwd)
+    stdout, stderr, _timed_out, exit_code = communicate_process_group(
+        proc,
+        timeout=timeout_seconds,
+        kill_grace=15,
+        timeout_marker=f"{name.upper()}_TIMEOUT after {timeout_seconds}s",
     )
-    try:
-        stdout, stderr = proc.communicate(timeout=timeout_seconds)
-        exit_code = proc.returncode
-    except subprocess.TimeoutExpired:
-        try:
-            os.killpg(proc.pid, signal.SIGTERM)
-            stdout, stderr = proc.communicate(timeout=15)
-        except subprocess.TimeoutExpired:
-            os.killpg(proc.pid, signal.SIGKILL)
-            stdout, stderr = proc.communicate()
-        stderr += f"\n{name.upper()}_TIMEOUT after {timeout_seconds}s\n"
-        exit_code = 124
     elapsed = round(time.time() - started, 2)
     (log_dir / f"{name}.stdout.log").write_text(stdout, encoding="utf-8")
     (log_dir / f"{name}.stderr.log").write_text(stderr, encoding="utf-8")

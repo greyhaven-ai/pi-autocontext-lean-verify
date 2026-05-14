@@ -15,6 +15,7 @@
     "harness/playbooks",
     "harness/run_playbook_transfer.py",
     "harness/prove_with_autocontext.py",
+    "harness/process_utils.py",
     "harness/experiment_common.py",
     "harness/verify_lean_proof.py",
     "harness/extract_candidate_proof.py",

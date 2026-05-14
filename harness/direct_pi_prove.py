@@ -14,7 +14,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import subprocess
 import time
 from pathlib import Path
 from typing import Any
@@ -34,6 +33,7 @@ from experiment_common import (
     verify_attempt,
 )
 from extract_candidate_proof import extract
+from process_utils import communicate_process_group, popen_process_group
 
 SYSTEM_PROMPT = """You are a Lean 4 theorem-proving assistant.
 Return only a proof body that can replace a `{{PROOF}}` placeholder after `:= by`.
@@ -139,34 +139,12 @@ def run_pi(
     env = os.environ.copy()
     env.update({"PI_OFFLINE": "1"})
     started = time.time()
-    try:
-        proc = subprocess.run(
-            cmd,
-            cwd=attempt_dir,
-            text=True,
-            capture_output=True,
-            timeout=args.timeout,
-            check=False,
-            env=env,
-        )
-        stdout = proc.stdout
-        stderr = proc.stderr
-        exit_code = proc.returncode
-        timed_out = False
-    except subprocess.TimeoutExpired as exc:
-        stdout = (
-            exc.stdout
-            if isinstance(exc.stdout, str)
-            else (exc.stdout or b"").decode(errors="replace")
-        )
-        stderr = (
-            exc.stderr
-            if isinstance(exc.stderr, str)
-            else (exc.stderr or b"").decode(errors="replace")
-        )
-        stderr += "\nDIRECT_PI_TIMEOUT\n"
-        exit_code = 124
-        timed_out = True
+    proc = popen_process_group(cmd, cwd=attempt_dir, env=env)
+    stdout, stderr, timed_out, exit_code = communicate_process_group(
+        proc,
+        timeout=args.timeout,
+        timeout_marker="DIRECT_PI_TIMEOUT",
+    )
     elapsed = round(time.time() - started, 2)
     (attempt_dir / f"{label}_pi_stdout.log").write_text(stdout, encoding="utf-8")
     (attempt_dir / f"{label}_pi_stderr.log").write_text(stderr, encoding="utf-8")

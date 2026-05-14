@@ -10,8 +10,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import signal
-import subprocess
 import time
 from pathlib import Path
 from typing import Any
@@ -31,6 +29,7 @@ from experiment_common import (
     verify_attempt,
 )
 from extract_candidate_proof import extract
+from process_utils import communicate_process_group, popen_process_group
 
 
 def fenced(proof: str) -> str:
@@ -139,29 +138,12 @@ def run_autoctx_repair(
     )
     started = time.time()
     deadline = max(timeout * (rounds + 2), timeout + 60)
-    proc = subprocess.Popen(
-        cmd,
-        cwd=attempt_dir,
-        env=env,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        start_new_session=True,
+    proc = popen_process_group(cmd, cwd=attempt_dir, env=env)
+    stdout, stderr, timed_out, exit_code = communicate_process_group(
+        proc,
+        timeout=deadline,
+        timeout_marker=f"EXTERNAL_TIMEOUT after {deadline}s",
     )
-    try:
-        stdout, stderr = proc.communicate(timeout=deadline)
-        timed_out = False
-        exit_code = proc.returncode
-    except subprocess.TimeoutExpired:
-        timed_out = True
-        try:
-            os.killpg(proc.pid, signal.SIGTERM)
-            stdout, stderr = proc.communicate(timeout=10)
-        except subprocess.TimeoutExpired:
-            os.killpg(proc.pid, signal.SIGKILL)
-            stdout, stderr = proc.communicate()
-        stderr = (stderr or "") + "\nEXTERNAL_TIMEOUT\n"
-        exit_code = 124
     elapsed = round(time.time() - started, 2)
     (attempt_dir / "autoctx_stdout.log").write_text(stdout, encoding="utf-8")
     (attempt_dir / "autoctx_stderr.log").write_text(stderr, encoding="utf-8")

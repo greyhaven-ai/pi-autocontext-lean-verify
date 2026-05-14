@@ -27,7 +27,7 @@ The harness rejects or avoids:
 
 ## Recommended workflow
 
-Benchmark and attribution actions default to short temp result paths under `the system temp directory (`pi-autocontext-lean-verify/...`)` (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) so npm-loaded packages avoid Pi session path-length failures.
+Run, benchmark, and attribution actions default to short temp result paths under the system temp directory (`pi-autocontext-lean-verify/...`) (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) so npm-loaded packages avoid Pi session path-length failures.
 
 Use `challenge_v6_frontier` and `challenge_v7_frontier` for the first packaged verifier-only frontier suites. v7 is the first packaged suite where seeded autocontext is intentionally unstable while unseeded/direct solve none. Version `0.1.10` packages `challenge_v8_diagnostics`, `challenge_v9_composition_gradient`, `challenge_v10_stats_reification`, `challenge_v11_metric_composition`, and `challenge_v12_simultaneous_metrics`. Version `0.1.11` packages `challenge_v13_decomposition_order` and `challenge_v14_metric_order_permutations`; version `0.1.12` packages `challenge_v15_proof_shape_hints`. Version `0.1.13` packages `challenge_v16_compact_reassembly_hints` and `challenge_v17_proof_plan_hints`; version `0.1.14` packages `challenge_v18_prompt_only_skeleton_hints`, `challenge_v19_bare_skeleton_names`, and `challenge_v20_description_only_skeleton` to test whether detailed descriptions, bare labels, or both can live only in seeded playbook context without theorem-level `True` hypotheses. The current source tree also includes `challenge_v21_neutral_anchor_skeleton` to test neutral natural-language anchors plus descriptions without code-like plan labels.
 

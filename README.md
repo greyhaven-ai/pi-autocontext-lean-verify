@@ -58,7 +58,7 @@ uvx --python 3.12 --from autocontext==0.4.8 autoctx improve ...
 
 `action="preflight"` checks `uvx` and `autocontext==0.4.8` / `autoctx improve` availability so this dependency is explicit rather than a decorative package import.
 
-Long-running benchmark actions default their result directories to a short temp path under `the system temp directory (`pi-autocontext-lean-verify/...`)` (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) so npm-loaded extensions do not create overly long Pi session paths.
+Long-running run/benchmark/attribution actions default their result directories to a short temp path under the system temp directory (`pi-autocontext-lean-verify/...`) (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) so npm-loaded extensions do not create overly long Pi session paths.
 
 ## Provided resources
 

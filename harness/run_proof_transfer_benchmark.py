@@ -11,12 +11,13 @@ from __future__ import annotations
 
 import argparse
 import json
-import subprocess
 import tempfile
 import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+from process_utils import communicate_process_group, popen_process_group
 
 ROOT = Path(__file__).resolve().parent
 PACKAGE_ROOT = ROOT.parent
@@ -94,23 +95,12 @@ def run_command(
     timeout_seconds: int,
 ) -> dict[str, Any]:
     started = time.time()
-    try:
-        proc = subprocess.run(
-            cmd,
-            cwd=cwd,
-            text=True,
-            capture_output=True,
-            timeout=timeout_seconds,
-            check=False,
-        )
-        stdout = proc.stdout
-        stderr = proc.stderr
-        exit_code = proc.returncode
-    except subprocess.TimeoutExpired as exc:
-        stdout = exc.stdout if isinstance(exc.stdout, str) else (exc.stdout or b"").decode(errors="replace")
-        stderr = exc.stderr if isinstance(exc.stderr, str) else (exc.stderr or b"").decode(errors="replace")
-        stderr += f"\n{name.upper()}_TIMEOUT after {timeout_seconds}s\n"
-        exit_code = 124
+    proc = popen_process_group(cmd, cwd=cwd)
+    stdout, stderr, _timed_out, exit_code = communicate_process_group(
+        proc,
+        timeout=timeout_seconds,
+        timeout_marker=f"{name.upper()}_TIMEOUT after {timeout_seconds}s",
+    )
     elapsed = round(time.time() - started, 2)
     (log_dir / f"{name}.stdout.log").write_text(stdout, encoding="utf-8")
     (log_dir / f"{name}.stderr.log").write_text(stderr, encoding="utf-8")

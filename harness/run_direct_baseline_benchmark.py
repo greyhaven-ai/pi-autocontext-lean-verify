@@ -5,10 +5,11 @@ from __future__ import annotations
 
 import argparse
 import json
-import subprocess
 import time
 from pathlib import Path
 from typing import Any
+
+from process_utils import communicate_process_group, popen_process_group
 
 from experiment_common import (
     ROOT,
@@ -48,20 +49,18 @@ def run_case(
     )
 
     started = time.time()
-    proc = subprocess.run(
-        cmd,
-        cwd=ROOT,
-        text=True,
-        capture_output=True,
+    proc = popen_process_group(cmd, cwd=ROOT)
+    stdout, stderr, _timed_out, exit_code = communicate_process_group(
+        proc,
         timeout=max(args.timeout * args.max_attempts + 120, args.timeout + 120),
-        check=False,
+        timeout_marker=f"{mode.upper()}_{fixture_id}_TIMEOUT",
     )
     elapsed = round(time.time() - started, 2)
     (run_root / f"{mode}_{fixture_id}.stdout.log").write_text(
-        proc.stdout, encoding="utf-8"
+        stdout, encoding="utf-8"
     )
     (run_root / f"{mode}_{fixture_id}.stderr.log").write_text(
-        proc.stderr, encoding="utf-8"
+        stderr, encoding="utf-8"
     )
     summary_path = case_dir / "summary.json"
     if summary_path.exists():
@@ -71,9 +70,9 @@ def run_case(
             "mode": mode,
             "fixture": fixture_id,
             "proved": False,
-            "process_exit_code": proc.returncode,
-            "process_stdout_tail": proc.stdout[-2000:],
-            "process_stderr_tail": proc.stderr[-2000:],
+            "process_exit_code": exit_code,
+            "process_stdout_tail": stdout[-2000:],
+            "process_stderr_tail": stderr[-2000:],
         }
     final_proof = summary.get("final_proof")
     features = summary.get("final_proof_features") or proof_features(final_proof)
@@ -89,7 +88,7 @@ def run_case(
         "final_attempt": summary.get("final_attempt"),
         "pi_calls": attempt_tool_calls(summary),
         "elapsed_seconds": elapsed,
-        "process_exit_code": proc.returncode,
+        "process_exit_code": exit_code,
         "final_proof": final_proof,
         "proof_features": features,
         "feature_summary": proof_feature_summary(features),

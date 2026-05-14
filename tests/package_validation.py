@@ -16,6 +16,7 @@ SKILL = PACKAGE / "skills" / "lean-verify" / "SKILL.md"
 PACKAGE_JSON = PACKAGE / "package.json"
 LICENSE = PACKAGE / "LICENSE"
 PROVE_WITH_AUTOCONTEXT = HARNESS / "prove_with_autocontext.py"
+PROCESS_UTILS = HARNESS / "process_utils.py"
 MANIFEST = HARNESS / "benchmark_manifest.json"
 DEFAULT_SEED_PLAYBOOK = HARNESS / "playbooks" / "expanded_mixed_cluster_v1.md"
 PUBLISH_WORKFLOW = PACKAGE / ".github" / "workflows" / "publish.yml"
@@ -129,6 +130,33 @@ class StandaloneRepoValidationTests(unittest.TestCase):
         self.assertIn("tempfile.gettempdir()", attribution_runner)
         self.assertIn("default_run_root", transfer_runner)
         self.assertIn("default_run_root", attribution_runner)
+        self.assertIn('defaultShortRunRoot("run", params.fixtureGroup || mode)', extension_text)
+        self.assertNotIn('`results/pi_package_${mode}_', extension_text)
+
+    def test_process_group_timeout_cleanup_is_explicit(self) -> None:
+        process_utils = PROCESS_UTILS.read_text(encoding="utf-8")
+        self.assertIn("_ACTIVE_PROCESS_GROUPS", process_utils)
+        self.assertIn("start_new_session=True", process_utils)
+        self.assertIn("os.killpg", process_utils)
+        self.assertIn("SIGTERM", process_utils)
+        self.assertIn("SIGKILL", process_utils)
+        self.assertIn("atexit.register", process_utils)
+        self.assertIn("signal.signal(signal.SIGTERM", process_utils)
+        for script_name in [
+            "prove_with_autocontext.py",
+            "direct_pi_prove.py",
+            "run_attribution_benchmark.py",
+            "run_proof_transfer_benchmark.py",
+            "run_direct_baseline_benchmark.py",
+        ]:
+            script = (HARNESS / script_name).read_text(encoding="utf-8")
+            with self.subTest(script=script_name):
+                self.assertIn("popen_process_group", script)
+                self.assertIn("communicate_process_group", script)
+        proof_runner = PROVE_WITH_AUTOCONTEXT.read_text(encoding="utf-8")
+        self.assertIn("EXTERNAL_TIMEOUT after", proof_runner)
+        direct_runner = (HARNESS / "direct_pi_prove.py").read_text(encoding="utf-8")
+        self.assertIn("DIRECT_PI_TIMEOUT", direct_runner)
 
     def test_autocontext_runtime_dependency_contract_is_explicit(self) -> None:
         proof_runner = PROVE_WITH_AUTOCONTEXT.read_text(encoding="utf-8")
@@ -204,6 +232,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "harness/playbooks/challenge_v20_description_only_skeleton_v1.md",
             "harness/playbooks/challenge_v21_neutral_anchor_skeleton_v1.md",
             "harness/run_playbook_transfer.py",
+            "harness/process_utils.py",
             "harness/run_direct_baseline_benchmark.py",
             "harness/direct_pi_prove.py",
             "harness/run_proof_transfer_benchmark.py",

@@ -87,7 +87,8 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v21 neutral-anchor ablation setup                 |      2 clean reused fixtures | `docs/V21_NEUTRAL_ANCHOR_SKELETON_REPORT.md`                                                     |
 | Challenge v21 neutral-anchor attribution                     |     seeded 1 / 2; unseeded 1 / 2; direct 0 / 2 | `docs/V21_NEUTRAL_ANCHOR_SKELETON_REPORT.md`                                      |
 | Challenge v21 neutral-anchor focused probes                  |     seeded repeat 0 / 2; partial second seeded repeat failed pair+top; severe wall-clock blowups | `docs/V21_NEUTRAL_ANCHOR_SKELETON_REPORT.md` |
-| Default benchmark run roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="attribution"` npm smoke without explicit `runRoot`                                      |
+| Default run/benchmark/attribution roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="run"`, `action="benchmark"`, and `action="attribution"` defaults use temp roots |
+| Harness timeout cleanup kills child process groups          | tracked process groups + SIGTERM/SIGKILL cleanup | `harness/process_utils.py`, `tests/package_validation.py`                                        |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 | Release `0.1.11` candidate contents                       |  v13/v14 fixtures + timeout robustness | `package.json`, `docs/V13_DECOMPOSITION_ORDER_REPORT.md`, `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md` |
 | Release `0.1.11` trusted publish                          |  npm latest + 2 attestations | `v0.1.11`, workflow `25753534079`, npm attestations endpoint                                      |
@@ -118,7 +119,7 @@ uvx --python 3.12 --from autocontext==0.4.8 autoctx improve ...
 
 Preflight checks both `uvx` and `autocontext==0.4.8` / `autoctx improve` availability. This keeps autocontext as the real repair-engine dependency while Lean remains the proof oracle.
 
-Benchmark and attribution actions default to `the system temp directory (`pi-autocontext-lean-verify/...`)/...` (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) instead of package-internal `harness/results/...` when `runRoot` is omitted. This avoids long npm temp paths causing Pi session `ENAMETOOLONG` failures.
+Run, benchmark, and attribution actions default to the system temp directory (`pi-autocontext-lean-verify/...`) (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) instead of package-internal `harness/results/...` when `runRoot` is omitted. This avoids long npm temp paths causing Pi session `ENAMETOOLONG` failures.
 
 ## Recommended package-level checks
 

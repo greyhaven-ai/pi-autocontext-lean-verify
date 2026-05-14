@@ -48,7 +48,8 @@
     "benchmark:v19": "python3 harness/run_attribution_benchmark.py --fixture-group challenge_v19_bare_skeleton_names --timeout 120 --max-attempts 2 --rounds 2",
     "benchmark:v20": "python3 harness/run_attribution_benchmark.py --fixture-group challenge_v20_description_only_skeleton --timeout 120 --max-attempts 2 --rounds 2",
     "benchmark:v21": "python3 harness/run_attribution_benchmark.py --fixture-group challenge_v21_neutral_anchor_skeleton --timeout 120 --max-attempts 2 --rounds 2",
-    "benchmark:v22": "python3 harness/run_attribution_benchmark.py --fixture-group challenge_v22_code_like_anchor_skeleton --timeout 120 --max-attempts 2 --rounds 2"
+    "benchmark:v22": "python3 harness/run_attribution_benchmark.py --fixture-group challenge_v22_code_like_anchor_skeleton --timeout 120 --max-attempts 2 --rounds 2",
+    "benchmark:v23": "python3 harness/run_attribution_benchmark.py --fixture-group challenge_v23_exact_labels_without_plan_prefix --timeout 120 --max-attempts 2 --rounds 2"
   },
   "keywords": [
     "pi-package",

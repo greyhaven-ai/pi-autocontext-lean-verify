@@ -29,6 +29,7 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v20_description_only_skeleton` | 2 | Description-only ablation reusing the clean v18 fixtures with compact skeleton descriptions but no `plan_...` labels in the seeded playbook. |
 | `challenge_v21_neutral_anchor_skeleton` | 2 | Neutral-anchor ablation reusing the clean v18 fixtures with compact descriptions and natural-language step anchors but no `plan_...` labels in the seeded playbook. |
 | `challenge_v22_code_like_anchor_skeleton` | 2 | Code-like-anchor ablation reusing the clean v18 fixtures with compact descriptions and snake_case step anchors but no earlier detailed-plan prefix. |
+| `challenge_v23_exact_labels_without_plan_prefix` | 2 | Exact-label-minus-prefix ablation reusing the clean v18 fixtures with v18 detailed labels after removing only the prefix. |
 | `challenge_extended_transfer` | 78 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16/v17/v18 challenge fixtures. |
 
 ## Reproducible commands
@@ -331,3 +332,8 @@ The controlled Pi attribution run solved seeded `1/2` (`3` Pi calls, `417.34s`, 
 The source tree after `0.1.15` adds `challenge_v22_code_like_anchor_skeleton`, another ablation group over the two clean v18 theorem templates. It keeps the compact descriptions from v20, adds code-like snake_case anchors such as `tree_induction_step`, `node_value_target_split_step`, `append_filter_simplification_step`, `nat_add_normalization_step`, and `metric_packer_finish_step`, and deliberately omits the v18/v19 `plan_` prefix. The manifest fixture count stays `130` because the group reuses `challenge_v18_pair_top_packers_clean` and `challenge_v18_named_metric_packers_clean`.
 
 The controlled Pi attribution run solved seeded `2/2`, unseeded `0/2`, and direct `0/2`. Seeded focused repeats were pair+top `2/3` and named metric `2/3` (`3/4` each including attribution). V22 therefore recovers attribution success with code-like snake_case anchors, but it does not reproduce V18's `3/3` per-fixture stability; its profile is closer to V20 description-only context.
+
+
+## V23 exact labels without detailed-plan prefix
+
+The source tree after the v22 report adds `challenge_v23_exact_labels_without_plan_prefix`, another ablation group over the two clean v18 theorem templates. It preserves v18's detailed skeleton labels and descriptions but removes only the earlier detailed-plan prefix from each label: `induct_on_tree`, `leaf_simp_definitions`, `node_by_cases_value_eq_target`, `simp_mirror_flatten_keep_drop_append`, `normalize_nat_add_assoc_comm_left_comm`, and `finish_with_metric_packers`. The seed playbook is checked to contain no prefix token. The manifest fixture count stays `130` because the group reuses `challenge_v18_pair_top_packers_clean` and `challenge_v18_named_metric_packers_clean`.

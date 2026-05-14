@@ -41,6 +41,10 @@ def load_fixture_group(name: str) -> list[str]:
 
 
 def default_seed_playbook(group: str) -> Path:
+    if group == "challenge_v23_exact_labels_without_plan_prefix":
+        seed = ROOT / "playbooks" / "challenge_v23_exact_labels_without_plan_prefix_v1.md"
+        if seed.exists():
+            return seed
     if group == "challenge_v22_code_like_anchor_skeleton":
         seed = ROOT / "playbooks" / "challenge_v22_code_like_anchor_skeleton_v1.md"
         if seed.exists():

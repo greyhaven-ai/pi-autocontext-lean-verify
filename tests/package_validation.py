@@ -85,6 +85,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "challenge_v20_description_only_skeleton",
             "challenge_v21_neutral_anchor_skeleton",
             "challenge_v22_code_like_anchor_skeleton",
+            "challenge_v23_exact_labels_without_plan_prefix",
             "challenge_extended_transfer",
         ]:
             with self.subTest(group=group_name):
@@ -158,6 +159,20 @@ class StandaloneRepoValidationTests(unittest.TestCase):
         self.assertIn("EXTERNAL_TIMEOUT after", proof_runner)
         direct_runner = (HARNESS / "direct_pi_prove.py").read_text(encoding="utf-8")
         self.assertIn("DIRECT_PI_TIMEOUT", direct_runner)
+
+    def test_v23_seed_removes_plan_prefix(self) -> None:
+        playbook = (HARNESS / "playbooks" / "challenge_v23_exact_labels_without_plan_prefix_v1.md").read_text(encoding="utf-8")
+        self.assertNotIn("plan_", playbook)
+        for label in [
+            "induct_on_tree",
+            "leaf_simp_definitions",
+            "node_by_cases_value_eq_target",
+            "simp_mirror_flatten_keep_drop_append",
+            "normalize_nat_add_assoc_comm_left_comm",
+            "finish_with_metric_packers",
+        ]:
+            with self.subTest(label=label):
+                self.assertIn(label, playbook)
 
     def test_autocontext_runtime_dependency_contract_is_explicit(self) -> None:
         proof_runner = PROVE_WITH_AUTOCONTEXT.read_text(encoding="utf-8")
@@ -233,6 +248,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "harness/playbooks/challenge_v20_description_only_skeleton_v1.md",
             "harness/playbooks/challenge_v21_neutral_anchor_skeleton_v1.md",
             "harness/playbooks/challenge_v22_code_like_anchor_skeleton_v1.md",
+            "harness/playbooks/challenge_v23_exact_labels_without_plan_prefix_v1.md",
             "harness/run_playbook_transfer.py",
             "harness/process_utils.py",
             "harness/run_direct_baseline_benchmark.py",

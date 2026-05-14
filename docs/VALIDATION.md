@@ -97,6 +97,7 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v24 focused seeded repeats                         | repeats 1 / 2, 1 / 2, 2 / 2; pair+top 2 / 3; named metric 2 / 3 | `docs/V24_PLAN_PREFIX_GENERIC_LABELS_REPORT.md`              |
 | Default run/benchmark/attribution roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="run"`, `action="benchmark"`, and `action="attribution"` defaults use temp roots |
 | Harness timeout cleanup kills child process groups          | tracked process groups + SIGTERM/SIGKILL cleanup | `harness/process_utils.py`, `tests/package_validation.py`                                        |
+| Harness timeout cleanup closes leaked pipes promptly        | escaped-descendant pipe-leak regression returns in <2s with timeout marker | `tests/test_process_utils.py`                                           |
 | Package dry-run excludes result artifacts and tests        |  runtime package files only | `npm pack --dry-run --json`                                                                       |
 | Release `0.1.11` candidate contents                       |  v13/v14 fixtures + timeout robustness | `package.json`, `docs/V13_DECOMPOSITION_ORDER_REPORT.md`, `docs/V14_METRIC_ORDER_PERMUTATIONS_REPORT.md` |
 | Release `0.1.11` trusted publish                          |  npm latest + 2 attestations | `v0.1.11`, workflow `25753534079`, npm attestations endpoint                                      |

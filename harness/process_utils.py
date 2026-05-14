@@ -13,12 +13,16 @@ import atexit
 import os
 import signal
 import subprocess
+import time
 from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
 _ACTIVE_PROCESS_GROUPS: set[int] = set()
 _SIGNAL_HANDLERS_INSTALLED = False
+_EXIT_CLEANUP_GRACE_SECONDS = 1.0
+_DEFAULT_SIGKILL_GRACE_SECONDS = 1.0
+_DEFAULT_PIPE_CLOSE_GRACE_SECONDS = 1.0
 
 
 def _terminate_process_group(pgid: int, *, sig: int = signal.SIGTERM) -> None:
@@ -35,8 +39,14 @@ def _terminate_process_group(pgid: int, *, sig: int = signal.SIGTERM) -> None:
 
 
 def _cleanup_active_process_groups() -> None:
-    for pgid in list(_ACTIVE_PROCESS_GROUPS):
+    pgids = list(_ACTIVE_PROCESS_GROUPS)
+    for pgid in pgids:
         _terminate_process_group(pgid, sig=signal.SIGTERM)
+    if not pgids:
+        return
+    time.sleep(_EXIT_CLEANUP_GRACE_SECONDS)
+    for pgid in pgids:
+        _terminate_process_group(pgid, sig=signal.SIGKILL)
 
 
 def _signal_cleanup(signum: int, _frame: Any) -> None:
@@ -95,37 +105,117 @@ def reap_process_group(proc: subprocess.Popen[str]) -> None:
     _terminate_process_group(pgid, sig=signal.SIGTERM)
 
 
+def _decode_output(value: str | bytes | None) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, bytes):
+        return value.decode("utf-8", errors="replace")
+    return value
+
+
+def _prefer_timeout_output(current: str, partial: str | bytes | None) -> str:
+    decoded = _decode_output(partial)
+    if not decoded:
+        return current or ""
+    if not current or len(decoded) >= len(current):
+        return decoded
+    return current
+
+
+def _capture_timeout_output(
+    stdout: str,
+    stderr: str,
+    exc: subprocess.TimeoutExpired,
+) -> tuple[str, str]:
+    """Preserve partial communicate output from a TimeoutExpired exception."""
+
+    return (
+        _prefer_timeout_output(stdout, exc.output),
+        _prefer_timeout_output(stderr, exc.stderr),
+    )
+
+
+def _close_process_pipes(proc: subprocess.Popen[str]) -> None:
+    """Force-close stdout/stderr pipes so communicate cannot wait on leaked FDs."""
+
+    for pipe in (proc.stdout, proc.stderr):
+        if pipe is None:
+            continue
+        try:
+            pipe.close()
+        except OSError:
+            pass
+        except ValueError:
+            pass
+
+
+def _kill_immediate_child(proc: subprocess.Popen[str]) -> None:
+    if proc.poll() is not None:
+        return
+    try:
+        proc.kill()
+    except ProcessLookupError:
+        return
+
+
 def communicate_process_group(
     proc: subprocess.Popen[str],
     *,
     timeout: float,
     kill_grace: float = 10,
+    sigkill_grace: float | None = None,
+    pipe_close_grace: float = _DEFAULT_PIPE_CLOSE_GRACE_SECONDS,
     timeout_marker: str = "EXTERNAL_TIMEOUT",
 ) -> tuple[str, str, bool, int]:
     """Communicate with a tracked process group and kill the group on timeout.
 
     Returns `(stdout, stderr, timed_out, exit_code)`. If the outer timeout fires,
-    `timeout_marker` is appended to stderr and exit code `124` is returned. The
-    process group is untracked in all cases and any lingering descendants are sent
-    SIGTERM after the immediate child exits.
+    `timeout_marker` is appended to stderr and exit code `124` is returned. Timeout
+    cleanup is bounded: after SIGTERM and SIGKILL grace periods, stdout/stderr pipe
+    handles are force-closed so escaped descendants or leaked file descriptors
+    cannot keep `communicate()` blocked indefinitely. The process group is
+    untracked in all cases and any lingering in-group descendants are sent SIGTERM
+    after the immediate child exits.
     """
 
     stdout = ""
     stderr = ""
     timed_out = False
     exit_code = 124
+    effective_sigkill_grace = (
+        sigkill_grace
+        if sigkill_grace is not None
+        else min(kill_grace, _DEFAULT_SIGKILL_GRACE_SECONDS)
+    )
     try:
-        stdout, stderr = proc.communicate(timeout=timeout)
+        raw_stdout, raw_stderr = proc.communicate(timeout=timeout)
+        stdout = _decode_output(raw_stdout)
+        stderr = _decode_output(raw_stderr)
         exit_code = int(proc.returncode or 0)
-        return stdout or "", stderr or "", False, exit_code
-    except subprocess.TimeoutExpired:
+        return stdout, stderr, False, exit_code
+    except subprocess.TimeoutExpired as exc:
         timed_out = True
+        stdout, stderr = _capture_timeout_output(stdout, stderr, exc)
         _terminate_process_group(proc.pid, sig=signal.SIGTERM)
         try:
-            stdout, stderr = proc.communicate(timeout=kill_grace)
-        except subprocess.TimeoutExpired:
+            raw_stdout, raw_stderr = proc.communicate(timeout=kill_grace)
+            stdout = _decode_output(raw_stdout)
+            stderr = _decode_output(raw_stderr)
+        except subprocess.TimeoutExpired as exc:
+            stdout, stderr = _capture_timeout_output(stdout, stderr, exc)
             _terminate_process_group(proc.pid, sig=signal.SIGKILL)
-            stdout, stderr = proc.communicate()
+            try:
+                raw_stdout, raw_stderr = proc.communicate(timeout=effective_sigkill_grace)
+                stdout = _decode_output(raw_stdout)
+                stderr = _decode_output(raw_stderr)
+            except subprocess.TimeoutExpired as exc:
+                stdout, stderr = _capture_timeout_output(stdout, stderr, exc)
+                _close_process_pipes(proc)
+                _kill_immediate_child(proc)
+                try:
+                    proc.wait(timeout=pipe_close_grace)
+                except subprocess.TimeoutExpired:
+                    pass
         stderr = (stderr or "") + f"\n{timeout_marker}\n"
         return stdout or "", stderr or "", timed_out, exit_code
     finally:

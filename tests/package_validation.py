@@ -143,6 +143,10 @@ class StandaloneRepoValidationTests(unittest.TestCase):
         self.assertIn("os.killpg", process_utils)
         self.assertIn("SIGTERM", process_utils)
         self.assertIn("SIGKILL", process_utils)
+        self.assertIn("sigkill_grace", process_utils)
+        self.assertIn("pipe_close_grace", process_utils)
+        self.assertIn("_close_process_pipes", process_utils)
+        self.assertIn("proc.wait(timeout=pipe_close_grace)", process_utils)
         self.assertIn("atexit.register", process_utils)
         self.assertIn("signal.signal(signal.SIGTERM", process_utils)
         for script_name in [

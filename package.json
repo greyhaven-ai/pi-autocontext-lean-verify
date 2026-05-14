@@ -26,7 +26,7 @@
     "harness/run_attribution_benchmark.py"
   ],
   "scripts": {
-    "validate": "python3 tests/package_validation.py",
+    "validate": "python3 -m unittest discover -s tests -p '*.py'",
     "pack:dry-run": "npm pack --dry-run --json",
     "benchmark:v3": "python3 harness/run_proof_transfer_benchmark.py --fixture-group challenge_v3_generalization --timeout 120 --max-attempts 2 --rounds 2",
     "benchmark:v4": "python3 harness/run_proof_transfer_benchmark.py --fixture-group challenge_v4_count --timeout 120 --max-attempts 2 --rounds 2",

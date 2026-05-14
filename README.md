@@ -417,7 +417,7 @@ Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was th
 
 `0.1.15` was published through GitHub trusted publishing from tag `v0.1.15` (workflow `25838541595`), has two npm provenance attestations, and includes the process-group timeout/short-run-root hardening required before v22 prompt-transfer stress tests. Registry smoke covered preflight, setup `1/1`, default `action="run"` short temp-root behavior, and packaged `process_utils.py` process-group cleanup.
 
-`0.1.16` release candidate includes v22 code-like snake_case anchor fixtures, v23 exact-label-minus-prefix fixtures, v24 generic plan-prefix fixtures, v25 step-prefix exact-label fixtures, their reports, and a second timeout hardening patch that bounds post-kill waits and force-closes leaked subprocess pipes. The combined v22-v25 evidence indicates v18's original full prefixed label form remains the strongest stability signal.
+`0.1.16` was published through GitHub trusted publishing from tag `v0.1.16` (workflow `25875599303`), is npm `latest`, has two npm provenance attestations, and includes v22 code-like snake_case anchor fixtures, v23 exact-label-minus-prefix fixtures, v24 generic plan-prefix fixtures, v25 step-prefix exact-label fixtures, their reports, and a second timeout hardening patch that bounds post-kill waits and force-closes leaked subprocess pipes. Registry smoke covered preflight, setup `1/1`, default `action="run"` short temp-root behavior, and packaged `process_utils.py` leaked-pipe cleanup. The combined v22-v25 evidence indicates v18's original full prefixed label form remains the strongest stability signal.
 
 Future releases use GitHub's npm trusted publisher workflow on version tags:
 

@@ -28,6 +28,7 @@ This package includes no-expected-proof challenge fixtures for reproducible Lean
 | `challenge_v19_bare_skeleton_names` | 2 | Bare-name ablation reusing the clean v18 fixtures with only skeleton-label bullets in the seeded playbook. |
 | `challenge_v20_description_only_skeleton` | 2 | Description-only ablation reusing the clean v18 fixtures with compact skeleton descriptions but no `plan_...` labels in the seeded playbook. |
 | `challenge_v21_neutral_anchor_skeleton` | 2 | Neutral-anchor ablation reusing the clean v18 fixtures with compact descriptions and natural-language step anchors but no `plan_...` labels in the seeded playbook. |
+| `challenge_v22_code_like_anchor_skeleton` | 2 | Code-like-anchor ablation reusing the clean v18 fixtures with compact descriptions and snake_case step anchors but no earlier detailed-plan prefix. |
 | `challenge_extended_transfer` | 78 | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16/v17/v18 challenge fixtures. |
 
 ## Reproducible commands
@@ -323,3 +324,8 @@ The controlled Pi attribution run solved seeded `2/2` (`2` Pi calls, `283.29s`, 
 Version `0.1.15` adds `challenge_v21_neutral_anchor_skeleton`, another ablation group over the two clean v18 theorem templates. It keeps compact descriptions, adds neutral natural-language step anchors such as tree induction, leaf simplification, node equality split, append/filter simplification, Nat addition normalization, and packer finish, and still omits `plan_...` labels from the seeded playbook. The manifest fixture count stays `130`.
 
 The controlled Pi attribution run solved seeded `1/2` (`3` Pi calls, `417.34s`, `5` Lean attempts), unseeded `1/2` (`3` Pi calls, `361.52s`, `5` Lean attempts), and direct `0/2`. The fixture split crossed over: seeded missed pair+top and solved named-metric, while unseeded solved pair+top and missed named-metric. Focused seeded probing then showed neutral anchors do not stabilize the frontier: the first repeat was `0/2` with `4704.63s` of Pi elapsed, and a partial second repeat failed pair+top before being curtailed after timeout/orphan-process pathology. V21 therefore does not close the v20-to-v18 stability gap; generic prose anchors appear weaker than v18's code-like skeleton labels paired with descriptions.
+
+
+## V22 code-like anchor skeleton ablation
+
+The source tree after `0.1.15` adds `challenge_v22_code_like_anchor_skeleton`, another ablation group over the two clean v18 theorem templates. It keeps the compact descriptions from v20, adds code-like snake_case anchors such as `tree_induction_step`, `node_value_target_split_step`, `append_filter_simplification_step`, `nat_add_normalization_step`, and `metric_packer_finish_step`, and deliberately omits the v18/v19 `plan_` prefix. The manifest fixture count stays `130` because the group reuses `challenge_v18_pair_top_packers_clean` and `challenge_v18_named_metric_packers_clean`.

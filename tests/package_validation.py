@@ -84,6 +84,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "challenge_v19_bare_skeleton_names",
             "challenge_v20_description_only_skeleton",
             "challenge_v21_neutral_anchor_skeleton",
+            "challenge_v22_code_like_anchor_skeleton",
             "challenge_extended_transfer",
         ]:
             with self.subTest(group=group_name):
@@ -231,6 +232,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
             "harness/playbooks/challenge_v19_bare_skeleton_names_v1.md",
             "harness/playbooks/challenge_v20_description_only_skeleton_v1.md",
             "harness/playbooks/challenge_v21_neutral_anchor_skeleton_v1.md",
+            "harness/playbooks/challenge_v22_code_like_anchor_skeleton_v1.md",
             "harness/run_playbook_transfer.py",
             "harness/process_utils.py",
             "harness/run_direct_baseline_benchmark.py",

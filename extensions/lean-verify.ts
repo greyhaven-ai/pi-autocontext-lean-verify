@@ -54,7 +54,7 @@ const FIXTURE_GROUP_NAMES = [
 type FixtureGroupName = (typeof FIXTURE_GROUP_NAMES)[number];
 type FixtureGroupRegistry = { groups: Record<FixtureGroupName, string[]> };
 
-const AUTOCONTEXT_PACKAGE_VERSION = "0.4.8";
+const AUTOCONTEXT_PACKAGE_VERSION = "0.5.1";
 
 const formalProofSchema = Type.Object({
 	action: StringEnum(["preflight", "setup", "run", "benchmark", "attribution", "summarize"] as const, {

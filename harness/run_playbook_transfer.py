@@ -1045,7 +1045,7 @@ def main() -> int:
     parser.add_argument("--rounds", type=int, default=2)
     parser.add_argument("--timeout", type=int, default=240)
     parser.add_argument("--provider", default="pi")
-    parser.add_argument("--package-version", default="0.4.8")
+    parser.add_argument("--package-version", default="0.5.1")
     parser.add_argument("--run-root")
     parser.add_argument(
         "--seed-playbook",

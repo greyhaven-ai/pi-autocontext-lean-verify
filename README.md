@@ -53,10 +53,10 @@ $AUTOCONTEXT_LEAN
 Autocontext is the repair engine and Lean is the oracle. Repair runs invoke the Python autocontext CLI on demand through:
 
 ```text
-uvx --python 3.12 --from autocontext==0.4.8 autoctx improve ...
+uvx --python 3.12 --from autocontext==0.5.1 autoctx improve ...
 ```
 
-`action="preflight"` checks `uvx` and `autocontext==0.4.8` / `autoctx improve` availability so this dependency is explicit rather than a decorative package import.
+`action="preflight"` checks `uvx` and `autocontext==0.5.1` / `autoctx improve` availability so this dependency is explicit rather than a decorative package import.
 
 Long-running run/benchmark/attribution actions default their result directories to a short temp path under the system temp directory (`pi-autocontext-lean-verify/...`) (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) so npm-loaded extensions do not create overly long Pi session paths.
 
@@ -322,7 +322,7 @@ Observed preflight summary:
 Lean version: 4.29.1
 Python: 3.14.2
 uvx: uv-tool-uvx 0.6.17
-Autocontext runtime: autocontext==0.4.8 via uvx autoctx improve (ok)
+Autocontext runtime: autocontext==0.5.1 via uvx autoctx improve (ok)
 Fixture count: 130
 Fixture groups: smoke=1, broader=7, heldout=7, combined=14, negative_controls=6, challenge_v2_no_helper=3, challenge_v3_generalization=4, challenge_transfer=7, challenge_v4_count=4, challenge_v5_attribution=4, challenge_v5_tree_tally=1, challenge_v6_frontier=4, challenge_v7_frontier=4, challenge_v8_diagnostics=4, challenge_v9_composition_gradient=6, challenge_v10_stats_reification=6, challenge_v11_metric_composition=6, challenge_v12_simultaneous_metrics=7, challenge_v13_decomposition_order=6, challenge_v14_metric_order_permutations=6, challenge_v15_proof_shape_hints=4, challenge_v16_compact_reassembly_hints=4, challenge_v17_proof_plan_hints=4, challenge_v18_prompt_only_skeleton_hints=2, challenge_v19_bare_skeleton_names=2, challenge_v20_description_only_skeleton=2, challenge_v21_neutral_anchor_skeleton=2, challenge_v22_code_like_anchor_skeleton=2, challenge_v23_exact_labels_without_plan_prefix=2, challenge_v24_plan_prefix_generic_labels=2, challenge_v25_step_prefix_exact_labels=2, challenge_extended_transfer=78
 ```
@@ -405,7 +405,7 @@ See `docs/PROOF_TRANSFER_BENCHMARK.md` for fixture groups, commands, and interpr
 
 ## Release
 
-Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was the first successful GitHub OIDC trusted-publisher release with npm provenance attestations. Version `0.1.6` promotes the v2/v3 challenge fixtures and proof-transfer benchmark runner. Version `0.1.7` promotes the v4/v5 fixtures plus attribution benchmarking. Version `0.1.8` fixes default benchmark run roots for npm-loaded extensions to avoid Pi session `ENAMETOOLONG` failures. Version `0.1.9` promotes the v6/v7 frontier fixtures and reports. Version `0.1.10` promotes the v8-v12 diagnostic/frontier fixtures and reports. Version `0.1.11` promotes v13/v14 order-sensitivity fixtures, timeout/process-group attribution robustness, and budget-vs-timeout frontier evidence. Version `0.1.12` promotes v15 proof-shape hint diagnostics and focused stability evidence for compact helper hypotheses versus large explicit reassembly hints. Version `0.1.13` promotes v16/v17 diagnostics: compact reassembly packers, timeout-240 caveats, and detailed proof-plan skeleton hints. Version `0.1.14` promotes v18/v19/v20 prompt-only ablations over detailed descriptions, bare labels, and description-only skeleton context. Version `0.1.15` promotes v21 neutral-anchor skeleton evidence and hardens subprocess process-group timeout cleanup plus short temp run roots for run/benchmark/attribution actions. Version `0.1.16` promotes v22-v25 prompt-transfer ablations and the second timeout pipe-leak hardening patch. Unpublished attempts `0.1.1`–`0.1.3` do not exist in the npm registry.
+Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was the first successful GitHub OIDC trusted-publisher release with npm provenance attestations. Version `0.1.6` promotes the v2/v3 challenge fixtures and proof-transfer benchmark runner. Version `0.1.7` promotes the v4/v5 fixtures plus attribution benchmarking. Version `0.1.8` fixes default benchmark run roots for npm-loaded extensions to avoid Pi session `ENAMETOOLONG` failures. Version `0.1.9` promotes the v6/v7 frontier fixtures and reports. Version `0.1.10` promotes the v8-v12 diagnostic/frontier fixtures and reports. Version `0.1.11` promotes v13/v14 order-sensitivity fixtures, timeout/process-group attribution robustness, and budget-vs-timeout frontier evidence. Version `0.1.12` promotes v15 proof-shape hint diagnostics and focused stability evidence for compact helper hypotheses versus large explicit reassembly hints. Version `0.1.13` promotes v16/v17 diagnostics: compact reassembly packers, timeout-240 caveats, and detailed proof-plan skeleton hints. Version `0.1.14` promotes v18/v19/v20 prompt-only ablations over detailed descriptions, bare labels, and description-only skeleton context. Version `0.1.15` promotes v21 neutral-anchor skeleton evidence and hardens subprocess process-group timeout cleanup plus short temp run roots for run/benchmark/attribution actions. Version `0.1.16` promotes v22-v25 prompt-transfer ablations and the second timeout pipe-leak hardening patch. Version `0.1.17` updates the runtime pin to `autocontext==0.5.1`, inheriting upstream Python/TypeScript Pi CLI timeout cleanup hardening. Unpublished attempts `0.1.1`–`0.1.3` do not exist in the npm registry.
 
 `0.1.11` was published through GitHub trusted publishing from tag `v0.1.11` (workflow `25753534079`), had two npm provenance attestations, and was registry-smoked with setup `1/1` plus a v14 timeout-240 attribution contrast: seeded `1/1`, unseeded `0/1`, direct `0/1`.
 
@@ -417,7 +417,9 @@ Version `0.1.0` was the initial experimental npm release. Version `0.1.4` was th
 
 `0.1.15` was published through GitHub trusted publishing from tag `v0.1.15` (workflow `25838541595`), has two npm provenance attestations, and includes the process-group timeout/short-run-root hardening required before v22 prompt-transfer stress tests. Registry smoke covered preflight, setup `1/1`, default `action="run"` short temp-root behavior, and packaged `process_utils.py` process-group cleanup.
 
-`0.1.16` was published through GitHub trusted publishing from tag `v0.1.16` (workflow `25875599303`), is npm `latest`, has two npm provenance attestations, and includes v22 code-like snake_case anchor fixtures, v23 exact-label-minus-prefix fixtures, v24 generic plan-prefix fixtures, v25 step-prefix exact-label fixtures, their reports, and a second timeout hardening patch that bounds post-kill waits and force-closes leaked subprocess pipes. Registry smoke covered preflight, setup `1/1`, default `action="run"` short temp-root behavior, and packaged `process_utils.py` leaked-pipe cleanup. The combined v22-v25 evidence indicates v18's original full prefixed label form remains the strongest stability signal.
+`0.1.16` was published through GitHub trusted publishing from tag `v0.1.16` (workflow `25875599303`), has two npm provenance attestations, and includes v22 code-like snake_case anchor fixtures, v23 exact-label-minus-prefix fixtures, v24 generic plan-prefix fixtures, v25 step-prefix exact-label fixtures, their reports, and a second timeout hardening patch that bounds post-kill waits and force-closes leaked subprocess pipes. Registry smoke covered preflight, setup `1/1`, default `action="run"` short temp-root behavior, and packaged `process_utils.py` leaked-pipe cleanup. The combined v22-v25 evidence indicates v18's original full prefixed label form remains the strongest stability signal.
+
+`0.1.17` updates the explicit autocontext runtime dependency from `autocontext==0.4.8` to `autocontext==0.5.1` so Pi-provider repair runs use the upstream hardened `PiCLIRuntime` timeout/process cleanup.
 
 Future releases use GitHub's npm trusted publisher workflow on version tags:
 

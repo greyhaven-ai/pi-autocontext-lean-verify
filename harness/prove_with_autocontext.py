@@ -193,7 +193,7 @@ def main() -> int:
         help="CLI-backed provider timeout for each repair call",
     )
     parser.add_argument("--provider", default="pi")
-    parser.add_argument("--package-version", default="0.4.8")
+    parser.add_argument("--package-version", default="0.5.1")
     parser.add_argument(
         "--run-dir",
         help="Optional explicit output directory for batch experiments",

@@ -229,7 +229,7 @@ class StandaloneRepoValidationTests(unittest.TestCase):
         self.assertIn("autocontextRuntimeCheck", extension_text)
         combined_docs = README.read_text(encoding="utf-8") + "\n" + VALIDATION_DOC.read_text(encoding="utf-8")
         self.assertIn("uvx", combined_docs)
-        self.assertIn("autocontext==0.4.8", combined_docs)
+        self.assertIn("autocontext==0.5.1", combined_docs)
         self.assertIn("autoctx improve", combined_docs)
 
 

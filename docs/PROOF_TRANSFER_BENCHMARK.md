@@ -101,7 +101,7 @@ python3 harness/run_attribution_benchmark.py \
 The benchmark runners preserve the guardrails:
 
 - provider: `pi`
-- autocontext runtime: `uvx --python 3.12 --from autocontext==0.4.8 autoctx improve`
+- autocontext runtime: `uvx --python 3.12 --from autocontext==0.5.1 autoctx improve`
 - `--no-pregenerate`
 - `--structured-alternate-retry`
 - synthetic hint candidates disabled

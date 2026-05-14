@@ -113,6 +113,7 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Release `0.1.15` trusted publish                          | npm latest + 2 attestations | `v0.1.15`, workflow `25838541595`, npm attestations endpoint                                      |
 | Release `0.1.16` candidate contents                       |  v22-v25 prompt-transfer ablations + timeout pipe-leak hardening | `package.json`, `harness/process_utils.py`, `docs/V22_CODE_LIKE_ANCHOR_SKELETON_REPORT.md`, `docs/V23_EXACT_LABELS_WITHOUT_PLAN_PREFIX_REPORT.md`, `docs/V24_PLAN_PREFIX_GENERIC_LABELS_REPORT.md`, `docs/V25_STEP_PREFIX_EXACT_LABELS_REPORT.md` |
 | Release `0.1.16` trusted publish                          | npm latest + 2 attestations | `v0.1.16`, workflow `25875599303`, npm attestations endpoint                                      |
+| Release `0.1.17` candidate contents                       | autocontext runtime pin updated to `autocontext==0.5.1` after upstream Pi CLI timeout/process cleanup hardening | `package.json`, `extensions/lean-verify.ts`, `harness/prove_with_autocontext.py`, harness runner defaults, docs |
 | Registry-installed `0.1.16` preflight smoke                | autocontext runtime ok; 130 fixtures | `/tmp/pi-0.1.16-preflight-smoke.log` |
 | Registry-installed `0.1.16` setup smoke                    | 1 / 1 proof; 130 fixtures | `/var/folders/5l/4d99c0cd27183q3rdnm8ybg00000gn/T/pi-extensions/npm/f35b2129/node_modules/pi-autocontext-lean-verify/harness/results/pi_package_setup_20260514T174624` |
 | Registry-installed `0.1.16` default run-root smoke         | `action="run"` without explicit `runRoot` used short temp root; 1 / 1 proof | `/var/folders/5l/4d99c0cd27183q3rdnm8ybg00000gn/T/pi-autocontext-lean-verify/20260514T174646_run_pre_repair_hint` |
@@ -137,10 +138,10 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 This package is a Pi wrapper around an autocontext Lean verification harness. The TypeScript extension imports Pi runtime modules from `@earendil-works/*`; the proof-repair harness invokes autocontext as an on-demand Python CLI runtime:
 
 ```text
-uvx --python 3.12 --from autocontext==0.4.8 autoctx improve ...
+uvx --python 3.12 --from autocontext==0.5.1 autoctx improve ...
 ```
 
-Preflight checks both `uvx` and `autocontext==0.4.8` / `autoctx improve` availability. This keeps autocontext as the real repair-engine dependency while Lean remains the proof oracle.
+Preflight checks both `uvx` and `autocontext==0.5.1` / `autoctx improve` availability. This keeps autocontext as the real repair-engine dependency while Lean remains the proof oracle.
 
 Run, benchmark, and attribution actions default to the system temp directory (`pi-autocontext-lean-verify/...`) (or `$AUTOCONTEXT_LEAN_VERIFY_RESULTS_ROOT`) instead of package-internal `harness/results/...` when `runRoot` is omitted. This avoids long npm temp paths causing Pi session `ENAMETOOLONG` failures.
 

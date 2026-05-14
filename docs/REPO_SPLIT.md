@@ -45,7 +45,7 @@ pi-autocontext-lean-verify/
 - Keep `AUTOCONTEXT_FORMAL_ROOT` as an override for local experiments.
 - Use `pi-autocontext-lean-verify` as the repo and npm package name.
 - Import Pi runtime modules from `@earendil-works/*`.
-- Keep autocontext as an explicit runtime dependency via `uvx --python 3.12 --from autocontext==0.4.8 autoctx improve`.
+- Keep autocontext as an explicit runtime dependency via `uvx --python 3.12 --from autocontext==0.5.1 autoctx improve`.
 - Keep `private: true` until license and release policy are finalized.
 - Exclude `harness/results/` from git and npm packaging.
 

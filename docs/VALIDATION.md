@@ -97,6 +97,10 @@ Lean remains the oracle: a row counts only if the final proof body was checked a
 | Challenge v24 focused seeded repeats                         | repeats 1 / 2, 1 / 2, 2 / 2; pair+top 2 / 3; named metric 2 / 3 | `docs/V24_PLAN_PREFIX_GENERIC_LABELS_REPORT.md`              |
 | Challenge v25 step-prefix exact-label setup                  | 2 clean reused fixtures; seed has `step_` exact label roots and excludes original `plan_` token | `harness/playbooks/challenge_v25_step_prefix_exact_labels_v1.md` |
 | Challenge v25 focused seeded repeats                         | repeats 1 / 2, 0 / 2, 2 / 2; pair+top 2 / 3; named metric 1 / 3 | `docs/V25_STEP_PREFIX_EXACT_LABELS_REPORT.md`              |
+| Post-Pi-0.74 V18/V20/V23 comparison                          | V18 15 / 20; V20 17 / 20; V23 14 / 20 clean 120s fixture successes | `docs/V20_PI074_FINAL_VALIDATION_REPORT.md`              |
+| Post-Pi-0.74 clean V20 20-repeat baseline                     | 28 / 40 clean 120s fixture successes; 11 / 20 full repeats | `docs/V20_PI074_FINAL_VALIDATION_REPORT.md`              |
+| Post-Pi-0.74 V20 timeout-240 recovery                         | 12 / 12 timeout-only 120s misses recovered; recovery evidence only | `docs/V20_PI074_FINAL_VALIDATION_REPORT.md`              |
+| Lean `Init.Guard` toolchain contamination quarantined          | contaminated 0 / 20 watchdog root excluded after direct Lean failure and toolchain reinstall | `docs/V20_PI074_FINAL_VALIDATION_REPORT.md`              |
 | Default run/benchmark/attribution roots avoid npm temp path ENAMETOOLONG | short temp result paths by default | `action="run"`, `action="benchmark"`, and `action="attribution"` defaults use temp roots |
 | Harness timeout cleanup kills child process groups          | tracked process groups + SIGTERM/SIGKILL cleanup | `harness/process_utils.py`, `tests/package_validation.py`                                        |
 | Harness timeout cleanup closes leaked pipes promptly        | escaped-descendant pipe-leak regression returns in <2s with timeout marker | `tests/test_process_utils.py`                                           |

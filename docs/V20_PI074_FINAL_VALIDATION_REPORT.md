@@ -155,6 +155,38 @@ Recovery root:
 
 Recovery evidence is diagnostic only. It does **not** change the `120s` baseline result or denominator.
 
+## 180s timeout-policy probe addendum
+
+After the report was committed, an additional operational probe sampled the first six timeout-only misses from the clean post-fix V20 20-repeat baseline at `timeout=180`.
+
+Probe root:
+
+```text
+/tmp/pi074-lean427-v20-watchdog-extension-20260521T151757Z/policy_probe_timeout180
+```
+
+Final probe report:
+
+```text
+/tmp/pi074-lean427-v20-watchdog-extension-20260521T151757Z/policy_probe_timeout180/timeout180_final_report.md
+```
+
+| Probe scope | Result |
+| --- | ---: |
+| Sampled timeout-only misses | 6 |
+| Completed probes | 5 / 6 |
+| Proved among completed probes | 4 / 5 |
+| Successful candidates directly rechecked with Lean | 4 / 4 |
+| Forbidden construct/option violations | 0 |
+
+Important caveats:
+
+- one completed recovery had pathological elapsed time, about `3010s` Pi elapsed for one Pi call despite `--timeout 180`;
+- the sixth sampled probe was incomplete because the outer command timed out before a summary was produced;
+- this probe is operational timeout-policy evidence only, not a baseline result.
+
+Interpretation: `timeout=180` is **not** currently a clean operational policy candidate. The only tested recovery setting with complete recovery evidence remains `timeout=240` (`12 / 12`), and that evidence remains diagnostic rather than part of the `120s` baseline.
+
 ## Final guardrail checks
 
 | Check | Result |
@@ -185,5 +217,6 @@ The main conclusion is therefore:
    - `ELAN_HOME=/tmp/autocontext-elan-home /tmp/autocontext-elan-home/bin/lean --version`
    - a direct Lean smoke such as `#eval 1`.
 4. Quarantine any run where Lean fails with toolchain-level errors such as `missing data file for module Init.Guard`.
-5. If product operation requires reliability rather than strict baseline comparability, evaluate an explicit intermediate timeout policy such as `180s` against V20.
-6. If prompt-shape research continues, run attribution controls for V20 under the repaired toolchain before proposing a V26 variant.
+5. Do not promote `timeout=180` as a clean operational policy based on the sampled probe: it recovered some cases but showed pathological elapsed time and one incomplete sample.
+6. If product operation requires reliability rather than strict baseline comparability, evaluate an explicit `timeout=240` policy or add stronger process-level watchdog controls before declaring an operational budget.
+7. If prompt-shape research continues, run attribution controls for V20 under the repaired toolchain before proposing a V26 variant.

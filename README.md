@@ -346,6 +346,14 @@ keyword-based today; embedding-based semantic search and a Lean-environment-back
 dump (fully elaborated signatures + live `#check` validation against the lake
 environment) are documented follow-ups. Tracks issues #1 and #4.
 
+## Formalization notes
+
+`docs/formalization-notes/` is a per-session log of Lean/mathlib formalization
+attempts run through or alongside this harness: mathlib gotchas, methodology
+lessons, and campaign status, each entry stamped with a session id so tries are
+navigable. Start at `docs/formalization-notes/INDEX.md`. These notes are advisory;
+Lean remains the oracle.
+
 ## Local validation
 
 The local package has been smoke-tested through Pi:

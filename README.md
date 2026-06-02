@@ -207,40 +207,40 @@ Reads a saved run summary.
 
 ## Fixture groups
 
-| Group               | Fixtures                                                                                                                                  |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `smoke`             | `add_zero_right`                                                                                                                          |
-| `broader`           | Seven broader fixtures covering Nat distribution, Bool/List recursion, list helpers, tree helpers, and reverse/append.                    |
-| `heldout`           | Seven original held-out transfer fixtures.                                                                                                |
-| `combined`          | `broader` + `heldout` (`14` fixtures).                                                                                                    |
-| `negative_controls` | Six fixtures: distribution, multiplication associativity/commutativity, addition cancellation, and filter length bound negative controls. |
-| `challenge_v2_no_helper` | Three no-expected-proof fixtures requiring local helper lemma discovery. |
-| `challenge_v3_generalization` | Four no-expected-proof theorem-generalization fixtures requiring accumulator/multi-helper proof plans. |
-| `challenge_transfer` | All v2/v3 challenge fixtures (`7` fixtures). |
-| `challenge_v4_count` | Four no-expected-proof count/list/tree fixtures. |
-| `challenge_v5_attribution` | Four no-expected-proof fixtures for seeded/unseeded/direct attribution. |
-| `challenge_v5_tree_tally` | The hard v5 tree/tally mirror fixture. |
-| `challenge_v6_frontier` | Four no-expected-proof frontier fixtures where nested tree/partition composition starts separating seeded/unseeded/direct. |
-| `challenge_v7_frontier` | Four no-expected-proof frontier-plus fixtures where seeded autocontext becomes unstable (`2/4`) while unseeded/direct are `0/4`. |
-| `challenge_v8_diagnostics` | Four no-expected-proof diagnostic fixtures isolating the v7 partition-heavy accumulator failures into smaller raw-tree, keep/drop, and list reassembly components. |
-| `challenge_v9_composition_gradient` | Six no-expected-proof composition-gradient fixtures splitting keep/drop partition-through-mirror into scalar and paired length/sum obligations. |
-| `challenge_v10_stats_reification` | Six no-expected-proof statsAcc-reification fixtures isolating tuple normalization, metric extensionality, count metrics, and stats equality from metric hypotheses. |
-| `challenge_v11_metric_composition` | Six no-expected-proof metric-composition fixtures combining keep/drop metric bundles with statsAcc extensionality boundaries. |
-| `challenge_v12_simultaneous_metrics` | Seven no-expected-proof simultaneous-metric fixtures isolating keep/drop count-only, length-only, sum-only, pair, and triple metric bundles. |
-| `challenge_v13_decomposition_order` | Six no-expected-proof fixtures isolating v12 triple-bundle ordering, append/filter sub-lemmas, tree-only metrics, and conjunction reassembly. |
-| `challenge_v14_metric_order_permutations` | Six no-expected-proof fixtures covering all metric-order permutations for the full simultaneous keep/drop triple bundle. |
-| `challenge_v15_proof_shape_hints` | Four no-expected-proof fixtures exposing metric-bundle, side-bundle, append/filter, and reassembly hypotheses for the hard length/count/sum order. |
-| `challenge_v16_compact_reassembly_hints` | Four no-expected-proof fixtures replacing the large v15 reassembly hypothesis with compact generic/named packer hypotheses. |
-| `challenge_v17_proof_plan_hints` | Four no-expected-proof fixtures adding harmless `True` proof-plan skeleton names to v16 compact packer shapes. |
-| `challenge_v18_prompt_only_skeleton_hints` | Two no-expected-proof fixtures reusing v16 theorem statements while supplying detailed skeleton names only through seeded playbook context. |
-| `challenge_v19_bare_skeleton_names` | Ablation over the two clean v18 fixtures using only bare skeleton-name bullets in the seeded playbook. |
-| `challenge_v20_description_only_skeleton` | Ablation over the two clean v18 fixtures using compact skeleton descriptions without `plan_...` labels in the seeded playbook. |
-| `challenge_v21_neutral_anchor_skeleton` | Ablation over the two clean v18 fixtures using neutral step anchors plus compact descriptions without `plan_...` labels in the seeded playbook. |
-| `challenge_v22_code_like_anchor_skeleton` | Ablation over the two clean v18 fixtures using compact descriptions plus code-like snake_case anchors without the earlier detailed-plan prefix. |
-| `challenge_v23_exact_labels_without_plan_prefix` | Ablation over the two clean v18 fixtures using the exact v18 detailed labels with only the prefix removed. |
-| `challenge_v24_plan_prefix_generic_labels` | Ablation over the two clean v18 fixtures using compact descriptions plus generic `plan_` labels that differ from v18 exact labels. |
-| `challenge_v25_step_prefix_exact_labels` | Ablation over the two clean v18 fixtures using compact descriptions plus `step_` prefixed exact v18 label roots. |
-| `challenge_extended_transfer` | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16/v17/v18 challenge fixtures (`78` fixtures). |
+| Group                                            | Fixtures                                                                                                                                                            |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `smoke`                                          | `add_zero_right`                                                                                                                                                    |
+| `broader`                                        | Seven broader fixtures covering Nat distribution, Bool/List recursion, list helpers, tree helpers, and reverse/append.                                              |
+| `heldout`                                        | Seven original held-out transfer fixtures.                                                                                                                          |
+| `combined`                                       | `broader` + `heldout` (`14` fixtures).                                                                                                                              |
+| `negative_controls`                              | Six fixtures: distribution, multiplication associativity/commutativity, addition cancellation, and filter length bound negative controls.                           |
+| `challenge_v2_no_helper`                         | Three no-expected-proof fixtures requiring local helper lemma discovery.                                                                                            |
+| `challenge_v3_generalization`                    | Four no-expected-proof theorem-generalization fixtures requiring accumulator/multi-helper proof plans.                                                              |
+| `challenge_transfer`                             | All v2/v3 challenge fixtures (`7` fixtures).                                                                                                                        |
+| `challenge_v4_count`                             | Four no-expected-proof count/list/tree fixtures.                                                                                                                    |
+| `challenge_v5_attribution`                       | Four no-expected-proof fixtures for seeded/unseeded/direct attribution.                                                                                             |
+| `challenge_v5_tree_tally`                        | The hard v5 tree/tally mirror fixture.                                                                                                                              |
+| `challenge_v6_frontier`                          | Four no-expected-proof frontier fixtures where nested tree/partition composition starts separating seeded/unseeded/direct.                                          |
+| `challenge_v7_frontier`                          | Four no-expected-proof frontier-plus fixtures where seeded autocontext becomes unstable (`2/4`) while unseeded/direct are `0/4`.                                    |
+| `challenge_v8_diagnostics`                       | Four no-expected-proof diagnostic fixtures isolating the v7 partition-heavy accumulator failures into smaller raw-tree, keep/drop, and list reassembly components.  |
+| `challenge_v9_composition_gradient`              | Six no-expected-proof composition-gradient fixtures splitting keep/drop partition-through-mirror into scalar and paired length/sum obligations.                     |
+| `challenge_v10_stats_reification`                | Six no-expected-proof statsAcc-reification fixtures isolating tuple normalization, metric extensionality, count metrics, and stats equality from metric hypotheses. |
+| `challenge_v11_metric_composition`               | Six no-expected-proof metric-composition fixtures combining keep/drop metric bundles with statsAcc extensionality boundaries.                                       |
+| `challenge_v12_simultaneous_metrics`             | Seven no-expected-proof simultaneous-metric fixtures isolating keep/drop count-only, length-only, sum-only, pair, and triple metric bundles.                        |
+| `challenge_v13_decomposition_order`              | Six no-expected-proof fixtures isolating v12 triple-bundle ordering, append/filter sub-lemmas, tree-only metrics, and conjunction reassembly.                       |
+| `challenge_v14_metric_order_permutations`        | Six no-expected-proof fixtures covering all metric-order permutations for the full simultaneous keep/drop triple bundle.                                            |
+| `challenge_v15_proof_shape_hints`                | Four no-expected-proof fixtures exposing metric-bundle, side-bundle, append/filter, and reassembly hypotheses for the hard length/count/sum order.                  |
+| `challenge_v16_compact_reassembly_hints`         | Four no-expected-proof fixtures replacing the large v15 reassembly hypothesis with compact generic/named packer hypotheses.                                         |
+| `challenge_v17_proof_plan_hints`                 | Four no-expected-proof fixtures adding harmless `True` proof-plan skeleton names to v16 compact packer shapes.                                                      |
+| `challenge_v18_prompt_only_skeleton_hints`       | Two no-expected-proof fixtures reusing v16 theorem statements while supplying detailed skeleton names only through seeded playbook context.                         |
+| `challenge_v19_bare_skeleton_names`              | Ablation over the two clean v18 fixtures using only bare skeleton-name bullets in the seeded playbook.                                                              |
+| `challenge_v20_description_only_skeleton`        | Ablation over the two clean v18 fixtures using compact skeleton descriptions without `plan_...` labels in the seeded playbook.                                      |
+| `challenge_v21_neutral_anchor_skeleton`          | Ablation over the two clean v18 fixtures using neutral step anchors plus compact descriptions without `plan_...` labels in the seeded playbook.                     |
+| `challenge_v22_code_like_anchor_skeleton`        | Ablation over the two clean v18 fixtures using compact descriptions plus code-like snake_case anchors without the earlier detailed-plan prefix.                     |
+| `challenge_v23_exact_labels_without_plan_prefix` | Ablation over the two clean v18 fixtures using the exact v18 detailed labels with only the prefix removed.                                                          |
+| `challenge_v24_plan_prefix_generic_labels`       | Ablation over the two clean v18 fixtures using compact descriptions plus generic `plan_` labels that differ from v18 exact labels.                                  |
+| `challenge_v25_step_prefix_exact_labels`         | Ablation over the two clean v18 fixtures using compact descriptions plus `step_` prefixed exact v18 label roots.                                                    |
+| `challenge_extended_transfer`                    | All v2/v3/v4/v5/v6/v7/v8/v9/v10/v11/v12/v13/v14/v15/v16/v17/v18 challenge fixtures (`78` fixtures).                                                                 |
 
 ## Modes
 
@@ -307,6 +307,33 @@ The underlying harness requires:
 - no theorem weakening
 - no new imports
 - Lean verification before success is counted
+
+## Mathlib-aware lemma retrieval (opt-in)
+
+By default the harness operates in an Init-only profile (no Mathlib). For
+Mathlib-backed targets, `harness/mathlib_retrieval.py` surfaces ranked candidate
+library lemmas (name, signature, one-line doc) into the repair prompt so the
+model is shown real declarations instead of guessing names that may have been
+renamed or never existed.
+
+Enable it by pointing at a declaration index generated from the pinned Mathlib
+revision (a JSON list of `{"name", "signature", "doc"}` records):
+
+```bash
+export AUTOCONTEXT_MATHLIB_INDEX=/path/to/mathlib_index.json
+# or: python3 harness/prove_with_autocontext.py --mathlib-index /path/to/mathlib_index.json ...
+```
+
+When an index is configured the run switches to the `lean-mathlib` harness
+profile: retrieved candidates are injected into the repair prompt and Mathlib
+imports are permitted. When it is unset or missing, behaviour is unchanged
+(Init-only, no retrieval, byte-identical repair prompt).
+
+Because the index is a dump of the pinned revision, suggested names resolve in
+that revision. Retrieval is advisory only: Lean remains the correctness oracle,
+and nothing here asserts a candidate is applicable or a proof correct. Ranking is
+keyword-based today; embedding-based semantic search and live `#check` validation
+against the lake environment are documented follow-ups. Tracks issue #1.
 
 ## Local validation
 
@@ -379,7 +406,6 @@ Package source: npm:pi-autocontext-lean-verify@0.1.4
 ```
 
 `npm pack --dry-run --json` includes runtime package assets and the bundled harness, while excluding tests and generated result artifacts.
-
 
 ## Proof-transfer benchmark evidence
 

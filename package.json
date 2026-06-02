@@ -19,6 +19,7 @@
     "harness/experiment_common.py",
     "harness/verify_lean_proof.py",
     "harness/extract_candidate_proof.py",
+    "harness/mathlib_retrieval.py",
     "harness/update_results_index.py",
     "harness/direct_pi_prove.py",
     "harness/run_direct_baseline_benchmark.py",

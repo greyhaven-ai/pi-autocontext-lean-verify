@@ -316,13 +316,23 @@ library lemmas (name, signature, one-line doc) into the repair prompt so the
 model is shown real declarations instead of guessing names that may have been
 renamed or never existed.
 
-Enable it by pointing at a declaration index generated from the pinned Mathlib
-revision (a JSON list of `{"name", "signature", "doc"}` records):
+Build the index from a Mathlib source checkout at the pinned revision, then point
+the loop at it:
 
 ```bash
-export AUTOCONTEXT_MATHLIB_INDEX=/path/to/mathlib_index.json
-# or: python3 harness/prove_with_autocontext.py --mathlib-index /path/to/mathlib_index.json ...
+# Build the index (source-parse tier; run over your pinned Mathlib checkout):
+python3 harness/build_mathlib_index.py --mathlib-src /path/to/mathlib --out mathlib_index.json
+#   optional: --include-namespace Nat --include-namespace List   --limit 50000
+
+export AUTOCONTEXT_MATHLIB_INDEX=$PWD/mathlib_index.json
+# or: python3 harness/prove_with_autocontext.py --mathlib-index mathlib_index.json ...
 ```
+
+The producer walks the source, tracks `namespace`/`section`/`end` scoping to emit
+fully-qualified names, captures each declaration's signature and docstring, and
+skips `private` declarations. It also accepts `--from-dump <jsonl>` to convert a
+pre-dumped `{"name","signature","doc"}` JSONL without a checkout. The output is a
+JSON list of `{"name","signature","doc"}` records.
 
 When an index is configured the run switches to the `lean-mathlib` harness
 profile: retrieved candidates are injected into the repair prompt and Mathlib
@@ -332,8 +342,9 @@ imports are permitted. When it is unset or missing, behaviour is unchanged
 Because the index is a dump of the pinned revision, suggested names resolve in
 that revision. Retrieval is advisory only: Lean remains the correctness oracle,
 and nothing here asserts a candidate is applicable or a proof correct. Ranking is
-keyword-based today; embedding-based semantic search and live `#check` validation
-against the lake environment are documented follow-ups. Tracks issue #1.
+keyword-based today; embedding-based semantic search and a Lean-environment-backed
+dump (fully elaborated signatures + live `#check` validation against the lake
+environment) are documented follow-ups. Tracks issues #1 and #4.
 
 ## Local validation
 
